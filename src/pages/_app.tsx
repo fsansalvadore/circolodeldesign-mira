@@ -7,15 +7,15 @@ import MaintenancePage from '../layouts/MaintenanceLayout';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
-  titleTemplate: '%s | Example',
-  defaultTitle: 'Example',
-  description: 'Example',
+  titleTemplate: '%s | Mira',
+  defaultTitle: 'Mira',
+  description: 'Mira',
   twitter: {
     cardType: 'summary_large_image',
   },
   openGraph: {
     type: 'website',
-    // images: [{ url: "/example.png" }],
+    // images: [{ url: "/mira.png" }],
   },
 };
 
@@ -40,7 +40,8 @@ const App = ({ Component, pageProps }) => {
             rel="stylesheet"
           />
         </NextHead>
-        {pageProps.isInMaintenanceMode ? (
+        {pageProps.isInMaintenanceMode &&
+        process.env.NODE_ENV !== 'development' ? (
           <MaintenancePage>
             <GlobalStyles />
             <Component {...pageProps} />
