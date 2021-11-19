@@ -1,0 +1,74 @@
+{
+  "name": "alboran-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.11",
+    "@heroicons/react": "^1.0.3",
+    "@uidu/api.js": "^1.3.0",
+    "@uidu/button": "^1.2.1",
+    "@uidu/checkbox": "^1.1.4",
+    "@uidu/field": "^1.0.0",
+    "@uidu/field-file-uploader": "^1.0.3",
+    "@uidu/field-textarea": "^1.1.3",
+    "@uidu/form": "^1.2.1",
+    "@uidu/map": "^0.6.2",
+    "graphql": "^15.5.3",
+    "html-react-parser": "^1.2.7",
+    "js-cookie": "^3.0.1",
+    "next": "^11.1.2",
+    "next-seo": "^4.26.0",
+    "param-case": "^3.0.4",
+    "react": "17.0.2",
+    "react-cookie-consent": "^6.4.1",
+    "react-dom": "17.0.2",
+    "react-loading-skeleton": "^2.2.0",
+    "react-parallax": "^3.3.0",
+    "react-player": "^2.9.0",
+    "react-router-dom": "^5.2.1",
+    "react-typed": "^1.2.0",
+    "react-use": "^17.2.4",
+    "rsuite": "^5.2.0",
+    "sharp": "^0.29.3",
+    "styled-components": "^5.3.0",
+    "swiper": "^6.8.0",
+    "typescript": "^4.3.5",
+    "uppy": "^2.1.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.0",
+    "@next/eslint-plugin-next": "^11.1.2",
+    "@svgr/webpack": "^5.5.0",
+    "@types/react": "^17.0.14",
+    "@types/styled-components": "^5.1.11",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-styled-components": "^1.13.2",
+    "css-loader": "^6.5.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "11.1.2",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.4.4",
+    "prettier": "^2.3.2",
+    "react-is": "^17.0.2",
+    "tailwindcss": "^2.2.4",
+    "twin.macro": "^2.6.2",
+    "webpack": "^5.64.0"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
+  }
+}
