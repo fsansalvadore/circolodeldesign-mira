@@ -25,7 +25,6 @@ export default function Index({
   footer = null,
   previewData = null,
 }) {
-  console.log('nodeenv', process.env.NODE_ENV);
   if (!page)
     return (
       <div tw="flex items-center justify-center w-screen h-screen">
