@@ -1,5 +1,5 @@
 import tw from 'twin.macro';
-import { CookieBanner } from '../components/Base';
+// import { CookieBanner } from '../components/Base';
 import LoadingSkeleton from '../components/Base/LoadingSkeleton';
 import { Footer, MainNavigation } from '../components/Blocks';
 
@@ -13,7 +13,7 @@ const DefaultPage: React.FC<Props> = ({ loading = false, children }) => {
   return (
     <>
       <Main>
-        <CookieBanner />
+        {/* <CookieBanner /> */}
         {loading ? <LoadingSkeleton /> : children}
       </Main>
     </>
