@@ -28,7 +28,7 @@ export default function Page({
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
 
-  if (isInMaintenanceMode)
+  if (isInMaintenanceMode && process.env.NODE_ENV !== 'development')
     return <MaintenancePage fields={maintenanceBlock?.fields} />;
 
   const blocks = page?.blocks;

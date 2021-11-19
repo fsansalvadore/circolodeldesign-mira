@@ -25,6 +25,7 @@ export default function Index({
   footer = null,
   previewData = null,
 }) {
+  console.log('nodeenv', process.env.NODE_ENV);
   if (!page)
     return (
       <div tw="flex items-center justify-center w-screen h-screen">
@@ -35,7 +36,7 @@ export default function Index({
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
 
-  if (isInMaintenanceMode)
+  if (isInMaintenanceMode && process.env.NODE_ENV !== 'development')
     return <MaintenancePage fields={maintenanceBlock?.fields} />;
 
   const blocks = page?.blocks;

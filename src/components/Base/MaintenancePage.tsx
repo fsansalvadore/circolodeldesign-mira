@@ -1,4 +1,4 @@
-const MaintenancePage = () => {
+const MaintenancePage = ({ fields }) => {
   return <h1>Sito in costruzione</h1>;
 };
 
