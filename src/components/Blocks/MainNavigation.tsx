@@ -13,9 +13,9 @@ const SubMenuWrapper = styled.div`
   transition: visibility 100ms ease, opacity 100ms, transform 100ms ease;
 `;
 const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
-  ${tw`w-full p-6 font-bold text-white bg-gray-400 text-base md:text-base hover:bg-primary whitespace-nowrap`}
+  ${tw`w-full p-6 font-bold text-white bg-gray-400 text-base md:text-base hover:bg-miraBlue whitespace-nowrap`}
 
-  ${({ $isActive }) => $isActive && tw`bg-primary`}
+  ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
 const NavWrapper = tw.div`w-full h-60 lg:h-10 fixed left-0 right-0 top-0 z-50 flex justify-center bg-white shadow-md`;
 const NavContent = tw(
@@ -53,9 +53,9 @@ const Accordion = styled.div<{ $isSubmenuOpen?: boolean }>`
 `;
 
 const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
-  ${tw`relative w-full flex-grow items-center py-10 md:py-20 font-bold lg:(w-auto py-10 border-b-2 border-transparent) hover:text-primary`}
+  ${tw`relative w-full flex-grow items-center py-10 md:py-20 font-bold lg:(w-auto py-10 border-b-2 border-transparent) hover:text-miraBlue`}
 
-  ${({ $isActive }) => $isActive && tw`text-primary! lg:border-primary`}
+  ${({ $isActive }) => $isActive && tw`text-miraBlue! lg:border-miraBlue`}
 
   &:hover {
     ${SubMenuWrapper} {

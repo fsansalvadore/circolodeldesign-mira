@@ -1,18 +1,21 @@
 const colors = require('tailwindcss/colors');
-const defaultTheme = require("tailwindcss/defaultTheme");
-const createSpacingPlugin = require("./tailwind.plugin.spacing.js");
+const defaultTheme = require('tailwindcss/defaultTheme');
+const createSpacingPlugin = require('./tailwind.plugin.spacing.js');
 // const { plugin: spacingPlugin, pxToRem } = createSpacingPlugin();
 
 module.exports = {
   theme: {
     colors: {
       ...colors,
-      current: "currentColor",
-      transparent: "transparent",
-      primary: "#0096DE",
+      current: 'currentColor',
+      transparent: 'transparent',
+      miraBlue: '#1A7ADE',
+      miraGreen: '#E75323',
+      miraOrange: '#0096DE',
+      miraFucsia: '#E71ACD',
     },
     fontFamily: {
-      sans: ["Poppins", ...defaultTheme.fontFamily.sans],
+      sans: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
     },
     // fontSize: {
     //   base: [pxToRem(16), 1.25],
@@ -45,38 +48,38 @@ module.exports = {
       80: 80,
       90: 90,
       100: 100,
-      auto: "auto",
+      auto: 'auto',
     },
     rotate: {
-      0: "0deg",
-      "-30": "-30deg",
-      "-90": "-90deg",
-      90: "90deg",
-      "-45": "-45deg",
-      45: "45deg",
-      180: "180deg",
+      0: '0deg',
+      '-30': '-30deg',
+      '-90': '-90deg',
+      90: '90deg',
+      '-45': '-45deg',
+      45: '45deg',
+      180: '180deg',
     },
     extend: {
       borderRadius: {
-        "1/2": "50%",
+        '1/2': '50%',
       },
       screens: {
-        "has-hover": { raw: "(hover:hover)" },
-        "max-content": "1280px",
+        'has-hover': { raw: '(hover:hover)' },
+        'max-content': '1280px',
       },
       padding: {
-        "9/16": "56.25%",
+        '9/16': '56.25%',
       },
       gridTemplateRows: {
-        8: "repeat(8, minmax(0, 1fr))",
+        8: 'repeat(8, minmax(0, 1fr))',
       },
     },
   },
   variants: {
     extend: {
-      margin: ["last"],
-      borderWidth: ["last", "first"],
-      boxShadow: ["focus"],
+      margin: ['last'],
+      borderWidth: ['last', 'first'],
+      boxShadow: ['focus'],
     },
   },
   corePlugins: {
