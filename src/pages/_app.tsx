@@ -46,8 +46,9 @@ const App = ({ Component, pageProps }) => {
           />
         </NextHead>
         <GlobalStyles />
-        {pageProps.isInMaintenanceMode &&
-        process.env.NODE_ENV !== 'development' ? (
+        {(pageProps.isInMaintenanceMode &&
+          process.env.NODE_ENV !== 'development') ||
+        !pageProps.page ? (
           <MaintenancePage>
             <Component {...pageProps} />
           </MaintenancePage>
