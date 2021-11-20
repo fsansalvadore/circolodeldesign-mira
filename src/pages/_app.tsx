@@ -52,11 +52,14 @@ const App = ({ Component, pageProps }) => {
           <>
             {!!pageProps.menu && <MainNavigation menu={pageProps.menu} />}
             <AnimatePresence
-              exitBeforeEnter
+              // exitBeforeEnter
               onExitComplete={() => window.scrollTo(0, 0)}
             >
               <TransitionLayout
-                footer={() => <Footer footer={pageProps.footer} />}
+                footer={() =>
+                  pageProps.footer && <Footer footer={pageProps.footer} />
+                }
+                page={pageProps.page}
               >
                 <Component {...pageProps} key={pageProps.page?.slug} />
               </TransitionLayout>

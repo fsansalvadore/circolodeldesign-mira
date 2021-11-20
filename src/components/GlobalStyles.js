@@ -3,9 +3,25 @@ import { createGlobalStyle } from 'styled-components';
 import tw, { GlobalStyles as BaseStyles } from 'twin.macro';
 
 const CustomStyles = createGlobalStyle`
+  :root {
+    --mira-blue: 26, 122, 222;
+    --mira-green: 16, 100, 85;
+    --mira-orange: 231, 83, 35;
+    --mira-fucsia: 231, 26, 205;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
   body {
-    ${tw`text-base antialiased overflow-x-hidden overscroll-y-none`}
+    ${tw`text-base p-0 m-0 antialiased overflow-x-hidden overscroll-y-none`}
     font-family: 'Space Grotesk', sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
