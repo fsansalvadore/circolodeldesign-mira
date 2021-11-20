@@ -13,19 +13,19 @@ type TransitionFase = 'initial' | 'final';
 const handleColorBySlug = (slug) => {
   switch (slug) {
     case 'about':
-      return colorVariants.orange;
+      return { variant: colorVariants.orange, mode: 'dark' };
     case 'press-area':
-      return colorVariants.green;
+      return { variant: colorVariants.green, mode: 'dark' };
     case 'ricerche-e-report':
-      return colorVariants.fucsia;
+      return { variant: colorVariants.fucsia, mode: 'dark' };
     case slug.includes('ricerca/'):
-      return colorVariants.white;
+      return { variant: colorVariants.white, mode: 'light' };
     default:
-      return colorVariants.blue;
+      return { variant: colorVariants.blue, mode: 'dark' };
   }
 };
 
-const TransitionLayout = ({ footer: Footer, page, children }) => {
+const TransitionLayout = ({ footer: Footer, page, setColorMode, children }) => {
   const router = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
   const [transitionStage, setTransitionStage] =
@@ -33,15 +33,17 @@ const TransitionLayout = ({ footer: Footer, page, children }) => {
   const [pageColor, setPageColor] = useState(colorVariants.blue);
 
   useEffect(() => {
-    setPageColor(handleColorBySlug(page.slug));
-  }, [router, page.slug]);
+    setPageColor(handleColorBySlug(page.slug).variant);
+    setColorMode(handleColorBySlug(page.slug).mode);
+  }, [router, page.slug, setColorMode]);
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
       setTransitionStage('initial');
-      setPageColor(handleColorBySlug(page.slug));
+      setPageColor(handleColorBySlug(page.slug).variant);
+      setColorMode(handleColorBySlug(page.slug).mode);
     });
-  }, [router, router.events, page.slug]);
+  }, [router, router.events, page.slug, setColorMode]);
 
   useEffect(() => {
     if (children !== displayChildren) setTransitionStage('final');

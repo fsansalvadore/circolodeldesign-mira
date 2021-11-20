@@ -1,3 +1,4 @@
+// color definitions
 const colors = {
   blue: { color: 'hsla(211, 79%, 49%, 1)', mode: 'dark' },
   orange: { color: 'hsla(15, 80%, 52%, 1)', mode: 'dark' },
@@ -7,7 +8,8 @@ const colors = {
   black: { color: 'hsla(0, 0%, 0%, 1)', mode: 'dark' },
 };
 
-const transition = {
+// transition definitions
+const transitions = {
   background: {
     staggerChildren: 0.5,
     duration: 1,
@@ -17,56 +19,63 @@ const transition = {
   content: {
     duration: 0.2,
     type: 'spring',
-    // damping: 300,
   },
+};
+
+// color mode variant
+export const textVariant = {
+  dark: { color: colors.white.color, ...transitions.background },
+  light: { color: colors.black.color, ...transitions.background },
 };
 
 export const backgroundVariant = {
   hidden: {
     backgroundColor: colors.blue.color,
-    ...transition.background,
+    ...transitions.background,
   },
   show: {
     backgroundColor: colors.orange.color,
-    ...transition.background,
+    ...transitions.background,
   },
 };
 
+// for background colors
 export const colorVariants = {
   blue: {
     backgroundColor: colors.blue.color,
     color: colors.white.color,
-    ...transition.background,
+    ...transitions.background,
   },
   orange: {
     backgroundColor: colors.orange.color,
     color: colors.white.color,
-    ...transition.background,
+    ...transitions.background,
   },
   green: {
     backgroundColor: colors.green.color,
     color: colors.white.color,
-    ...transition.background,
+    ...transitions.background,
   },
   fucsia: {
     backgroundColor: colors.fucsia.color,
     color: colors.white.color,
-    ...transition.background,
+    ...transitions.background,
   },
   white: {
-    backgroundColor: colors.blue.color,
+    backgroundColor: colors.white.color,
     color: colors.black.color,
-    ...transition.background,
+    ...transitions.background,
   },
 };
 
+// variant for page content that needs to hide for page transition
 export const contentVariant = {
   hidden: {
     opacity: 0,
-    ...transition.content,
+    ...transitions.content,
   },
   show: {
     opacity: 1,
-    ...transition.content,
+    ...transitions.content,
   },
 };

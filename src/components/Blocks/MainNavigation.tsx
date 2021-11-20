@@ -7,6 +7,8 @@ import tw, { css, styled } from 'twin.macro';
 import { data as mainNavigation } from '../../data/mainNavigation.data';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
+import { motion } from 'framer-motion';
+import { textVariant } from '../../utils/motion';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-40`}
@@ -66,7 +68,7 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
 const MobileMenuButton = tw.button`p-8 flex items-center justify-center rounded`;
 const MobileMenuWrapper = tw.div`fixed z-50 bottom-0 top-60 py-10 md:py-20 w-screen height[100vh - 60px] flex flex-col bg-transparent text-black`;
 
-export const MainNavigation = ({ menu }) => {
+export const MainNavigation = ({ menu, colorMode }) => {
   const router = useRouter();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
@@ -90,7 +92,7 @@ export const MainNavigation = ({ menu }) => {
   const { blocks: menuItems } = menu;
 
   return (
-    <>
+    <motion.div variants={textVariant} initial="dark" animate={colorMode}>
       <NavWrapper>
         <NavContent>
           <div tw="min-width[150px]">
@@ -268,6 +270,6 @@ export const MainNavigation = ({ menu }) => {
           </MaxWidthContent>
         </MobileMenuWrapper>
       )}
-    </>
+    </motion.div>
   );
 };

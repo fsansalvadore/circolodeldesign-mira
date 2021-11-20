@@ -6,6 +6,7 @@ import MaintenancePage from '../layouts/MaintenanceLayout';
 import TransitionLayout from '../layouts/TransitionLayout';
 import { AnimatePresence } from 'framer-motion';
 import { Footer, MainNavigation } from '../components/Blocks';
+import { useState } from 'react';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
@@ -22,6 +23,8 @@ const defaultSeo: DefaultSeoProps = {
 };
 
 const App = ({ Component, pageProps }) => {
+  const [colorMode, setColorMode] = useState('dark');
+
   if (!process.env.NEXT_PUBLIC_API_ENDPOINT)
     return (
       <>
@@ -50,7 +53,9 @@ const App = ({ Component, pageProps }) => {
           </MaintenancePage>
         ) : (
           <>
-            {!!pageProps.menu && <MainNavigation menu={pageProps.menu} />}
+            {!!pageProps.menu && (
+              <MainNavigation menu={pageProps.menu} colorMode={colorMode} />
+            )}
             <AnimatePresence
               // exitBeforeEnter
               onExitComplete={() => window.scrollTo(0, 0)}
@@ -60,6 +65,7 @@ const App = ({ Component, pageProps }) => {
                   pageProps.footer && <Footer footer={pageProps.footer} />
                 }
                 page={pageProps.page}
+                setColorMode={setColorMode}
               >
                 <Component {...pageProps} key={pageProps.page?.slug} />
               </TransitionLayout>
