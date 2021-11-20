@@ -6,22 +6,22 @@ import 'twin.macro';
 
 type TransitionFase = 'initial' | 'final';
 
-const TransitionLayout = ({ children }) => {
+const TransitionLayout = ({ footer: Footer, children }) => {
   const router = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
   const [transitionStage, setTransitionStage] =
     useState<TransitionFase>('final');
 
   useEffect(() => {
-    if (children !== displayChildren) setTransitionStage('final');
-  }, [children, setDisplayChildren, displayChildren, setTransitionStage]);
-
-  useEffect(() => {
-    router.events.on('routeChangeStart', () => {
+    router.events.on('routeChangeComplete', () => {
       console.log('router start');
       setTransitionStage('initial');
     });
   }, [router, router.events]);
+
+  useEffect(() => {
+    if (children !== displayChildren) setTransitionStage('final');
+  }, [children, setDisplayChildren, displayChildren, setTransitionStage]);
 
   return (
     <motion.div
@@ -29,7 +29,7 @@ const TransitionLayout = ({ children }) => {
       initial="hidden"
       animate={transitionStage === 'final' ? 'show' : 'hidden'}
       exit="hidden"
-      tw="w-screen h-screen fixed z-behind left-0 right-0 top-0 bottom-0"
+      tw="w-screen min-h-screen"
     >
       <motion.div
         variants={contentVariant}
@@ -38,6 +38,7 @@ const TransitionLayout = ({ children }) => {
         exit="hidden"
       >
         {children}
+        <Footer />
       </motion.div>
     </motion.div>
   );

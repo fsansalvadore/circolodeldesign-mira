@@ -50,16 +50,17 @@ const App = ({ Component, pageProps }) => {
           </MaintenancePage>
         ) : (
           <>
-            <MainNavigation menu={pageProps.menu} />
+            {!!pageProps.menu && <MainNavigation menu={pageProps.menu} />}
             <AnimatePresence
               exitBeforeEnter
               onExitComplete={() => window.scrollTo(0, 0)}
             >
-              <TransitionLayout>
-                <Component {...pageProps} key={pageProps.page.slug} />
+              <TransitionLayout
+                footer={() => <Footer footer={pageProps.footer} />}
+              >
+                <Component {...pageProps} key={pageProps.page?.slug} />
               </TransitionLayout>
             </AnimatePresence>
-            <Footer footer={pageProps.footer} />
           </>
         )}
       </CmsProvider>
