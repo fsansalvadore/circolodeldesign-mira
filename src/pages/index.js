@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import { getPageSchema, PAGE_QUERY } from '@uidu/api.js/react';
 import { NextSeo } from 'next-seo';
@@ -7,7 +8,6 @@ import { PreviewModeAlert } from '../components/Base/PreviewModeAlert';
 import { findByShortname } from '../utils/common';
 import 'twin.macro';
 import { getGlobals } from '../utils/getGlobals';
-import { Footer, MainNavigation } from '../components/Blocks';
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
@@ -21,8 +21,6 @@ export default function Index({
   loading = false,
   isInMaintenanceMode = false,
   preview = false,
-  menu = null,
-  footer = null,
   previewData = null,
 }) {
   if (!page)
@@ -38,14 +36,15 @@ export default function Index({
   if (isInMaintenanceMode && process.env.NODE_ENV !== 'development')
     return <MaintenancePage fields={maintenanceBlock?.fields} />;
 
-  const blocks = page?.blocks;
+  const blocks = page?.blocks ?? [];
 
   return (
     <>
       <NextSeo title={page?.name ?? 'Home Page'} />
-      {!!menu && <MainNavigation menu={menu} />}
-      <BlocksParser blocks={blocks} />
-      {!!footer && <Footer footer={footer} />}
+      {/* <BlocksParser blocks={blocks} /> */}
+      <div tw="w-screen h-screen flex items-center justify-center">
+        <h1>{page.name}</h1>
+      </div>
       {!!preview && <PreviewModeAlert />}
     </>
   );
@@ -87,8 +86,10 @@ export const getStaticProps = async ({ preview = false }) => {
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
   const isInMaintenanceMode =
-    findByShortname(maintenanceBlock?.fields, 'manutenzione-attiva')?.content
-      ?.value ?? null;
+    (process.env.NODE_ENV !== 'development' &&
+      findByShortname(maintenanceBlock?.fields, 'manutenzione-attiva')?.content
+        ?.value) ??
+    null;
 
   const page = isInMaintenanceMode
     ? maintenancePage

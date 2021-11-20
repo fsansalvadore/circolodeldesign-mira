@@ -2,8 +2,10 @@ import { CmsProvider, UiduProvider } from '@uidu/api.js/react';
 import { DefaultSeo, DefaultSeoProps } from 'next-seo';
 import NextHead from 'next/head';
 import GlobalStyles from '../components/GlobalStyles';
-import DefaultPage from '../layouts/DefaultPage';
 import MaintenancePage from '../layouts/MaintenanceLayout';
+import TransitionLayout from '../layouts/TransitionLayout';
+import { AnimatePresence } from 'framer-motion';
+import { Footer, MainNavigation } from '../components/Blocks';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
@@ -40,17 +42,25 @@ const App = ({ Component, pageProps }) => {
             rel="stylesheet"
           />
         </NextHead>
+        <GlobalStyles />
         {pageProps.isInMaintenanceMode &&
         process.env.NODE_ENV !== 'development' ? (
           <MaintenancePage>
-            <GlobalStyles />
             <Component {...pageProps} />
           </MaintenancePage>
         ) : (
-          <DefaultPage>
-            <GlobalStyles />
-            {pageProps ? <Component {...pageProps} /> : <Component />}
-          </DefaultPage>
+          <>
+            <MainNavigation menu={pageProps.menu} />
+            <AnimatePresence
+              exitBeforeEnter
+              onExitComplete={() => window.scrollTo(0, 0)}
+            >
+              <TransitionLayout>
+                <Component {...pageProps} key={pageProps.page.slug} />
+              </TransitionLayout>
+            </AnimatePresence>
+            <Footer footer={pageProps.footer} />
+          </>
         )}
       </CmsProvider>
     </UiduProvider>

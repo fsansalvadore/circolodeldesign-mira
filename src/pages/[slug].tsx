@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import { getPageSchema, PAGES_QUERY, PAGE_QUERY } from '@uidu/api.js/react';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import BlocksParser from '../components/BlocksParser';
 import MaintenancePage from '../components/Base/MaintenancePage';
+import 'twin.macro';
 import { findByShortname } from '../utils/common';
 import { PreviewModeAlert } from '../components/Base/PreviewModeAlert';
 import { getGlobals } from '../utils/getGlobals';
-import { Footer, MainNavigation } from '../components/Blocks';
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
@@ -21,10 +22,14 @@ export default function Page({
   loading,
   isInMaintenanceMode = false,
   preview,
-  menu,
-  footer,
   previewData,
 }) {
+  if (!page)
+    return (
+      <div tw="flex items-center justify-center w-screen h-screen">
+        <h1>Empty website</h1>
+      </div>
+    );
   const maintenanceBlock = page.blocks?.find(
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
@@ -32,15 +37,16 @@ export default function Page({
   if (isInMaintenanceMode && process.env.NODE_ENV !== 'development')
     return <MaintenancePage fields={maintenanceBlock?.fields} />;
 
-  const blocks = page?.blocks;
+  const blocks = page?.blocks ?? [];
 
   return (
     <>
       <NextSeo title={page?.name} />
-      {menu && <MainNavigation menu={menu} />}
-      <BlocksParser blocks={blocks} />
-      {footer && <Footer footer={footer} />}
-      {preview && <PreviewModeAlert />}
+      {/* <BlocksParser blocks={blocks} /> */}
+      <div tw="w-screen h-screen flex items-center justify-center">
+        <h1>{page.name}</h1>
+      </div>
+      {!!preview && <PreviewModeAlert />}
     </>
   );
 }
@@ -107,8 +113,10 @@ export const getStaticProps: GetStaticProps = async ({
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
   const isInMaintenanceMode =
-    findByShortname(maintenanceBlock?.fields, 'manutenzione-attiva')?.content
-      ?.value ?? null;
+    (process.env.NODE_ENV !== 'development' &&
+      findByShortname(maintenanceBlock?.fields, 'manutenzione-attiva')?.content
+        ?.value) ??
+    null;
 
   const page = isInMaintenanceMode
     ? maintenancePage

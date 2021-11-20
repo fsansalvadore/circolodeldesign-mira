@@ -19,6 +19,7 @@
     "@uidu/field-textarea": "^1.1.3",
     "@uidu/form": "^1.2.1",
     "@uidu/map": "^0.6.2",
+    "framer-motion": "^5.3.1",
     "graphql": "^15.5.3",
     "html-react-parser": "^1.2.7",
     "js-cookie": "^3.0.1",

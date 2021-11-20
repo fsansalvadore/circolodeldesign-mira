@@ -17,13 +17,13 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
-const NavWrapper = tw.div`w-full h-60 lg:h-10 fixed left-0 right-0 top-0 z-50 flex justify-center bg-white shadow-md`;
+const NavWrapper = tw.div`w-full h-60 lg:h-10 fixed left-0 right-0 top-0 z-50 flex justify-center bg-transparent shadow-md`;
 const NavContent = tw(
   MaxWidthContent,
 )`w-full flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
 const MobileNavWrapper = tw.div`flex lg:hidden items-center`;
-const NavItems = tw.nav`flex items-center lg:space-x-12 xl:space-x-20`;
+const NavItems = tw.nav`flex items-center text-sm lg:space-x-12 xl:space-x-20`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
 `;
@@ -64,7 +64,7 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
   }
 `;
 const MobileMenuButton = tw.button`p-8 flex items-center justify-center rounded`;
-const MobileMenuWrapper = tw.div`fixed z-50 bottom-0 top-60 py-10 md:py-20 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
+const MobileMenuWrapper = tw.div`fixed z-50 bottom-0 top-60 py-10 md:py-20 w-screen height[100vh - 60px] flex flex-col bg-transparent text-black`;
 
 export const MainNavigation = ({ menu }) => {
   const router = useRouter();
@@ -83,7 +83,7 @@ export const MainNavigation = ({ menu }) => {
     return () => {
       router.events.off('routeChangeStart', () => setMenuIsOpen(false));
     };
-  }, [router.events]);
+  }, [router, router.events]);
 
   if (!menu) return <div>Loading...</div>;
 

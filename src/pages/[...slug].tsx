@@ -24,6 +24,13 @@ export default function Page({
   menu,
   footer,
 }) {
+  if (!page)
+    return (
+      <div tw="flex items-center justify-center w-screen h-screen">
+        <h1>Empty website</h1>
+      </div>
+    );
+
   const maintenanceBlock = page.blocks?.find(
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
@@ -31,7 +38,7 @@ export default function Page({
   if (isInMaintenanceMode && process.env.NODE_ENV !== 'development')
     return <MaintenancePage fields={maintenanceBlock?.fields} />;
 
-  const blocks = page?.blocks;
+  const blocks = page?.blocks ?? [];
 
   return (
     <>
@@ -123,8 +130,10 @@ export const getStaticProps: GetStaticProps = async ({
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
   const isInMaintenanceMode =
-    findByShortname(maintenanceBlock?.fields, 'manutenzione-attiva')?.content
-      ?.value ?? null;
+    (process.env.NODE_ENV !== 'development' &&
+      findByShortname(maintenanceBlock?.fields, 'manutenzione-attiva')?.content
+        ?.value) ??
+    null;
 
   const page = isInMaintenanceMode
     ? maintenancePage
