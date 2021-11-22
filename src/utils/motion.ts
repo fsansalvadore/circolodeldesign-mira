@@ -9,23 +9,25 @@ const colors = {
 };
 
 // transition definitions
-const transitions = {
+export const transitions = {
   background: {
-    staggerChildren: 0.5,
+    staggerChildren: 4,
     duration: 1,
-    type: 'spring',
-    mass: 0.5,
+    ease: [0.6, 0.01, 0, 0.8],
+    // ease: 'easeInOut',
+    // type: 'spring',
   },
   content: {
-    duration: 0.2,
+    staggerChildren: 1,
+    delayChildren: 1,
     type: 'spring',
   },
 };
 
 // color mode variant
 export const textVariant = {
-  dark: { color: colors.white.color, ...transitions.background },
-  light: { color: colors.black.color, ...transitions.background },
+  dark: { color: colors.white.color, transition: transitions.background },
+  light: { color: colors.black.color, transition: transitions.background },
 };
 
 // for background colors
@@ -33,38 +35,45 @@ export const colorVariants = {
   blue: {
     backgroundColor: colors.blue.color,
     color: colors.white.color,
-    ...transitions.background,
+    transition: transitions.background,
   },
   orange: {
     backgroundColor: colors.orange.color,
     color: colors.white.color,
-    ...transitions.background,
+    transition: transitions.background,
   },
   green: {
     backgroundColor: colors.green.color,
     color: colors.white.color,
-    ...transitions.background,
+    transition: transitions.background,
   },
   fucsia: {
     backgroundColor: colors.fucsia.color,
     color: colors.white.color,
-    ...transitions.background,
+    transition: transitions.background,
   },
   white: {
     backgroundColor: colors.white.color,
     color: colors.black.color,
-    ...transitions.background,
+    transition: transitions.background,
   },
 };
 
 // variant for page content that needs to hide for page transition
 export const contentVariant = {
-  hidden: {
+  initial: {
+    y: -10,
     opacity: 0,
-    ...transitions.content,
+    transition: transitions.content,
   },
   show: {
+    y: 0,
     opacity: 1,
-    ...transitions.content,
+    transition: transitions.content,
+  },
+  exit: {
+    y: 0,
+    opacity: 0,
+    transition: transitions.content,
   },
 };

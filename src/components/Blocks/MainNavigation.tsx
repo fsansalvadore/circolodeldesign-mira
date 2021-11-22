@@ -97,7 +97,7 @@ export const MainNavigation = ({ menu, colorVariant }) => {
     <>
       <NavWrapper
         variants={colorVariants}
-        initial="blue"
+        initial={colorVariant}
         animate={menuIsOpen ? 'white' : colorVariant}
         exit={colorVariant}
       >

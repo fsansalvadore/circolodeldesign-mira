@@ -7,7 +7,7 @@ import TransitionLayout from '../layouts/TransitionLayout';
 import { AnimatePresence } from 'framer-motion';
 import { Footer, MainNavigation } from '../components/Blocks';
 import { useState } from 'react';
-import { contentVariant, colorVariants } from '../utils/motion';
+import { handleColorBySlug } from '../utils/common';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
@@ -23,9 +23,10 @@ const defaultSeo: DefaultSeoProps = {
   },
 };
 
-const App = ({ Component, pageProps }) => {
-  const [colorMode, setColorMode] = useState('dark');
-  const [colorVariant, setColorVariant] = useState(colorVariants.blue);
+const App = ({ Component, pageProps, router }) => {
+  const [colorVariant, setColorVariant] = useState(
+    handleColorBySlug(router.asPath),
+  );
 
   if (!process.env.NEXT_PUBLIC_API_ENDPOINT)
     return (
@@ -62,17 +63,21 @@ const App = ({ Component, pageProps }) => {
                 colorVariant={colorVariant}
               />
             )}
-            <AnimatePresence onExitComplete={() => window.scrollTo(0, 0)}>
+            <AnimatePresence
+              initial={false}
+              exitBeforeEnter
+              onExitComplete={() => window.scrollTo(0, 0)}
+            >
               <TransitionLayout
                 footer={() =>
                   pageProps.footer && <Footer footer={pageProps.footer} />
                 }
                 page={pageProps.page}
-                setColorMode={setColorMode}
                 colorVariant={colorVariant}
                 setColorVariant={setColorVariant}
+                key={router.asPath}
               >
-                <Component {...pageProps} key={pageProps.page?.slug} />
+                <Component {...pageProps} />
               </TransitionLayout>
             </AnimatePresence>
           </>
