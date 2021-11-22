@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import { getPageSchema, PAGES_QUERY, PAGE_QUERY } from '@uidu/api.js/react';
 import { GetStaticProps } from 'next';
@@ -42,10 +41,7 @@ export default function Page({
   return (
     <>
       <NextSeo title={page?.name} />
-      {/* <BlocksParser blocks={blocks} /> */}
-      <div tw="w-screen h-screen flex items-center justify-center">
-        <h1>{page.name}</h1>
-      </div>
+      <BlocksParser blocks={blocks} />
       {!!preview && <PreviewModeAlert />}
     </>
   );

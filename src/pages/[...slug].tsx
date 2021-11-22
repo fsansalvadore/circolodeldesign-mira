@@ -7,7 +7,7 @@ import MaintenancePage from '../components/Base/MaintenancePage';
 import { findByShortname } from '../utils/common';
 import { PreviewModeAlert } from '../components/Base/PreviewModeAlert';
 import { getGlobals } from '../utils/getGlobals';
-import { Footer, MainNavigation } from '../components/Blocks';
+import 'twin.macro';
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
@@ -43,10 +43,8 @@ export default function Page({
   return (
     <>
       <NextSeo title={page?.name} />
-      {menu && <MainNavigation menu={menu} />}
       <BlocksParser blocks={blocks} />
-      {footer && <Footer footer={footer} />}
-      {preview && <PreviewModeAlert />}
+      {!!preview && <PreviewModeAlert />}
     </>
   );
 }

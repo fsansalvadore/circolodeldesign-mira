@@ -28,17 +28,6 @@ export const textVariant = {
   light: { color: colors.black.color, ...transitions.background },
 };
 
-export const backgroundVariant = {
-  hidden: {
-    backgroundColor: colors.blue.color,
-    ...transitions.background,
-  },
-  show: {
-    backgroundColor: colors.orange.color,
-    ...transitions.background,
-  },
-};
-
 // for background colors
 export const colorVariants = {
   blue: {

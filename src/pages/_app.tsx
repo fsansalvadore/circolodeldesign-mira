@@ -7,6 +7,7 @@ import TransitionLayout from '../layouts/TransitionLayout';
 import { AnimatePresence } from 'framer-motion';
 import { Footer, MainNavigation } from '../components/Blocks';
 import { useState } from 'react';
+import { contentVariant, colorVariants } from '../utils/motion';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
@@ -24,6 +25,7 @@ const defaultSeo: DefaultSeoProps = {
 
 const App = ({ Component, pageProps }) => {
   const [colorMode, setColorMode] = useState('dark');
+  const [colorVariant, setColorVariant] = useState(colorVariants.blue);
 
   if (!process.env.NEXT_PUBLIC_API_ENDPOINT)
     return (
@@ -55,18 +57,20 @@ const App = ({ Component, pageProps }) => {
         ) : (
           <>
             {!!pageProps.menu && (
-              <MainNavigation menu={pageProps.menu} colorMode={colorMode} />
+              <MainNavigation
+                menu={pageProps.menu}
+                colorVariant={colorVariant}
+              />
             )}
-            <AnimatePresence
-              // exitBeforeEnter
-              onExitComplete={() => window.scrollTo(0, 0)}
-            >
+            <AnimatePresence onExitComplete={() => window.scrollTo(0, 0)}>
               <TransitionLayout
                 footer={() =>
                   pageProps.footer && <Footer footer={pageProps.footer} />
                 }
                 page={pageProps.page}
                 setColorMode={setColorMode}
+                colorVariant={colorVariant}
+                setColorVariant={setColorVariant}
               >
                 <Component {...pageProps} key={pageProps.page?.slug} />
               </TransitionLayout>

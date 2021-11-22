@@ -8,7 +8,7 @@ import { data as mainNavigation } from '../../data/mainNavigation.data';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
 import { motion } from 'framer-motion';
-import { textVariant } from '../../utils/motion';
+import { colorVariants } from '../../utils/motion';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-40`}
@@ -19,10 +19,10 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
-const NavWrapper = tw.div`w-full h-60 lg:h-10 fixed left-0 right-0 top-0 z-50 flex justify-center bg-transparent shadow-md`;
-const NavContent = tw(
-  MaxWidthContent,
-)`w-full flex items-center justify-between`;
+const NavWrapper = tw(
+  motion.div,
+)`w-full h-20 fixed left-0 right-0 top-0 z-50 flex justify-center bg-transparent shadow-md`;
+const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
 const MobileNavWrapper = tw.div`flex lg:hidden items-center`;
 const NavItems = tw.nav`flex items-center text-sm lg:space-x-12 xl:space-x-20`;
@@ -55,9 +55,9 @@ const Accordion = styled.div<{ $isSubmenuOpen?: boolean }>`
 `;
 
 const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
-  ${tw`relative w-full flex-grow items-center py-10 md:py-20 font-bold lg:(w-auto py-10 border-b-2 border-transparent) hover:text-miraBlue`}
+  ${tw`relative w-full flex-grow items-center py-10 md:py-20 font-bold lg:(w-auto py-2 border-b-2 border-transparent) hover:underline`}
 
-  ${({ $isActive }) => $isActive && tw`text-miraBlue! lg:border-miraBlue`}
+  ${({ $isActive }) => $isActive && tw`underline!`}
 
   &:hover {
     ${SubMenuWrapper} {
@@ -65,10 +65,12 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
     }
   }
 `;
-const MobileMenuButton = tw.button`p-8 flex items-center justify-center rounded`;
-const MobileMenuWrapper = tw.div`fixed z-50 bottom-0 top-60 py-10 md:py-20 w-screen height[100vh - 60px] flex flex-col bg-transparent text-black`;
+const MobileMenuButton = tw.button`p-4 flex items-center justify-center rounded`;
+const MobileMenuWrapper = tw(
+  motion.div,
+)`fixed z-50 bottom-0 top-20 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-transparent text-black`;
 
-export const MainNavigation = ({ menu, colorMode }) => {
+export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
@@ -92,8 +94,13 @@ export const MainNavigation = ({ menu, colorMode }) => {
   const { blocks: menuItems } = menu;
 
   return (
-    <motion.div variants={textVariant} initial="dark" animate={colorMode}>
-      <NavWrapper>
+    <>
+      <NavWrapper
+        variants={colorVariants}
+        initial="blue"
+        animate={menuIsOpen ? 'white' : colorVariant}
+        exit={colorVariant}
+      >
         <NavContent>
           <div tw="min-width[150px]">
             <Link href="/">
@@ -170,16 +177,21 @@ export const MainNavigation = ({ menu, colorMode }) => {
           <MobileNavWrapper>
             <MobileMenuButton onClick={() => setMenuIsOpen((prev) => !prev)}>
               {menuIsOpen ? (
-                <XIcon tw="w-24 h-24 text-black" />
+                <XIcon tw="w-12 h-12 text-black" />
               ) : (
-                <MenuIcon tw="w-24 h-24  text-black" />
+                <MenuIcon tw="w-12 h-12  text-black" />
               )}
             </MobileMenuButton>
           </MobileNavWrapper>
         </NavContent>
       </NavWrapper>
       {menuIsOpen && (
-        <MobileMenuWrapper>
+        <MobileMenuWrapper
+          variants={colorVariants}
+          initial="white"
+          animate="white"
+          exit="white"
+        >
           <MaxWidthContent tw="flex flex-col">
             {!!menuItems &&
               menuItems
@@ -219,7 +231,7 @@ export const MainNavigation = ({ menu, colorMode }) => {
                                 )
                               }
                             >
-                              <ChevronRightIcon tw="w-24 h-24  text-black" />
+                              <ChevronRightIcon tw="w-12 h-12  text-black" />
                             </MobileSubmenuButton>
                           </AccordionHeader>
                           {subMenuIsOpen === slug && (
@@ -270,6 +282,6 @@ export const MainNavigation = ({ menu, colorMode }) => {
           </MaxWidthContent>
         </MobileMenuWrapper>
       )}
-    </motion.div>
+    </>
   );
 };

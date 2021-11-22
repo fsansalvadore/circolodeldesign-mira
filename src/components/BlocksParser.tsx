@@ -1,9 +1,30 @@
 import React from 'react';
 
 // import blocks components
-// import {} from './Blocks';
+import {
+  AboutIntroPartnersBlock,
+  AboutRicercheContattiBlock,
+  DownloadCtaBlock,
+  HomeIntroBlock,
+  PartnersBlock,
+  GalleryBlock,
+  ReportInfoBlock,
+  ReportsBlock,
+  PressDownloadListBlock,
+} from './Blocks';
 
-const components = {};
+// sync blocks to block shortnames coming from cms
+const components = {
+  'about-intro-partners': AboutIntroPartnersBlock,
+  'about-ricerche-contatti': AboutRicercheContattiBlock,
+  'download-cta': DownloadCtaBlock,
+  'home-intro-block': HomeIntroBlock,
+  partners: PartnersBlock,
+  'press-download-list-block': PressDownloadListBlock,
+  'report-info': ReportInfoBlock,
+  reports: ReportsBlock,
+  gallery: GalleryBlock,
+};
 
 const isEmpty = (obj) => {
   return Object.entries(obj).length === 0 && obj.constructor === Object;

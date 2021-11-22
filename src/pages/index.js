@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import { getPageSchema, PAGE_QUERY } from '@uidu/api.js/react';
 import { NextSeo } from 'next-seo';
@@ -41,10 +40,7 @@ export default function Index({
   return (
     <>
       <NextSeo title={page?.name ?? 'Home Page'} />
-      {/* <BlocksParser blocks={blocks} /> */}
-      <div tw="w-screen h-screen flex items-center justify-center">
-        <h1>{page.name}</h1>
-      </div>
+      <BlocksParser blocks={blocks} />
       {!!preview && <PreviewModeAlert />}
     </>
   );
