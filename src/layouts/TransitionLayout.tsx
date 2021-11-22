@@ -26,8 +26,7 @@ const TransitionLayout = ({
       animate={colorVariant}
       tw="w-screen min-h-screen"
     >
-      <MaxWidthContent
-        as={motion.div}
+      <motion.div
         variants={contentVariant}
         initial="initial"
         animate={{
@@ -36,11 +35,10 @@ const TransitionLayout = ({
           transition: { delay: 0.5, ...transitions.content },
         }}
         exit="exit"
-        tw="mt-20"
       >
-        {children}
-      </MaxWidthContent>
-      <Footer />
+        <MaxWidthContent tw="pt-20">{children}</MaxWidthContent>
+        <Footer />
+      </motion.div>
     </motion.div>
   );
 };

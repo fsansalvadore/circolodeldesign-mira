@@ -2,29 +2,28 @@ import { ChevronRightIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useWindowSize } from 'react-use';
 import tw, { css, styled } from 'twin.macro';
 import { data as mainNavigation } from '../../data/mainNavigation.data';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
-import { motion } from 'framer-motion';
-import { colorVariants } from '../../utils/motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { colorVariants, transitions } from '../../utils/motion';
 
 const SubMenuWrapper = styled.div`
-  ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-40`}
+  ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-0`}
   transition: visibility 100ms ease, opacity 100ms, transform 100ms ease;
 `;
 const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
-  ${tw`w-full p-6 font-bold text-white bg-gray-400 text-base md:text-base hover:bg-miraBlue whitespace-nowrap`}
+  ${tw`w-full p-6 font-bold text-white bg-gray-400 text-base hover:bg-miraBlue whitespace-nowrap`}
 
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
 const NavWrapper = tw(
   motion.div,
-)`w-full h-20 fixed left-0 right-0 top-0 z-50 flex justify-center bg-transparent shadow-md`;
+)`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent`;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
-const MobileNavWrapper = tw.div`flex lg:hidden items-center`;
+const MobileNavWrapper = tw.div`flex items-center`;
 const NavItems = tw.nav`flex items-center text-sm lg:space-x-12 xl:space-x-20`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
@@ -38,7 +37,7 @@ const MobileSubmenuButton = styled.button`
 `;
 const AccordionHeader = tw.button`w-full flex justify-between items-center text-left`;
 const AccordionBody = styled.div`hidden`;
-const MobileSubMenuItem = tw.div`w-full flex flex-col border-b border-gray-200`;
+const MobileSubMenuItem = tw.div`w-full text-lg md:text-3xl flex flex-col`;
 const Accordion = styled.div<{ $isSubmenuOpen?: boolean }>`
   ${tw`flex flex-col w-full`}
 
@@ -55,7 +54,7 @@ const Accordion = styled.div<{ $isSubmenuOpen?: boolean }>`
 `;
 
 const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
-  ${tw`relative w-full flex-grow items-center py-10 md:py-20 font-bold lg:(w-auto py-2 border-b-2 border-transparent) hover:underline`}
+  ${tw`relative w-full flex-grow items-center py-2 md:py-8 font-bold lg:(w-auto py-4 border-b-2 border-transparent) hover:underline`}
 
   ${({ $isActive }) => $isActive && tw`underline!`}
 
@@ -65,21 +64,23 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
     }
   }
 `;
-const MobileMenuButton = tw.button`p-4 flex items-center justify-center rounded`;
+const MobileMenuButton = styled.button<{ mode: string }>`
+  ${tw`p-4 flex items-center justify-center rounded transition-colors transform`}
+
+  ${({ mode }) => css`
+    /* color: 'hsla(0, 0%, 0%, 1)' !important; */
+    color: ${mode};
+  `}
+`;
 const MobileMenuWrapper = tw(
   motion.div,
-)`fixed z-50 bottom-0 top-20 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-transparent text-black`;
+)`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
 export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
-  const { width } = useWindowSize();
   const brandLogo = findByShortname(mainNavigation.blocks, 'brand-logo');
-
-  useEffect(() => {
-    if (width >= 1024) setMenuIsOpen(false);
-  }, [width]);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
@@ -95,12 +96,7 @@ export const MainNavigation = ({ menu, colorVariant }) => {
 
   return (
     <>
-      <NavWrapper
-        variants={colorVariants}
-        initial={colorVariant}
-        animate={menuIsOpen ? 'white' : colorVariant}
-        exit={colorVariant}
-      >
+      <NavWrapper>
         <NavContent>
           <div tw="min-width[150px]">
             <Link href="/">
@@ -116,19 +112,69 @@ export const MainNavigation = ({ menu, colorVariant }) => {
               />
             </Link>
           </div>
-          <DesktopNavWrapper>
-            <NavItems>
+          <MobileNavWrapper>
+            <MobileMenuButton
+              onClick={() => setMenuIsOpen((prev) => !prev)}
+              mode={menuIsOpen ? colorVariants.white : colorVariant.color}
+            >
+              {menuIsOpen ? (
+                <XIcon tw="w-10 h-10" />
+              ) : (
+                <MenuIcon tw="w-10 h-10" />
+              )}
+            </MobileMenuButton>
+          </MobileNavWrapper>
+        </NavContent>
+      </NavWrapper>
+      <AnimatePresence>
+        {menuIsOpen && (
+          <MobileMenuWrapper
+            variants={colorVariants}
+            initial={{
+              opacity: 0,
+              filter: 'blur(10px)',
+            }}
+            animate={{
+              opacity: 1,
+              filter: 'blur(0px)',
+              transition: {
+                ...transitions.background,
+                staggerChildren: 0.1,
+                duration: 0.5,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              filter: 'blur(10px)',
+              transition: { ...transitions.background, duration: 0.3 },
+            }}
+          >
+            <MaxWidthContent
+              as={motion.div}
+              initial={{
+                y: -10,
+              }}
+              animate={{
+                y: 0,
+                transition: { duration: 0.4 },
+              }}
+              exit={{
+                y: -10,
+                transition: { duration: 0.2 },
+              }}
+              tw="flex flex-col h-full items-center justify-center text-center"
+            >
               {!!menuItems &&
                 menuItems
-                  .filter(
+                  ?.filter(
                     (item) =>
                       !findByShortname(item.fields, 'non-mostrare-nel-menu')
                         ?.content?.value,
                   )
-                  ?.map((navItem) => {
+                  ?.map((navItem, i) => {
                     const subMenuItems =
                       findByShortname(navItem.fields, 'menu-secondario')
-                        ?.content?.items ?? [];
+                        ?.content?.items ?? null;
                     const label =
                       findByShortname(navItem.fields, 'titolo')?.content
                         ?.value ?? '';
@@ -136,152 +182,78 @@ export const MainNavigation = ({ menu, colorVariant }) => {
                       findByShortname(navItem.fields, 'slug')?.content?.value ??
                       '';
 
-                    return (
-                      <NavLink
-                        href={slug}
-                        key={`main-${slug}`}
-                        $isActive={router.asPath === slug}
-                      >
-                        {label}
-                        {!!subMenuItems && (
-                          <SubMenuWrapper>
-                            {subMenuItems?.map((subMenuItem, index) => {
-                              const subMenuSlug = findByShortname(
-                                subMenuItem.fields,
-                                'slug',
-                              )?.content?.value;
-                              const subMenuLabel = findByShortname(
-                                subMenuItem.fields,
-                                'titolo',
-                              )?.content?.value;
+                    if (!!subMenuItems?.length) {
+                      return (
+                        <MobileSubMenuItem key={`mobile-${slug}`}>
+                          <Accordion>
+                            <AccordionHeader>
+                              <NavLink
+                                href={slug}
+                                key={slug}
+                                $isActive={router.asPath === slug}
+                                $isSubmenuOpen={subMenuIsOpen === slug}
+                              >
+                                {label}
+                              </NavLink>
+                              <MobileSubmenuButton
+                                onClick={() =>
+                                  setSubMenuIsOpen((prev) =>
+                                    prev === slug ? null : slug,
+                                  )
+                                }
+                              >
+                                <ChevronRightIcon tw="w-12 h-12  text-black" />
+                              </MobileSubmenuButton>
+                            </AccordionHeader>
+                            {subMenuIsOpen === slug && (
+                              <AccordionBody>
+                                <MobileSubMenuWrapper>
+                                  {subMenuItems?.map((subMenuItem, index) => {
+                                    const subMenuSlug = findByShortname(
+                                      subMenuItem.fields,
+                                      'slug',
+                                    )?.content?.value;
+                                    const subMenuLabel = findByShortname(
+                                      subMenuItem.fields,
+                                      'titolo',
+                                    )?.content?.value;
 
-                              return (
-                                <SubMenuItem
-                                  key={`second-sub-${subMenuItem.shortname}-${index}`}
-                                  href={`${slug}/${subMenuSlug}`}
-                                  $isActive={router.asPath.includes(
-                                    subMenuSlug,
-                                  )}
-                                >
-                                  {subMenuLabel}
-                                </SubMenuItem>
-                              );
-                            })}
-                          </SubMenuWrapper>
-                        )}
-                      </NavLink>
-                    );
+                                    return (
+                                      <SubMenuItem
+                                        key={`second-mobile-${subMenuItem.shortname}-${index}`}
+                                        href={`/${slug}/${subMenuSlug}`}
+                                        $isActive={router.asPath.includes(
+                                          subMenuSlug,
+                                        )}
+                                      >
+                                        {subMenuLabel}
+                                      </SubMenuItem>
+                                    );
+                                  })}
+                                </MobileSubMenuWrapper>
+                              </AccordionBody>
+                            )}
+                          </Accordion>
+                        </MobileSubMenuItem>
+                      );
+                    } else {
+                      return (
+                        <MobileSubMenuItem>
+                          <NavLink
+                            href={slug}
+                            key={slug}
+                            $isActive={router.asPath === slug}
+                          >
+                            {label}
+                          </NavLink>
+                        </MobileSubMenuItem>
+                      );
+                    }
                   })}
-            </NavItems>
-          </DesktopNavWrapper>
-          <MobileNavWrapper>
-            <MobileMenuButton onClick={() => setMenuIsOpen((prev) => !prev)}>
-              {menuIsOpen ? (
-                <XIcon tw="w-12 h-12 text-black" />
-              ) : (
-                <MenuIcon tw="w-12 h-12  text-black" />
-              )}
-            </MobileMenuButton>
-          </MobileNavWrapper>
-        </NavContent>
-      </NavWrapper>
-      {menuIsOpen && (
-        <MobileMenuWrapper
-          variants={colorVariants}
-          initial="white"
-          animate="white"
-          exit="white"
-        >
-          <MaxWidthContent tw="flex flex-col">
-            {!!menuItems &&
-              menuItems
-                ?.filter(
-                  (item) =>
-                    !findByShortname(item.fields, 'non-mostrare-nel-menu')
-                      ?.content?.value,
-                )
-                ?.map((navItem, i) => {
-                  const subMenuItems =
-                    findByShortname(navItem.fields, 'menu-secondario')?.content
-                      ?.items ?? null;
-                  const label =
-                    findByShortname(navItem.fields, 'titolo')?.content?.value ??
-                    '';
-                  const slug =
-                    findByShortname(navItem.fields, 'slug')?.content?.value ??
-                    '';
-
-                  if (!!subMenuItems?.length) {
-                    return (
-                      <MobileSubMenuItem key={`mobile-${slug}`}>
-                        <Accordion>
-                          <AccordionHeader>
-                            <NavLink
-                              href={slug}
-                              key={slug}
-                              $isActive={router.asPath === slug}
-                              $isSubmenuOpen={subMenuIsOpen === slug}
-                            >
-                              {label}
-                            </NavLink>
-                            <MobileSubmenuButton
-                              onClick={() =>
-                                setSubMenuIsOpen((prev) =>
-                                  prev === slug ? null : slug,
-                                )
-                              }
-                            >
-                              <ChevronRightIcon tw="w-12 h-12  text-black" />
-                            </MobileSubmenuButton>
-                          </AccordionHeader>
-                          {subMenuIsOpen === slug && (
-                            <AccordionBody>
-                              <MobileSubMenuWrapper>
-                                {subMenuItems?.map((subMenuItem, index) => {
-                                  const subMenuSlug = findByShortname(
-                                    subMenuItem.fields,
-                                    'slug',
-                                  )?.content?.value;
-                                  const subMenuLabel = findByShortname(
-                                    subMenuItem.fields,
-                                    'titolo',
-                                  )?.content?.value;
-
-                                  return (
-                                    <SubMenuItem
-                                      key={`second-mobile-${subMenuItem.shortname}-${index}`}
-                                      href={`/${slug}/${subMenuSlug}`}
-                                      $isActive={router.asPath.includes(
-                                        subMenuSlug,
-                                      )}
-                                    >
-                                      {subMenuLabel}
-                                    </SubMenuItem>
-                                  );
-                                })}
-                              </MobileSubMenuWrapper>
-                            </AccordionBody>
-                          )}
-                        </Accordion>
-                      </MobileSubMenuItem>
-                    );
-                  } else {
-                    return (
-                      <MobileSubMenuItem>
-                        <NavLink
-                          href={slug}
-                          key={slug}
-                          $isActive={router.asPath === slug}
-                        >
-                          {label}
-                        </NavLink>
-                      </MobileSubMenuItem>
-                    );
-                  }
-                })}
-          </MaxWidthContent>
-        </MobileMenuWrapper>
-      )}
+            </MaxWidthContent>
+          </MobileMenuWrapper>
+        )}
+      </AnimatePresence>
     </>
   );
 };

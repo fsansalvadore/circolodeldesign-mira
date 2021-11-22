@@ -18,7 +18,7 @@ officia deserunt mollitia.
 export const HomeIntroBlock = ({ fields }) => {
   return (
     <div tw="height[80vh] flex items-center">
-      <Paragraph tw="columns[2] column-gap[4rem]">{data}</Paragraph>
+      <Paragraph tw="lg:(columns[2] column-gap[4rem])">{data}</Paragraph>
     </div>
   );
 };
