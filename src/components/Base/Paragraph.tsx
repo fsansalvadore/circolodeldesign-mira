@@ -4,12 +4,13 @@ import parse from 'html-react-parser';
 import { useState } from 'react';
 import { handleColorBySlug } from '../../utils/common';
 import { useRouter } from 'next/router';
+import { RichText } from '.';
 
-const StyledParagraph = styled.div<{
+const StyledParagraph = styled(RichText)<{
   highlightBgColor: string;
   highlightTextColor: string;
 }>`
-  ${tw`text-3xl lg:text-4xl line-height[140%]!`}
+  ${tw`text-2xl lg:text-3xl line-height[140%]!`}
 
   ${({ highlightBgColor, highlightTextColor }) => css`
     u {

@@ -13,12 +13,17 @@ deleniti atque corrupti quos.
 Occaecati cupiditate non provident, <u>similique sunt in culpa</u> qui
 officia deserunt mollitia.
 </p>
+<p></p>
+<p>
+Occaecati cupiditate non provident, <u>similique sunt in culpa</u> qui
+officia deserunt mollitia.
+</p>
 `;
 
 export const HomeIntroBlock = ({ fields }) => {
   return (
-    <div tw="height[80vh] flex items-center">
-      <Paragraph tw="lg:(columns[2] column-gap[4rem])">{data}</Paragraph>
+    <div tw="min-height[80vh] py-4 lg:py-8 flex items-center">
+      <Paragraph tw="lg:(columns[2] column-gap[3rem])">{data}</Paragraph>
     </div>
   );
 };
