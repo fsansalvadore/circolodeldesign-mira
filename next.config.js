@@ -9,6 +9,7 @@ module.exports = {
     domains: [
       'd2trgt3k7y66er.cloudfront.net',
       'uidu-production.s3.eu-west-3.amazonaws.com',
+      'source.unsplash.com',
     ],
   },
   webpack: (config) => {

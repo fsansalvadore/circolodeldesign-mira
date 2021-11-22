@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import { useState } from 'react';
 import { handleColorBySlug } from '../../utils/common';
 import { useRouter } from 'next/router';
-import { RichText } from '.';
+import { RichText } from './RichText';
 
 const StyledParagraph = styled(RichText)<{
   highlightBgColor: string;

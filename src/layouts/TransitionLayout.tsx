@@ -32,7 +32,7 @@ const TransitionLayout = ({
         animate={{
           y: 0,
           opacity: 1,
-          transition: { delay: 0.5, ...transitions.content },
+          transition: transitions.content,
         }}
         exit="exit"
       >
