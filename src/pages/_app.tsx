@@ -25,7 +25,7 @@ const defaultSeo: DefaultSeoProps = {
 
 const App = ({ Component, pageProps, router }) => {
   const [colorVariant, setColorVariant] = useState(
-    handleColorBySlug(router.asPath),
+    handleColorBySlug(router.asPath) ?? 'blue',
   );
 
   if (!process.env.NEXT_PUBLIC_API_ENDPOINT)
@@ -64,7 +64,6 @@ const App = ({ Component, pageProps, router }) => {
               />
             )}
             <AnimatePresence
-              initial={false}
               exitBeforeEnter
               onExitComplete={() => window.scrollTo(0, 0)}
             >

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { contentVariant, colorVariants } from '../utils/motion';
+import { contentVariant, colorVariants, transitions } from '../utils/motion';
 import { useRouter } from 'next/router';
 import 'twin.macro';
 import { MaxWidthContent } from '../components/Base';
@@ -30,7 +30,11 @@ const TransitionLayout = ({
         as={motion.div}
         variants={contentVariant}
         initial="initial"
-        animate="show"
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: { delay: 0.5, ...transitions.content },
+        }}
         exit="exit"
         tw="mt-20"
       >

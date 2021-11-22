@@ -11,23 +11,14 @@ const colors = {
 // transition definitions
 export const transitions = {
   background: {
-    staggerChildren: 4,
+    when: 'beforeChildren',
+    delayChildren: 4,
     duration: 1,
     ease: [0.6, 0.01, 0, 0.8],
-    // ease: 'easeInOut',
-    // type: 'spring',
   },
   content: {
-    staggerChildren: 1,
-    delayChildren: 1,
     type: 'spring',
   },
-};
-
-// color mode variant
-export const textVariant = {
-  dark: { color: colors.white.color, transition: transitions.background },
-  light: { color: colors.black.color, transition: transitions.background },
 };
 
 // for background colors
@@ -62,7 +53,7 @@ export const colorVariants = {
 // variant for page content that needs to hide for page transition
 export const contentVariant = {
   initial: {
-    y: -10,
+    y: -5,
     opacity: 0,
     transition: transitions.content,
   },
@@ -72,8 +63,8 @@ export const contentVariant = {
     transition: transitions.content,
   },
   exit: {
-    y: 0,
+    y: -3,
     opacity: 0,
-    transition: transitions.content,
+    transition: { duration: 0.4, ...transitions.content },
   },
 };
