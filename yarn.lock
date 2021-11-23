@@ -1653,10 +1653,10 @@
     prop-types "^15.7.2"
     tslib "^2.3.1"
 
-"@uidu/api.js@^1.3.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@uidu/api.js/-/api.js-1.8.0.tgz#8fcfac0b053c8c12f290e3e5e4055afd10e66bff"
-  integrity sha512-RJLUFG0jn0rpJVZNGeN+9FAI3uBHcVrhamw3qkyrYmbgAXTB9G+4qECw4RDP5gUh9KU7PO/m9tN+AzwY7o7rhg==
+"@uidu/api.js@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@uidu/api.js/-/api.js-1.8.1.tgz#22e7b02d4e77a52d9bc4e14f8597dde5912a08cd"
+  integrity sha512-bPz4GKZ64daR/a71o2H47fdNonL1bR3JbYEH4NI5PCf6+nMchVy9SRjZRxdLfuMWxWrEEyCzJ6XqzcsYgGYr2w==
   dependencies:
     graphql-request "^3.6.1"
     react "^17.0.2"

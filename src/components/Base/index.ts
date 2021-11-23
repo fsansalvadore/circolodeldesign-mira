@@ -5,3 +5,4 @@ export { CookieBanner } from './CookieBanner';
 export { HighlightTitleLabel } from './HighlightTitleLabel';
 export { Paragraph } from './Paragraph';
 export { RichText } from './RichText';
+export { Slider } from './Slider';

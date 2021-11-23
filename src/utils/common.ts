@@ -17,9 +17,10 @@ export const handleColorBySlug = (slug) => {
       return { variant: colorVariants.green, mode: 'dark' };
     case 'ricerche-e-report':
       return { variant: colorVariants.fucsia, mode: 'dark' };
-    case slug.includes('ricerca/'):
-      return { variant: colorVariants.white, mode: 'light' };
-    default:
+    case 'index':
       return { variant: colorVariants.blue, mode: 'dark' };
+    case slug.includes('ricerche/'):
+    default:
+      return { variant: colorVariants.white, mode: 'light' };
   }
 };

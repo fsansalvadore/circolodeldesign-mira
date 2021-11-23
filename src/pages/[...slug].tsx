@@ -1,5 +1,10 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-import { getPageSchema, PAGES_QUERY, PAGE_QUERY } from '@uidu/api.js/react';
+import {
+  getPageSchema,
+  PAGES_QUERY,
+  PAGE_QUERY,
+  TEMPLATE_QUERY,
+} from '@uidu/api.js/react';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import BlocksParser from '../components/BlocksParser';
@@ -52,15 +57,24 @@ export default function Page({
 export async function getStaticPaths() {
   const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
   const generator = 'menu';
+  const researchesTemplate = 'Z2lkOi8vdWlkdS9UZW1wbGF0ZS80Nw';
 
   // Call an external API endpoint to get pages
   const res = await client.query({
     query: gql(PAGES_QUERY),
     variables: { projectId, slug: generator },
   });
+  const researchesRes = await client.query({
+    query: gql(TEMPLATE_QUERY),
+    variables: { projectId, templateId: researchesTemplate },
+  });
+
   if (!res) return;
 
   const pagesGenerator = res?.data?.currentWorkspace?.project?.page;
+  const researchPages = !!researchesRes
+    ? researchesRes?.data?.currentWorkspace?.project?.template?.pages
+    : [];
 
   const slugs = [];
 
@@ -84,6 +98,8 @@ export async function getStaticPaths() {
         });
     }
   });
+
+  researchPages.map((page) => slugs.push(`ricerche/${page.slug}`));
 
   // Get the paths we want to pre-render based on filtered pages
   const paths = slugs?.map((slug) => {
