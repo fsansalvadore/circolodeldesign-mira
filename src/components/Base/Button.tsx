@@ -4,7 +4,7 @@ import tw, { styled, css } from 'twin.macro';
 import { handleColorBySlug } from '../../utils/common';
 import { colorVariants } from '../../utils/motion';
 
-type Color = 'white' | 'primary';
+type Color = 'blue' | 'green' | 'orange' | 'fucsia' | 'white' | 'black';
 type Size = 'small' | 'default';
 
 const StyledButton = styled.button<{
@@ -14,7 +14,7 @@ const StyledButton = styled.button<{
   highlightBgColor: string;
   highlightTextColor: string;
 }>`
-  ${tw`rounded-full font-medium inline-flex!`}
+  ${tw`rounded-full font-medium inline-flex! transform transition-transform hover:-translate-y-1`}
 
   ${({ size }) => {
     switch (size) {
@@ -22,7 +22,25 @@ const StyledButton = styled.button<{
         return tw`px-2 py-3 text-sm lg:(px-4 py-3)`;
       case 'default':
       default:
-        return tw`px-3! py-2! lg:(px-6! py-4!)`;
+        return tw`px-10! py-2! font-bold lg:(text-lg px-6! py-3!)`;
+    }
+  }}
+
+${({ color }) => {
+    switch (color) {
+      case 'blue':
+        return tw`bg-white! text-miraBlue`;
+      case 'fucsia':
+        return tw`bg-miraFucsia! text-white`;
+      case 'green':
+        return tw`bg-miraGreen! text-white`;
+      case 'orange':
+        return tw`bg-miraOrange! text-white`;
+      case 'black':
+        return tw`bg-black text-white`;
+      case 'white':
+      default:
+        return tw`bg-white! text-black!`;
     }
   }}
 
@@ -42,7 +60,7 @@ interface Props {
 }
 
 export const Button: React.FC<Props> = ({
-  color,
+  color = 'white',
   size,
   disabled,
   children,
@@ -60,7 +78,7 @@ export const Button: React.FC<Props> = ({
 
   return (
     <StyledButton
-      color={color ?? 'primary'}
+      color={color}
       size={size ?? 'default'}
       disabled={disabled}
       $isDisabled={disabled}

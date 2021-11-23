@@ -12,15 +12,35 @@ export const handleColorBySlug = (slug) => {
   if (!slug) return;
   switch (slug) {
     case 'about':
-      return { variant: colorVariants.orange, mode: 'dark' };
+      return {
+        variant: colorVariants.orange,
+        mode: 'dark',
+        accentColor: colorVariants.orange.color,
+      };
     case 'press-area':
-      return { variant: colorVariants.green, mode: 'dark' };
+      return {
+        variant: colorVariants.green,
+        mode: 'dark',
+        accentColor: colorVariants.green.color,
+      };
     case 'ricerche-e-report':
-      return { variant: colorVariants.fucsia, mode: 'dark' };
+      return {
+        variant: colorVariants.fucsia,
+        mode: 'dark',
+        accentColor: colorVariants.fucsia.color,
+      };
     case 'index':
-      return { variant: colorVariants.blue, mode: 'dark' };
+      return {
+        variant: colorVariants.blue,
+        mode: 'dark',
+        accentColor: colorVariants.blue.color,
+      };
     case slug.includes('ricerche/'):
     default:
-      return { variant: colorVariants.white, mode: 'light' };
+      return {
+        variant: colorVariants.white,
+        mode: 'light',
+        accentColor: colorVariants.fucsia.backgroundColor,
+      };
   }
 };

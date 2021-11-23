@@ -1,6 +1,5 @@
 import { findByShortname } from '../../utils/common';
 import { Paragraph, Button, Link } from '../Base';
-import parse from 'html-react-parser';
 import 'twin.macro';
 
 export const AboutBlock = ({ fields }) => {

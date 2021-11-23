@@ -65,7 +65,7 @@ export const Slider: React.FC<Props> = ({
   hasNavigation,
   breakpoints,
   spaceBetween,
-  autoplay,
+  autoplay = false,
   loop = false,
   centerVertically = false,
   slidesPerGroup = 1,

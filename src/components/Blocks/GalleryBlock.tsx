@@ -12,9 +12,9 @@ const Wrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  ${tw`transition-all bg-miraGreen w-screen min-height[250px] height[30vh] lg:height[50vh] before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-40 z-10)`}
+  ${tw`transition-all transform bg-miraGreen w-screen min-height[250px] height[30vh] lg:height[50vh] before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-40 z-10)`}
 
-  transition: all 0.45s cubic-bezier(0.2, 0.01, 0, 0.1);
+  transition: height 0.45s cubic-bezier(0.5, 0.01, 0, 0.8);
 `;
 
 const StyledImage = styled(Image)`

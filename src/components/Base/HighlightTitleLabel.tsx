@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { RichText } from './RichText';
 import { colorVariants } from '../../utils/motion';
 
-const StyledParagraph = styled(RichText)<{
+const Highlight = styled(RichText)<{
   highlightBgColor: string;
   highlightTextColor: string;
 }>`
@@ -22,7 +22,7 @@ const StyledParagraph = styled(RichText)<{
 export const HighlightTitleLabel = ({ children, ...rest }) => {
   const router = useRouter();
   const [highlightBgColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant?.color ??
+    handleColorBySlug(router.query.slug)?.accentColor ??
       colorVariants.blue.color,
   );
   const [highlightTextColor] = useState(
@@ -31,12 +31,12 @@ export const HighlightTitleLabel = ({ children, ...rest }) => {
   );
 
   return (
-    <StyledParagraph
+    <Highlight
       highlightBgColor={highlightBgColor || 'white'}
       highlightTextColor={highlightTextColor || 'blue'}
       {...rest}
     >
       {children}
-    </StyledParagraph>
+    </Highlight>
   );
 };
