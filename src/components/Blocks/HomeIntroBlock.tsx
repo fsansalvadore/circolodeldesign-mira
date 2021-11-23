@@ -23,7 +23,7 @@ officia deserunt mollitia.
 
 export const HomeIntroBlock = ({ fields }) => {
   return (
-    <div tw="min-height[80vh] py-4 lg:py-8 flex items-center">
+    <div tw="h-screen min-height[500px] max-height[800px] py-16 md:py-32 lg:py-72 flex items-center">
       <Paragraph tw="lg:(columns[2] column-gap[3rem])">{parse(data)}</Paragraph>
     </div>
   );
