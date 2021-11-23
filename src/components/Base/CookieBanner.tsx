@@ -3,7 +3,7 @@ import tw, { styled } from 'twin.macro';
 import NextHead from 'next/head';
 import CookieConsent, { Cookies } from 'react-cookie-consent';
 
-const Title = tw.p`font-bold mb-10`;
+const Title = tw.p`font-bold mb-3 text-xl lg:text-3xl`;
 
 const Paragraph = tw.p``;
 
@@ -80,8 +80,9 @@ export const CookieBanner: React.FC = () => {
           cookieName="tagManager"
           debug
           buttonStyle={{
-            color: '#0096DE',
+            color: '#1A7ADE',
             fontSize: '16px',
+            fontWeight: 'bold',
             padding: '10px 20px',
             borderRadius: '60px',
             background: '#ffffff',
@@ -91,10 +92,11 @@ export const CookieBanner: React.FC = () => {
             right: '0',
             margin: '0',
             left: '0',
+            fontWeight: 'bold',
             position: 'fixed',
-            background: '#0096DE',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-            padding: '20px',
+            background: '#1A7ADE',
+            boxShadow: '0 0 32px rgba(0, 0, 0, 0.25)',
+            padding: '16px',
             height: 'auto',
           }}
           contentStyle={{
@@ -108,7 +110,7 @@ export const CookieBanner: React.FC = () => {
           flipButtons
           declineButtonText="Rifiuta"
           declineButtonStyle={{
-            color: '#0096DE',
+            color: '#1A7ADE',
             fontSize: '16px',
             padding: '10px 20px',
             borderRadius: '60px',
@@ -117,13 +119,12 @@ export const CookieBanner: React.FC = () => {
           }}
           onDecline={rejectCookies}
         >
-          <Title>Cookies e Privacy</Title>
+          <Title>Informativa sulla Privacy</Title>
           <Paragraph>
             Su questo sito utilizziamo cookie tecnici necessari alla navigazione
             o utili a migliorare i nostri servizi e ottimizzare
             l&apos;esperienza utente. Per saperne di più, vai alla{' '}
-            <StyledLink href="/privacy">Privacy Policy</StyledLink> e{' '}
-            <StyledLink href="/cookies">Cookie Policy</StyledLink>.
+            <StyledLink href="/privacy">Privacy Policy</StyledLink>.
           </Paragraph>
         </CookieConsent>
       </CookieWrapper>

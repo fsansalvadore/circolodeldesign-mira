@@ -8,6 +8,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Footer, MainNavigation } from '../components/Blocks';
 import { useState } from 'react';
 import { handleColorBySlug } from '../utils/common';
+import { CookieBanner } from '../components/Base';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
@@ -49,6 +50,7 @@ const App = ({ Component, pageProps, router }) => {
           />
         </NextHead>
         <GlobalStyles />
+        <CookieBanner />
         {(pageProps.isInMaintenanceMode &&
           process.env.NODE_ENV !== 'development') ||
         !pageProps.page ? (
