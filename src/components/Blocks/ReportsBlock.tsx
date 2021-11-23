@@ -1,7 +1,6 @@
 import tw, { styled, css } from 'twin.macro';
 import Image from 'next/image';
-import { Link } from '../Base';
-import { motion } from 'framer-motion';
+import { HighlightTitleLabel, Link } from '../Base';
 
 const data = [
   {
@@ -69,7 +68,7 @@ const GridItem = styled(Link)<{
   colonneDesktop: number;
   colonneMobile: number;
 }>`
-  ${tw`relative col-span-1`}
+  ${tw`relative col-span-1 max-height[500px]`}
 
   ${({ colonneDesktop, colonneMobile }) => css`
     grid-column-start: span ${colonneMobile};
@@ -106,7 +105,9 @@ export const ReportsBlock = ({ fields }) => {
             colonneMobile={item.colonneMobile ?? 1}
           >
             <InfoWrapper>
-              <div tw="py-1 px-3 bg-white text-miraBlue">{item.label}</div>
+              <HighlightTitleLabel tw="py-1 px-3">
+                {item.label}
+              </HighlightTitleLabel>
             </InfoWrapper>
             <ImageWrapper>
               <StyledImage

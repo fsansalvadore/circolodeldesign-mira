@@ -1,6 +1,5 @@
 import React from 'react';
 import tw, { css, styled } from 'twin.macro';
-import parse from 'html-react-parser';
 import { useState } from 'react';
 import { handleColorBySlug } from '../../utils/common';
 import { useRouter } from 'next/router';
@@ -11,26 +10,23 @@ const StyledParagraph = styled(RichText)<{
   highlightBgColor: string;
   highlightTextColor: string;
 }>`
-  ${tw`text-2xl lg:text-3xl line-height[140%]!`}
+  ${tw`font-bold text-lg lg:text-2xl line-height[140%]! no-underline inline-block w-auto mb-4`}
 
   ${({ highlightBgColor, highlightTextColor }) => css`
-    u {
-      background: ${highlightBgColor};
-      color: ${highlightTextColor};
-      padding: 0 10px;
-      ${tw`no-underline`}
-    }
+    background: ${highlightBgColor};
+    color: ${highlightTextColor};
+    padding: 0 10px;
   `}
 `;
 
-export const Paragraph = ({ children, ...rest }) => {
+export const HighlightTitleLabel = ({ children, ...rest }) => {
   const router = useRouter();
   const [highlightBgColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant.color ??
+    handleColorBySlug(router.query.slug)?.variant?.color ??
       colorVariants.blue.color,
   );
   const [highlightTextColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant.backgroundColor ??
+    handleColorBySlug(router.query.slug)?.variant?.backgroundColor ??
       colorVariants.blue.backgroundColor,
   );
 
@@ -40,7 +36,7 @@ export const Paragraph = ({ children, ...rest }) => {
       highlightTextColor={highlightTextColor || 'blue'}
       {...rest}
     >
-      {parse(children)}
+      {children}
     </StyledParagraph>
   );
 };

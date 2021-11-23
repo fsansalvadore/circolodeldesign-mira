@@ -9,6 +9,7 @@ export const shuffle = (array) => {
 };
 
 export const handleColorBySlug = (slug) => {
+  if (!slug) return;
   switch (slug) {
     case 'about':
       return { variant: colorVariants.orange, mode: 'dark' };

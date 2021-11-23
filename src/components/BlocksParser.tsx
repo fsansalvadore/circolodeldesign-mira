@@ -2,8 +2,8 @@ import React from 'react';
 
 // import blocks components
 import {
-  AboutIntroPartnersBlock,
-  AboutRicercheContattiBlock,
+  ColophonBlock,
+  AboutBlock,
   DownloadCtaBlock,
   HomeIntroBlock,
   PartnersBlock,
@@ -15,8 +15,8 @@ import {
 
 // sync blocks to block shortnames coming from cms
 const components = {
-  'about-intro-partners': AboutIntroPartnersBlock,
-  'about-ricerche-contatti': AboutRicercheContattiBlock,
+  'sezione-colophon': ColophonBlock,
+  'introduzione-about': AboutBlock,
   'download-cta': DownloadCtaBlock,
   'home-intro-block': HomeIntroBlock,
   partners: PartnersBlock,

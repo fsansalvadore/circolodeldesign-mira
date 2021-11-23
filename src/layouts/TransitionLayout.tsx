@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import 'twin.macro';
 import { MaxWidthContent } from '../components/Base';
 import { handleColorBySlug } from '../utils/common';
+import AboutPageLayout from './AboutPageLayout';
 
 const TransitionLayout = ({
   footer: Footer,
@@ -36,7 +37,13 @@ const TransitionLayout = ({
         }}
         exit="exit"
       >
-        <MaxWidthContent tw="pt-20">{children}</MaxWidthContent>
+        <MaxWidthContent tw="py-20">
+          {router.query.slug === 'about' ? (
+            <AboutPageLayout>{children}</AboutPageLayout>
+          ) : (
+            children
+          )}
+        </MaxWidthContent>
         <Footer />
       </motion.div>
     </motion.div>

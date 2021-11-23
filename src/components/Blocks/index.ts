@@ -5,8 +5,8 @@ export { MainNavigation } from './MainNavigation';
 export { Footer } from './Footer';
 
 // Blocks
-export { AboutIntroPartnersBlock } from './AboutIntroPartnersBlock';
-export { AboutRicercheContattiBlock } from './AboutRicercheContattiBlock';
+export { ColophonBlock } from './ColophonBlock';
+export { AboutBlock } from './AboutBlock';
 export { DownloadCtaBlock } from './DownloadCtaBlock';
 export { HomeIntroBlock } from './HomeIntroBlock';
 export { PartnersBlock } from './PartnersBlock';
