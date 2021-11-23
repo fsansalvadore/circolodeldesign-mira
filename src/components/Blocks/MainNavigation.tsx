@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import tw, { css, styled } from 'twin.macro';
-import { data as mainNavigation } from '../../data/mainNavigation.data';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -18,9 +17,11 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
-const NavWrapper = tw(
-  motion.div,
-)`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent`;
+const NavWrapper = styled(motion.div)<{ onWhite?: boolean }>`
+  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent filter mix-blend-screen`}
+  transition: all 0.5s ease;
+  ${({ onWhite }) => onWhite && tw`mix-blend-difference`}
+`;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
 const MobileNavWrapper = tw.div`flex items-center`;
@@ -76,6 +77,22 @@ const MobileMenuWrapper = tw(
   motion.div,
 )`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
+const ImageWrapper = styled.div`
+  ${tw`h-80 w-80 -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! height[auto]! min-height[50px]!`}
+
+  > div {
+    position: unset !important;
+  }
+`;
+const StyledImage = styled(Image)`
+  ${tw`w-auto h-16 z-0 max-height[80px]! height[auto]! min-height[50px]! filter mix-blend-screen`}
+
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+`;
+
 export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
@@ -90,31 +107,39 @@ export const MainNavigation = ({ menu, colorVariant }) => {
   }, [router, router.events]);
 
   if (!menu) return <div>Loading...</div>;
-
   const { blocks: menuItems } = menu;
 
   return (
     <>
-      <NavWrapper>
+      <NavWrapper onWhite={menuIsOpen}>
         <NavContent>
           <div tw="min-width[150px]">
-            <Link href="/">
-              <Image
-                width={100}
-                height={50}
-                src={'/logo-mira.jpg'}
-                alt={'Mira - numeri persone direzioni del design in Piemonte'}
-                tw="w-auto h-16"
-                placeholder="blur"
-                blurDataURL={'/blur.png'}
-                priority
-              />
+            <Link href="/" tw="">
+              <ImageWrapper
+                as={motion.div}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                  transition: { delay: 0.8, duration: 0.5 },
+                }}
+              >
+                <StyledImage
+                  src={'/mira-logo.gif'}
+                  alt={'Mira - numeri persone direzioni del design in Piemonte'}
+                  layout="fill"
+                  objectFit="contain"
+                  placeholder="blur"
+                  blurDataURL={'/blur.png'}
+                  priority
+                />
+              </ImageWrapper>
             </Link>
           </div>
           <MobileNavWrapper>
             <MobileMenuButton
               onClick={() => setMenuIsOpen((prev) => !prev)}
-              mode={menuIsOpen ? colorVariants.white : colorVariant.color}
+              mode={colorVariant.color}
+              // mode={menuIsOpen ? colorVariants.white : colorVariant.color}
             >
               {menuIsOpen ? (
                 <XIcon tw="w-10 h-10" />
