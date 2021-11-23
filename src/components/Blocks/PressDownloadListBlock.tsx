@@ -1,7 +1,7 @@
 export const PressDownloadListBlock = ({ fields }) => {
   return (
     <div>
-      <h1>PressDownloadListBlock</h1>
+      <h1>Lista Press Area</h1>
     </div>
   );
 };

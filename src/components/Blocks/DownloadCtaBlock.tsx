@@ -1,4 +1,4 @@
-import tw from 'twin.macro';
+import 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { Button, Link } from '../Base';
 

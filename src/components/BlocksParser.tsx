@@ -4,6 +4,7 @@ import React from 'react';
 import {
   ColophonBlock,
   AboutBlock,
+  CtaParagraphBlock,
   DownloadCtaBlock,
   HomeIntroBlock,
   PartnersBlock,
@@ -17,6 +18,7 @@ import {
 const components = {
   'sezione-colophon': ColophonBlock,
   'introduzione-about': AboutBlock,
+  'paragrafo-cta': CtaParagraphBlock,
   'download-cta': DownloadCtaBlock,
   'home-intro-block': HomeIntroBlock,
   partners: PartnersBlock,

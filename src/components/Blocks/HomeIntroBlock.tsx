@@ -1,6 +1,7 @@
 import 'twin.macro';
 import React from 'react';
 import { Paragraph, RichText } from '../Base';
+import parse from 'html-react-parser';
 
 const data = `
 <p>
@@ -23,7 +24,7 @@ officia deserunt mollitia.
 export const HomeIntroBlock = ({ fields }) => {
   return (
     <div tw="min-height[80vh] py-4 lg:py-8 flex items-center">
-      <Paragraph tw="lg:(columns[2] column-gap[3rem])">{data}</Paragraph>
+      <Paragraph tw="lg:(columns[2] column-gap[3rem])">{parse(data)}</Paragraph>
     </div>
   );
 };

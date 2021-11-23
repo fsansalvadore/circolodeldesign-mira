@@ -80,7 +80,6 @@ export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
-  const brandLogo = findByShortname(mainNavigation.blocks, 'brand-logo');
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
@@ -103,8 +102,8 @@ export const MainNavigation = ({ menu, colorVariant }) => {
               <Image
                 width={100}
                 height={50}
-                src={findByShortname(brandLogo.fields, 'logo').content.src}
-                alt={findByShortname(brandLogo.fields, 'logo').content.altText}
+                src={'/logo-mira.jpg'}
+                alt={'Mira - numeri persone direzioni del design in Piemonte'}
                 tw="w-auto h-16"
                 placeholder="blur"
                 blurDataURL={'/blur.png'}

@@ -1,6 +1,5 @@
 import React from 'react';
 import tw, { css, styled } from 'twin.macro';
-import parse from 'html-react-parser';
 import { useState } from 'react';
 import { handleColorBySlug } from '../../utils/common';
 import { useRouter } from 'next/router';
@@ -11,7 +10,7 @@ const StyledParagraph = styled(RichText)<{
   highlightBgColor: string;
   highlightTextColor: string;
 }>`
-  ${tw`text-2xl lg:text-3xl line-height[140%]!`}
+  ${tw`text-2xl lg:text-3xl line-height[140%]! font-bold`}
 
   ${({ highlightBgColor, highlightTextColor }) => css`
     u {
@@ -40,7 +39,7 @@ export const Paragraph = ({ children, ...rest }) => {
       highlightTextColor={highlightTextColor || 'blue'}
       {...rest}
     >
-      {parse(children)}
+      {children}
     </StyledParagraph>
   );
 };

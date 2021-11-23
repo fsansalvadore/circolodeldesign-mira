@@ -95,7 +95,6 @@ const GridItem = styled(Link)<{
 export const ReportsBlock = ({ fields }) => {
   return (
     <div>
-      <h2>Reports</h2>
       <DynamicGrid>
         {data.map((item, index) => (
           <GridItem

@@ -7,6 +7,7 @@ export { Footer } from './Footer';
 // Blocks
 export { ColophonBlock } from './ColophonBlock';
 export { AboutBlock } from './AboutBlock';
+export { CtaParagraphBlock } from './CtaParagraphBlock';
 export { DownloadCtaBlock } from './DownloadCtaBlock';
 export { HomeIntroBlock } from './HomeIntroBlock';
 export { PartnersBlock } from './PartnersBlock';

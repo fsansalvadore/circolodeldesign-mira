@@ -1,6 +1,7 @@
 import { findByShortname } from '../../utils/common';
 import { Paragraph, Button, Link } from '../Base';
 import 'twin.macro';
+import parse from 'html-react-parser';
 
 export const AboutBlock = ({ fields }) => {
   const content =
@@ -9,7 +10,7 @@ export const AboutBlock = ({ fields }) => {
 
   return (
     <div>
-      <Paragraph>{content}</Paragraph>
+      {!!content && <Paragraph>{parse(content)}</Paragraph>}
       {!!link && (
         <div tw="mt-4 lg:mt-8">
           <Button as={Link} href={link} target="_blank">
