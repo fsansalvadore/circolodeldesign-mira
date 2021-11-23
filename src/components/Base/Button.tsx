@@ -26,24 +26,6 @@ const StyledButton = styled.button<{
     }
   }}
 
-${({ color }) => {
-    switch (color) {
-      case 'blue':
-        return tw`bg-white! text-miraBlue`;
-      case 'fucsia':
-        return tw`bg-miraFucsia! text-white`;
-      case 'green':
-        return tw`bg-miraGreen! text-white`;
-      case 'orange':
-        return tw`bg-miraOrange! text-white`;
-      case 'black':
-        return tw`bg-black text-white`;
-      case 'white':
-      default:
-        return tw`bg-white! text-black!`;
-    }
-  }}
-
 ${({ highlightBgColor, highlightTextColor }) => css`
     background: ${highlightBgColor};
     color: ${highlightTextColor};
@@ -68,7 +50,7 @@ export const Button: React.FC<Props> = ({
 }) => {
   const router = useRouter();
   const [highlightBgColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant?.color ??
+    handleColorBySlug(router.query.slug)?.accentColor ??
       colorVariants.blue.color,
   );
   const [highlightTextColor] = useState(
@@ -90,3 +72,21 @@ export const Button: React.FC<Props> = ({
     </StyledButton>
   );
 };
+
+// ${({ color }) => {
+//   switch (color) {
+//     case 'blue':
+//       return tw`bg-white! text-miraBlue`;
+//     case 'fucsia':
+//       return tw`bg-miraFucsia! text-white`;
+//     case 'green':
+//       return tw`bg-miraGreen! text-white`;
+//     case 'orange':
+//       return tw`bg-miraOrange! text-white`;
+//     case 'black':
+//       return tw`bg-black text-white`;
+//     case 'white':
+//     default:
+//       return tw`bg-white! text-black!`;
+//   }
+// }}

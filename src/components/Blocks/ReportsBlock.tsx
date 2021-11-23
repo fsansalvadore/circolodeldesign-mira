@@ -4,42 +4,48 @@ import { HighlightTitleLabel, Link } from '../Base';
 
 const data = [
   {
-    label: 'Lorem ipsum',
+    label: 'Ricerca',
+    title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1635172552297-adcbdb0086ef.jpg',
     colonneDesktop: 2,
     colonneMobile: 2,
   },
   {
-    label: 'Lorem ipsum',
+    label: 'Report',
+    title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1635752782385-bc676ec52709.jpg',
     colonneDesktop: 1,
     colonneMobile: 1,
   },
   {
-    label: 'Lorem ipsum',
+    label: 'Report',
+    title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1636228447444-4ec83a373baa.jpg',
     colonneDesktop: 1,
     colonneMobile: 1,
   },
   {
-    label: 'Lorem ipsum',
+    label: 'Ricerca',
+    title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1636652966789-e944cbb413a3.jpg',
     colonneDesktop: 1,
     colonneMobile: 1,
   },
   {
-    label: 'Lorem ipsum',
+    label: 'Report',
+    title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1637226670958-50b46255d18c.jpg',
     colonneDesktop: 1,
     colonneMobile: 1,
   },
   {
-    label: 'Lorem ipsum',
+    label: 'Report',
+    title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1637400691569-2c5f391e37a5.jpg',
     colonneDesktop: 1,
@@ -50,7 +56,7 @@ const data = [
 const DynamicGrid = tw.div`relative grid grid-cols-2 gap-4 mt-4 lg:(mt-8 gap-8)`;
 
 const InfoWrapper = styled.div`
-  ${tw`absolute z-20 text-xl lg:text-3xl w-full h-full left-0 top-0 right-0 bottom-0 flex items-center justify-center visible opacity-100 transform transition filter filter[blur(-5px)]`}
+  ${tw`absolute z-20 text-xl lg:text-3xl w-full h-full left-0 top-0 right-0 bottom-0 flex flex-col items-center justify-center visible opacity-100 transform transition filter filter[blur(-5px)]`}
   transition: visibility 0.15s ease, opacity 0.15s ease;
 `;
 
@@ -104,9 +110,16 @@ export const ReportsBlock = ({ fields }) => {
             colonneMobile={item.colonneMobile ?? 1}
           >
             <InfoWrapper>
-              <HighlightTitleLabel tw="py-1 px-3">
-                {item.label}
-              </HighlightTitleLabel>
+              {!!item.label && (
+                <HighlightTitleLabel tw="py-1 px-3 mb-3 text-lg" inverse>
+                  {item.label}
+                </HighlightTitleLabel>
+              )}
+              {!!item.title && (
+                <HighlightTitleLabel tw="py-1 px-3">
+                  {item.title}
+                </HighlightTitleLabel>
+              )}
             </InfoWrapper>
             <ImageWrapper>
               <StyledImage
