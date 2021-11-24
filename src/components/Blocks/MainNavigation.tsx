@@ -89,7 +89,7 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   width: auto !important;
   position: relative !important;
-  /* height: unset !important; */
+  height: unset !important;
 `;
 
 export const MainNavigation = ({ menu, colorVariant }) => {
