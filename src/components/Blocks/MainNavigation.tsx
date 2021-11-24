@@ -69,7 +69,6 @@ const MobileMenuButton = styled.button<{ mode: string }>`
   ${tw`p-4 flex items-center justify-center rounded transition-colors transform`}
 
   ${({ mode }) => css`
-    /* color: 'hsla(0, 0%, 0%, 1)' !important; */
     color: ${mode};
   `}
 `;
@@ -78,7 +77,7 @@ const MobileMenuWrapper = tw(
 )`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
 const ImageWrapper = styled.div`
-  ${tw`h-80 w-80 -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! height[auto]! min-height[50px]!`}
+  ${tw`h-80 w-auto -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! height[auto]! min-height[50px]!`}
 
   > div {
     position: unset !important;

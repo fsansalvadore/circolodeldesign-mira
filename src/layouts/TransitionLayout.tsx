@@ -4,6 +4,7 @@ import { contentVariant, colorVariants, transitions } from '../utils/motion';
 import { useRouter } from 'next/router';
 import 'twin.macro';
 import { MaxWidthContent } from '../components/Base';
+import { ParallaxComposition } from '../components/Base/ParallaxComposition';
 import { handleColorBySlug } from '../utils/common';
 import AboutPageLayout from './AboutPageLayout';
 
@@ -25,8 +26,9 @@ const TransitionLayout = ({
       variants={colorVariants}
       initial={colorVariant}
       animate={colorVariant}
-      tw="w-screen min-h-screen"
+      tw="w-screen min-h-screen relative"
     >
+      <ParallaxComposition />
       <motion.div
         variants={contentVariant}
         initial="initial"
