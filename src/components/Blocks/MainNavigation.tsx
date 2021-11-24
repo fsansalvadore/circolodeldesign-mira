@@ -66,7 +66,7 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
   }
 `;
 const MobileMenuButton = styled.button<{ mode: string }>`
-  ${tw`p-4 flex items-center justify-center rounded transition-colors transform`}
+  ${tw`p-1 lg:p-4 flex items-center justify-center rounded transition-colors transform`}
 
   ${({ mode }) => css`
     color: ${mode};
@@ -77,19 +77,19 @@ const MobileMenuWrapper = tw(
 )`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
 const ImageWrapper = styled.div`
-  ${tw`h-80 w-auto -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! height[auto]! min-height[50px]!`}
+  ${tw`h-10! w-auto -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
 
   > div {
     position: unset !important;
   }
 `;
 const StyledImage = styled(Image)`
-  ${tw`w-auto h-16 z-0 max-height[80px]! height[auto]! min-height[50px]! filter mix-blend-screen`}
+  ${tw`w-auto height[30px]! z-0 max-height[80px]! height[auto]! min-height[50px]! filter mix-blend-screen`}
 
   object-fit: contain;
-  width: 100% !important;
+  width: auto !important;
   position: relative !important;
-  height: unset !important;
+  /* height: unset !important; */
 `;
 
 export const MainNavigation = ({ menu, colorVariant }) => {

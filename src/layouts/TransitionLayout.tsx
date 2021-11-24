@@ -28,7 +28,7 @@ const TransitionLayout = ({
       variants={colorVariants}
       initial={colorVariant}
       animate={colorVariant}
-      tw="w-screen min-h-screen relative"
+      tw="w-screen min-h-screen relative overflow-x-hidden"
     >
       {page?.slug === 'index' && <ParallaxComposition />}
       <motion.div
