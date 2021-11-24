@@ -63,6 +63,7 @@ const Element = ({
       variant={gifVariant}
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
+      exit="exit"
       transition={transition}
       style={{ y: transform }}
       {...rest}
@@ -86,9 +87,9 @@ export const ParallaxComposition = () => {
         tw="left[20vw] top[10vh]"
       />
       <Element
-        speed={5}
+        speed={-5}
         src="/images/piano_sfocato3.gif"
-        tw="left[2vw] top[60vh] width[100px]"
+        tw="left[2vw] top[70vh] width[100px]"
       />
       <Element
         speed={5}
@@ -101,12 +102,12 @@ export const ParallaxComposition = () => {
         tw="left[60vw] top[-5vh] width[100px]"
       />
       <Element
-        speed={5.5}
+        speed={7.5}
         src="/images/piano_sfocato3.gif"
         tw="left[50vw] top[45vh] width[400px]"
       />
       <Element
-        speed={-5}
+        speed={2.5}
         src="/images/piano_sfocato1.gif"
         tw="left[90vw] top[80vh] width[100px]"
       />
