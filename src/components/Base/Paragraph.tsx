@@ -10,7 +10,7 @@ const StyledParagraph = styled(RichText)<{
   highlightBgColor: string;
   highlightTextColor: string;
 }>`
-  ${tw`text-2xl lg:text-3xl line-height[140%]! font-bold`}
+  ${tw`text-xl md:text-2xl lg:text-3xl line-height[140%]! font-bold`}
 
   ${({ highlightBgColor, highlightTextColor }) => css`
     u {
