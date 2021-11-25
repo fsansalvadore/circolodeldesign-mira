@@ -8,13 +8,13 @@ import MiraLogoJson from '../../assets/animations/mira-white.json';
 import { useEffect, useRef } from 'react';
 
 const PartnersRow = styled.div`
-  ${tw`flex border-b last:border-none`}
+  ${tw`flex-grow flex flex-col lg:flex-row border-b last:border-none`}
 
   & > div {
-    ${tw`p-4 first:pl-0 last:pr-0 border-r last:border-r-0`}
+    ${tw`py-4 border-b last:border-b-0 lg:(px-4 border-b-0 first:pl-0 last:pr-0 border-r last:border-r-0)`}
   }
   &:first-child > div {
-    ${tw`pt-0 `}
+    ${tw`lg:pt-0 `}
   }
   &:last-child > div {
     ${tw`pb-0 `}
@@ -22,7 +22,7 @@ const PartnersRow = styled.div`
 `;
 
 const PartnersWrapper = styled.div`
-  ${tw`flex flex-col`}
+  ${tw`flex-grow lg:flex-grow-0 lg:w-auto flex flex-col`}
 `;
 
 const LottieLogo = styled.div`
@@ -95,7 +95,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
             />
           </Link>
         </div>
-        <div tw="flex-grow flex justify-start">
+        <div tw="flex-grow flex lg:justify-start! lg:items-start">
           <PartnersWrapper>
             {partnersSchemas.map((row, rowIndx) => (
               <PartnersRow key={`row-${rowIndx}`}>
