@@ -1,6 +1,7 @@
 import tw, { styled, css } from 'twin.macro';
 import Image from 'next/image';
 import { HighlightTitleLabel, Link } from '../Base';
+import { findByShortname } from '../../utils/common';
 
 const data = [
   {
@@ -99,42 +100,62 @@ const GridItem = styled(Link)<{
 `;
 
 export const ReportsBlock = ({ fields }) => {
+  const reports =
+    findByShortname(fields, 'lista-ricerche')?.content?.items ?? [];
   return (
     <div>
       <DynamicGrid>
-        {data.map((item, index) => (
-          <GridItem
-            key={index}
-            href={item.link}
-            colonneDesktop={item.colonneDesktop ?? 1}
-            colonneMobile={item.colonneMobile ?? 1}
-          >
-            <InfoWrapper>
-              {/* {!!item.label && (
+        {reports.map((item, index) => {
+          const title =
+            findByShortname(item.fields, 'titolo')?.content?.value ?? '';
+          const link =
+            '/ricerche/' +
+              findByShortname(item.fields, 'link-slug-della-pagina')?.content
+                ?.value ?? '';
+          const image =
+            findByShortname(item.fields, 'immagine-di-copertina')?.content
+              ?.value?.url ?? '/blur.png';
+          const colsDesktop =
+            findByShortname(item.fields, 'n-colonne-desktop-')?.content
+              ?.value ?? 1;
+          const colsMobile =
+            findByShortname(item.fields, 'n-colonne-mobile-')?.content?.value ??
+            1;
+
+          return (
+            <GridItem
+              key={index}
+              href={link}
+              colonneDesktop={parseInt(colsDesktop) ?? 1}
+              colonneMobile={parseInt(colsMobile) ?? 1}
+            >
+              <InfoWrapper>
+                {/* {!!item.label && (
                 <HighlightTitleLabel tw="py-1 px-3 mb-3 text-lg" inverse>
                   {item.label}
                 </HighlightTitleLabel>
               )} */}
-              {!!item.title && (
-                <HighlightTitleLabel tw="py-1 px-3">
-                  {item.title}
-                </HighlightTitleLabel>
-              )}
-            </InfoWrapper>
-            <ImageWrapper>
-              <StyledImage
-                src={`${item.image}`}
-                alt={item.label}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                placeholder="blur"
-                blurDataURL={'/blur.png'}
-                priority
-              />
-            </ImageWrapper>
-          </GridItem>
-        ))}
+                {!!title && (
+                  <HighlightTitleLabel tw="py-1 px-3">
+                    {title}
+                  </HighlightTitleLabel>
+                )}
+              </InfoWrapper>
+              <ImageWrapper>
+                <StyledImage
+                  src={image}
+                  alt={title}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  placeholder="blur"
+                  blurDataURL={'/blur.png'}
+                  priority
+                />
+              </ImageWrapper>
+            </GridItem>
+          );
+        })}
       </DynamicGrid>
     </div>
   );
