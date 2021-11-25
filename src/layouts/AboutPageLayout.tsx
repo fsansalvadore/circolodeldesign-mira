@@ -8,7 +8,7 @@ const Layout = styled.div`
   }
 
   & > *:first-child {
-    ${tw`lg:grid-row-end[span 15] mb-12 lg:mb-0`};
+    ${tw`lg:grid-row-end[span 15] mb-4 lg:mb-0`};
   }
 `;
 

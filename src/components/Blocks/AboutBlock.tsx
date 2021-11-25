@@ -22,7 +22,7 @@ export const AboutBlock = ({ fields }) => {
         </div>
       )}
       {!!colophonSections && (
-        <div tw="my-14 lg:mt-20 block">
+        <div tw="mt-14 lg:mt-20 block">
           {colophonSections?.map((section, index) => {
             const label =
               findByShortname(section.fields, 'titolo-etichetta')?.content
