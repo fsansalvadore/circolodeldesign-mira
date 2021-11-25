@@ -70,7 +70,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
   const infoBlock = findByShortname(footer.blocks, 'informazioni');
   const infoBlockContent =
     findByShortname(infoBlock.fields, 'testo')?.content?.value ?? '';
-  const socialsBlock = findByShortname(footer.blocks, 'socials');
+  // const socialsBlock = findByShortname(footer.blocks, 'socials');
 
   useEffect(() => {
     lottie.loadAnimation({
@@ -141,10 +141,15 @@ export const Footer = ({ footer = null, colorVariant }) => {
           {infoBlockContent && <RichText>{parse(infoBlockContent)}</RichText>}
 
           <div tw="flex space-x-3 mt-4">
+            <Link href="/privacy" tw="font-bold">
+              Informativa sulla Privacy
+            </Link>
+          </div>
+          {/* <div tw="flex space-x-3 mt-4">
             {[1, 2, 3, 4].map((social, index) => {
               <div key={`social-${index}`}>fb</div>;
             })}
-          </div>
+          </div> */}
         </div>
       </MaxWidthContent>
     </FooterWrapper>
