@@ -28,8 +28,9 @@ const gifVariant = {
 };
 
 const GifWrapper = styled(motion.div)`
-  ${tw`absolute overflow-visible! opacity-30 md:opacity-100 width[200px] height[auto]! min-height[50px]! filter mix-blend-screen! pointer-events-none`}
+  ${tw`absolute overflow-visible! opacity-30 md:opacity-100 width[200px] height[auto]! min-height[50px]! filter mix-blend-screen! filter[blur(4px)] pointer-events-none`}
 
+  will-change: filter;
   > div {
     ${tw`overflow-visible!`}
     position: unset !important;
@@ -51,7 +52,7 @@ type ElementProps = {
 
 const Element = ({
   speed = 0,
-  src = '/images/piano_sfocato1.gif',
+  src = '/images/piano_semplice_1.gif',
   ...rest
 }: ElementProps) => {
   const { scrollYProgress } = useViewportScroll();
@@ -83,32 +84,32 @@ export const ParallaxComposition = () => {
     <>
       <Element
         speed={4}
-        src="/images/piano_sfocato1.gif"
+        src="/images/piano_semplice_1.gif"
         tw="left[20vw] top[10vh]"
       />
       <Element
         speed={-5}
-        src="/images/piano_sfocato3.gif"
+        src="/images/piano_semplice_3.gif"
         tw="left[2vw] top[70vh] width[100px]"
       />
       <Element
         speed={5}
-        src="/images/piano_sfocato2.gif"
+        src="/images/piano_semplice_2.gif"
         tw="left[70vw] top[110vh] width[100px] bg-opacity-40"
       />
       <Element
         speed={10}
-        src="/images/piano_sfocato2.gif"
+        src="/images/piano_semplice_2.gif"
         tw="left[60vw] top[-5vh] width[100px]"
       />
       <Element
         speed={7.5}
-        src="/images/piano_sfocato3.gif"
+        src="/images/piano_semplice_3.gif"
         tw="left[50vw] top[45vh] width[400px]"
       />
       <Element
         speed={2.5}
-        src="/images/piano_sfocato1.gif"
+        src="/images/piano_semplice_1.gif"
         tw="left[90vw] top[80vh] width[100px]"
       />
     </>

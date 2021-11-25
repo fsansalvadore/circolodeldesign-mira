@@ -97,13 +97,8 @@ export const MainNavigation = ({ menu, colorVariant }) => {
 
   useEffect(() => {
     var animation = lottie.loadAnimation({
-      container: logoRef.current, // Required
+      container: logoRef.current,
       animationData: MiraLogoJson,
-      // path: 'data.json', // Required
-      // renderer: 'svg/canvas/html', // Required
-      // loop: true, // Optional
-      // autoplay: true, // Optional
-      // name: "Hello World", // Name for future reference. Optional.
     });
   }, []);
 
