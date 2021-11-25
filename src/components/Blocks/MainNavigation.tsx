@@ -85,26 +85,17 @@ const LottieLogo = styled.div`
 export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
   const menuRef = useRef(null);
-  const whiteLogoRef = useRef(null);
-  const blackLogoRef = useRef(null);
+  const lottieRef = useRef(null);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
 
   useEffect(() => {
-    lottie.destroy();
+    lottie.destroy('logo');
     const anim = lottie.loadAnimation({
-      container: blackLogoRef.current,
-      path: menuIsOpen ? '/mira-black.json' : '/mira-white.json',
-      name: 'black',
+      container: lottieRef.current,
+      animationData: menuIsOpen ? MiraBlack : MiraWhite,
+      name: 'logo',
     });
-
-    // if (whiteLogoRef.current) {
-    //   const white = lottie.loadAnimation({
-    //     container: whiteLogoRef.current,
-    //     animationData: MiraWhite,
-    //     name: 'white',
-    //   });
-    // }
   }, [menuIsOpen]);
 
   useEffect(() => {
@@ -133,7 +124,7 @@ export const MainNavigation = ({ menu, colorVariant }) => {
             <Link href="/" tw="">
               <LottieLogo
                 as={motion.div}
-                ref={blackLogoRef}
+                ref={lottieRef}
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,

@@ -4,7 +4,6 @@ import { MaxWidthContent, Link } from '../Base';
 import { motion } from 'framer-motion';
 import lottie from 'lottie-web';
 import MiraLogoJson from '../../assets/animations/mira-white.json';
-// import MiraLogoJson from '../../assets/animations/logoMIRA.json';
 import { useEffect, useRef } from 'react';
 
 const PartnersRow = styled.div`
