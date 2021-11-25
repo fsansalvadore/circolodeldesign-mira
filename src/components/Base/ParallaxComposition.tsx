@@ -94,9 +94,9 @@ export const ParallaxComposition = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { width } = useWindowSize();
 
-  useEffect(() => {
-    return () => lottie.destroy();
-  }, []);
+  // useEffect(() => {
+  //   return () => lottie.destroy();
+  // }, []);
 
   useEffect(() => {
     if (width <= 768) {

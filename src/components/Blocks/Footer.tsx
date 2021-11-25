@@ -1,7 +1,8 @@
 import tw, { styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
-import { MaxWidthContent, Link } from '../Base';
 import { motion } from 'framer-motion';
+import parse from 'html-react-parser';
+import { MaxWidthContent, Link, RichText } from '../Base';
 import lottie from 'lottie-web';
 import MiraLogoJson from '../../assets/animations/mira-white.json';
 import { useEffect, useRef } from 'react';
@@ -28,8 +29,15 @@ const LottieLogo = styled.div`
   ${tw`h-10! w-auto -ml-3 lg:w-40 lg:h-20 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[20px]!`}
 `;
 
-const partnersSchema = {
-  row1: [
+const StyledImage = styled.img`
+  ${tw`relative z-0 h-9 w-auto`}
+`;
+const ImageWrapper = styled(Link)`
+  ${tw`relative flex-shrink! col-span-1 self-start items-start flex overflow-visible`}
+`;
+
+const partnersSchemas = [
+  [
     {
       shortname: 'un-progetto-di',
       label: 'Un progetto di',
@@ -43,20 +51,20 @@ const partnersSchema = {
       label: 'In collaborazione con',
     },
   ],
-  row2: [
+  [
     {
-      shortname: 'un-progetto-di',
-      label: 'Un progetto di',
+      shortname: 'con-il-sostegno-di',
+      label: 'Con il sostegno di',
     },
   ],
-};
+];
 
 export const Footer = ({ footer = null }) => {
   const logoRef = useRef(null);
-  const partners =
-    findByShortname(footer.blocks, 'partners-footer')?.fields[0]?.content
-      ?.items ?? [];
+  const partners = findByShortname(footer.blocks, 'partners-footer');
   const infoBlock = findByShortname(footer.blocks, 'informazioni');
+  const infoBlockContent =
+    findByShortname(infoBlock.fields, 'testo')?.content?.value ?? '';
   const socialsBlock = findByShortname(footer.blocks, 'socials');
 
   useEffect(() => {
@@ -65,11 +73,10 @@ export const Footer = ({ footer = null }) => {
       animationData: MiraLogoJson,
     });
   }, []);
-  // console.log('footer', footer);
-  // const link = findByShortname(footer.fields, 'link')?.content?.list ?? [];
+
   return (
     <footer tw="py-5 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8">
-      <MaxWidthContent tw="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-20">
+      <MaxWidthContent tw="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
         <div tw="flex-shrink min-width[150px]">
           <Link href="/" tw="">
             <LottieLogo
@@ -85,35 +92,49 @@ export const Footer = ({ footer = null }) => {
         </div>
         <div tw="flex-grow flex justify-start">
           <PartnersWrapper>
-            <PartnersRow>
-              {partnersSchema['row1'].map((partner, index) => {
-                // const list = findByShortname(footer.fields, 'link')?.content?.list ?? [];
+            {partnersSchemas.map((row, rowIndx) => (
+              <PartnersRow key={`row-${rowIndx}`}>
+                {row.map((partner, schemaIndx) => {
+                  const list =
+                    findByShortname(partners.fields, partner.shortname)?.content
+                      ?.items ?? [];
 
-                return (
-                  <div key={`partner-${index}`}>
-                    <p>{partner.label}</p>
-                    {/* <div>{partner}</div> */}
-                  </div>
-                );
-              })}
-            </PartnersRow>
-            <PartnersRow>
-              {partnersSchema['row2'].map((partner, index) => {
-                return <div key={`partner-${index}`}>Logo</div>;
-              })}
-            </PartnersRow>
+                  return (
+                    <div key={`partner-${schemaIndx}`}>
+                      <p tw="mb-2">{partner.label}</p>
+                      <div tw="flex space-x-5">
+                        {list.map((logo, partIndx) => {
+                          const image =
+                            findByShortname(logo.fields, 'logo')?.content?.value
+                              ?.url ?? '';
+                          const altText =
+                            findByShortname(logo.fields, 'alt-text')?.content
+                              ?.value ?? '';
+                          const link =
+                            findByShortname(logo.fields, 'link')?.content
+                              ?.value ?? '';
+
+                          return (
+                            <ImageWrapper
+                              href={link}
+                              target="_blank"
+                              key={`partner-${schemaIndx}-${partIndx}-${altText}`}
+                            >
+                              <StyledImage src={image} alt={altText} />
+                            </ImageWrapper>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </PartnersRow>
+            ))}
           </PartnersWrapper>
         </div>
         <div tw="flex-shrink flex flex-col">
-          <p>
-            Circolo Del Design
-            <br />
-            Via S. Francesco da Paola 17
-            <br />
-            10123 Torino
-            <br />
-            info@circolodeldesign.it | +39 331 432 1195
-          </p>
+          {infoBlockContent && <RichText>{parse(infoBlockContent)}</RichText>}
+
           <div tw="flex space-x-3 mt-4">
             {[1, 2, 3, 4].map((social, index) => {
               <div key={`social-${index}`}>fb</div>;
