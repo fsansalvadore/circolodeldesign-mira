@@ -23,6 +23,7 @@
     "graphql": "^15.5.3",
     "html-react-parser": "^1.2.7",
     "js-cookie": "^3.0.1",
+    "lottie-web": "^5.8.1",
     "next": "^11.1.2",
     "next-seo": "^4.26.0",
     "param-case": "^3.0.4",

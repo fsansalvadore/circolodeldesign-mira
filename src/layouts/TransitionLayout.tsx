@@ -21,8 +21,6 @@ const TransitionLayout = ({
     setColorVariant(handleColorBySlug(page.slug).variant);
   }, [router, page.slug, setColorVariant]);
 
-  console.log('page', page);
-  console.log('router', router);
   return (
     <motion.div
       variants={colorVariants}

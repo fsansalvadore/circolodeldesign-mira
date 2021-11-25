@@ -1,12 +1,14 @@
 import { ChevronRightIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
 import { AnimatePresence, motion } from 'framer-motion';
 import { colorVariants, transitions } from '../../utils/motion';
+import lottie from 'lottie-web';
+import MiraLogoJson from '../../assets/animations/logoMIRA.json';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-0`}
@@ -18,9 +20,16 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
 const NavWrapper = styled(motion.div)<{ onWhite?: boolean }>`
-  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent filter mix-blend-screen`}
+  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent`}
   transition: all 0.5s ease;
-  ${({ onWhite }) => onWhite && tw`mix-blend-difference`}
+
+  ${({ onWhite }) =>
+    onWhite &&
+    css`
+      svg {
+        ${tw`text-black! fill[#000000]!`}
+      }
+    `}
 `;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
@@ -76,26 +85,27 @@ const MobileMenuWrapper = tw(
   motion.div,
 )`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
-const ImageWrapper = styled.div`
+const LottieLogo = styled.div`
   ${tw`h-10! w-auto -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
-
-  > div {
-    position: unset !important;
-  }
-`;
-const StyledImage = styled(Image)`
-  ${tw`w-auto height[30px]! z-0 max-height[80px]! height[auto]! min-height[50px]! filter mix-blend-screen`}
-
-  object-fit: contain;
-  width: auto !important;
-  position: relative !important;
-  height: unset !important;
 `;
 
 export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
+  const logoRef = useRef(null);
+
+  useEffect(() => {
+    var animation = lottie.loadAnimation({
+      container: logoRef.current, // Required
+      animationData: MiraLogoJson,
+      // path: 'data.json', // Required
+      // renderer: 'svg/canvas/html', // Required
+      // loop: true, // Optional
+      // autoplay: true, // Optional
+      // name: "Hello World", // Name for future reference. Optional.
+    });
+  }, []);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
@@ -114,24 +124,15 @@ export const MainNavigation = ({ menu, colorVariant }) => {
         <NavContent>
           <div tw="min-width[150px]">
             <Link href="/" tw="">
-              <ImageWrapper
+              <LottieLogo
                 as={motion.div}
                 initial={{ opacity: 0 }}
+                ref={logoRef}
                 animate={{
                   opacity: 1,
                   transition: { delay: 0.8, duration: 0.5 },
                 }}
-              >
-                <StyledImage
-                  src={'/mira-logo.gif'}
-                  alt={'Mira - numeri persone direzioni del design in Piemonte'}
-                  layout="fill"
-                  objectFit="contain"
-                  placeholder="blur"
-                  blurDataURL={'/blur.png'}
-                  priority
-                />
-              </ImageWrapper>
+              />
             </Link>
           </div>
           <MobileNavWrapper>
