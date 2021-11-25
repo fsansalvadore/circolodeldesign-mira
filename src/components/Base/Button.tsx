@@ -22,7 +22,7 @@ const StyledButton = styled.button<{
         return tw`px-2 py-3 text-sm lg:(px-4 py-3)`;
       case 'default':
       default:
-        return tw`px-10! py-2! font-bold lg:(text-lg px-6! py-3!)`;
+        return tw`px-10! py-2! font-bold lg:(text-lg px-6! py-2!)`;
     }
   }}
 
