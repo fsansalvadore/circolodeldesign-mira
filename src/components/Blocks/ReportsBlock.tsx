@@ -4,7 +4,7 @@ import { HighlightTitleLabel, Link } from '../Base';
 
 const data = [
   {
-    label: 'Ricerca',
+    // label: 'Ricerca',
     title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1635172552297-adcbdb0086ef.jpg',
@@ -12,7 +12,7 @@ const data = [
     colonneMobile: 2,
   },
   {
-    label: 'Report',
+    // label: 'Report',
     title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1635752782385-bc676ec52709.jpg',
@@ -20,7 +20,7 @@ const data = [
     colonneMobile: 1,
   },
   {
-    label: 'Report',
+    // label: 'Report',
     title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1636228447444-4ec83a373baa.jpg',
@@ -28,7 +28,7 @@ const data = [
     colonneMobile: 1,
   },
   {
-    label: 'Ricerca',
+    // label: 'Ricerca',
     title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1636652966789-e944cbb413a3.jpg',
@@ -36,7 +36,7 @@ const data = [
     colonneMobile: 1,
   },
   {
-    label: 'Report',
+    // label: 'Report',
     title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1637226670958-50b46255d18c.jpg',
@@ -44,7 +44,7 @@ const data = [
     colonneMobile: 1,
   },
   {
-    label: 'Report',
+    // label: 'Report',
     title: 'Lorem ipsum',
     link: '/ricerche/ricerca-2',
     image: '/images/photo-1637400691569-2c5f391e37a5.jpg',
@@ -110,11 +110,11 @@ export const ReportsBlock = ({ fields }) => {
             colonneMobile={item.colonneMobile ?? 1}
           >
             <InfoWrapper>
-              {!!item.label && (
+              {/* {!!item.label && (
                 <HighlightTitleLabel tw="py-1 px-3 mb-3 text-lg" inverse>
                   {item.label}
                 </HighlightTitleLabel>
-              )}
+              )} */}
               {!!item.title && (
                 <HighlightTitleLabel tw="py-1 px-3">
                   {item.title}

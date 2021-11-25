@@ -1,14 +1,15 @@
 import { ChevronRightIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { AnimatePresence, motion } from 'framer-motion';
 import { colorVariants, transitions } from '../../utils/motion';
 import lottie from 'lottie-web';
-import MiraLogoJson from '../../assets/animations/logoMIRA.json';
+import MiraBlack from '../../assets/animations/mira-black.json';
+import MiraWhite from '../../assets/animations/mira-white.json';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-0`}
@@ -22,14 +23,6 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 const NavWrapper = styled(motion.div)<{ onWhite?: boolean }>`
   ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent`}
   transition: all 0.5s ease;
-
-  ${({ onWhite }) =>
-    onWhite &&
-    css`
-      svg {
-        ${tw`text-black! fill[#000000]!`}
-      }
-    `}
 `;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
@@ -91,16 +84,28 @@ const LottieLogo = styled.div`
 
 export const MainNavigation = ({ menu, colorVariant }) => {
   const router = useRouter();
+  const menuRef = useRef(null);
+  const whiteLogoRef = useRef(null);
+  const blackLogoRef = useRef(null);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
-  const logoRef = useRef(null);
 
   useEffect(() => {
-    var animation = lottie.loadAnimation({
-      container: logoRef.current,
-      animationData: MiraLogoJson,
+    lottie.destroy();
+    const anim = lottie.loadAnimation({
+      container: blackLogoRef.current,
+      path: menuIsOpen ? '/mira-black.json' : '/mira-white.json',
+      name: 'black',
     });
-  }, []);
+
+    // if (whiteLogoRef.current) {
+    //   const white = lottie.loadAnimation({
+    //     container: whiteLogoRef.current,
+    //     animationData: MiraWhite,
+    //     name: 'white',
+    //   });
+    // }
+  }, [menuIsOpen]);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
@@ -110,7 +115,14 @@ export const MainNavigation = ({ menu, colorVariant }) => {
     };
   }, [router, router.events]);
 
-  if (!menu) return <div>Loading...</div>;
+  // Block scroll if menu is open
+  useEffect(() => {
+    if (!menuRef?.current) return;
+    if (menuIsOpen) disableBodyScroll(menuRef.current);
+    else enableBodyScroll(menuRef.current);
+  }, [menuIsOpen]);
+
+  if (!menu) return;
   const { blocks: menuItems } = menu;
 
   return (
@@ -121,11 +133,11 @@ export const MainNavigation = ({ menu, colorVariant }) => {
             <Link href="/" tw="">
               <LottieLogo
                 as={motion.div}
+                ref={blackLogoRef}
                 initial={{ opacity: 0 }}
-                ref={logoRef}
                 animate={{
                   opacity: 1,
-                  transition: { delay: 0.8, duration: 0.5 },
+                  transition: { delay: 0.2, duration: 0.5 },
                 }}
               />
             </Link>
@@ -133,8 +145,8 @@ export const MainNavigation = ({ menu, colorVariant }) => {
           <MobileNavWrapper>
             <MobileMenuButton
               onClick={() => setMenuIsOpen((prev) => !prev)}
-              mode={colorVariant.color}
-              // mode={menuIsOpen ? colorVariants.white : colorVariant.color}
+              // mode={colorVariant.color}
+              mode={menuIsOpen ? colorVariants.white : colorVariant.color}
             >
               {menuIsOpen ? (
                 <XIcon tw="w-10 h-10" />
@@ -149,6 +161,7 @@ export const MainNavigation = ({ menu, colorVariant }) => {
         {menuIsOpen && (
           <MobileMenuWrapper
             variants={colorVariants}
+            ref={menuRef}
             initial={{
               opacity: 0,
               filter: 'blur(10px)',
