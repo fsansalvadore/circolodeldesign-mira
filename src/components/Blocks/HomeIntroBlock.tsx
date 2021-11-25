@@ -2,6 +2,7 @@ import 'twin.macro';
 import React from 'react';
 import { Paragraph, RichText } from '../Base';
 import parse from 'html-react-parser';
+import { findByShortname } from '../../utils/common';
 
 const data = `
 <p>
@@ -22,9 +23,16 @@ officia deserunt mollitia.
 `;
 
 export const HomeIntroBlock = ({ fields }) => {
+  const heading =
+    findByShortname(fields, 'testo-introduttivo')?.content?.value ?? '';
+
   return (
     <div tw="h-auto lg:min-height[500px] max-height[800px] padding[10vw 0] md:py-32 lg:py-72 flex items-center">
-      <Paragraph tw="lg:(columns[2] column-gap[3rem])">{parse(data)}</Paragraph>
+      {heading && (
+        <Paragraph tw="lg:(columns[2] column-gap[3rem])">
+          {parse(heading)}
+        </Paragraph>
+      )}
     </div>
   );
 };

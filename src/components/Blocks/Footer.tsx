@@ -71,7 +71,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
   const infoBlockContent =
     findByShortname(infoBlock.fields, 'testo')?.content?.value ?? '';
   const socialsBlock = findByShortname(footer.blocks, 'socials');
-  console.log('colorVariant', colorVariant);
+
   useEffect(() => {
     lottie.loadAnimation({
       container: logoRef.current,

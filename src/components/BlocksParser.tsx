@@ -20,7 +20,7 @@ const components = {
   'introduzione-about': AboutBlock,
   'paragrafo-cta': CtaParagraphBlock,
   'download-cta': DownloadCtaBlock,
-  'home-intro-block': HomeIntroBlock,
+  'home-intro': HomeIntroBlock,
   partners: PartnersBlock,
   'press-download-list-block': PressDownloadListBlock,
   'report-info': ReportInfoBlock,

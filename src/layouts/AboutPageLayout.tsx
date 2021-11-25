@@ -1,14 +1,14 @@
 import tw, { styled } from 'twin.macro';
 
 const Layout = styled.div`
-  ${tw`grid grid-cols-1 gap-4 mt-20 lg:(mt-40 grid-cols-2 gap-8)`}
+  ${tw`grid grid-cols-1 gap-4 mt-20 md:gap-x-20 lg:(mt-40 grid-cols-2 gap-x-40)`}
 
   & > *:not(:first-child) {
     ${tw`lg:col-start-2`};
   }
 
   & > *:first-child {
-    ${tw`lg:grid-row-end[span 4] mb-12 lg:mb-0`};
+    ${tw`lg:grid-row-end[span 15] mb-12 lg:mb-0`};
   }
 `;
 
