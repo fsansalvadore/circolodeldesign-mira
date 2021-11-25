@@ -6,6 +6,8 @@ import {
   useReducedMotion,
 } from 'framer-motion';
 import Image from 'next/image';
+import { useWindowSize } from 'react-use';
+import { useEffect, useState } from 'react';
 
 const transition = {
   type: 'spring',
@@ -76,6 +78,16 @@ const Element = ({
 
 export const ParallaxComposition = () => {
   const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    if (width <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [width]);
 
   // Don't parallax if the user has "reduced motion" enabled
   if (prefersReducedMotion) return;
@@ -83,32 +95,32 @@ export const ParallaxComposition = () => {
   return (
     <>
       <Element
-        speed={4}
+        speed={isMobile ? 1 : 4}
         src="/images/piano_semplice_1.gif"
         tw="left[20vw] top[10vh]"
       />
       <Element
-        speed={-5}
+        speed={isMobile ? -2 : -5}
         src="/images/piano_semplice_3.gif"
         tw="left[2vw] top[70vh] width[100px]"
       />
       <Element
-        speed={5}
+        speed={isMobile ? 2 : 5}
         src="/images/piano_semplice_2.gif"
         tw="left[70vw] top[110vh] width[100px] bg-opacity-40"
       />
       <Element
-        speed={10}
+        speed={isMobile ? 4 : 10}
         src="/images/piano_semplice_2.gif"
         tw="left[60vw] top[-5vh] width[100px]"
       />
       <Element
-        speed={7.5}
+        speed={isMobile ? 2.25 : 7.5}
         src="/images/piano_semplice_3.gif"
         tw="left[50vw] top[45vh] width[400px]"
       />
       <Element
-        speed={2.5}
+        speed={isMobile ? 1.75 : 2.5}
         src="/images/piano_semplice_1.gif"
         tw="left[90vw] top[80vh] width[100px]"
       />
