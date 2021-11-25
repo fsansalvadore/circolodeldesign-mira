@@ -1,4 +1,4 @@
-import tw, { styled } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { motion } from 'framer-motion';
 import parse from 'html-react-parser';
@@ -35,6 +35,11 @@ const StyledImage = styled.img`
 const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-start flex overflow-visible`}
 `;
+const FooterWrapper = styled.footer<{ inverted?: boolean }>`
+  ${tw`py-5 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8`}
+
+  ${({ inverted }) => inverted && tw`text-white filter mix-blend-difference`}
+`;
 
 const partnersSchemas = [
   [
@@ -59,14 +64,14 @@ const partnersSchemas = [
   ],
 ];
 
-export const Footer = ({ footer = null }) => {
+export const Footer = ({ footer = null, colorVariant }) => {
   const logoRef = useRef(null);
   const partners = findByShortname(footer.blocks, 'partners-footer');
   const infoBlock = findByShortname(footer.blocks, 'informazioni');
   const infoBlockContent =
     findByShortname(infoBlock.fields, 'testo')?.content?.value ?? '';
   const socialsBlock = findByShortname(footer.blocks, 'socials');
-
+  console.log('colorVariant', colorVariant);
   useEffect(() => {
     lottie.loadAnimation({
       container: logoRef.current,
@@ -75,7 +80,7 @@ export const Footer = ({ footer = null }) => {
   }, []);
 
   return (
-    <footer tw="py-5 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8">
+    <FooterWrapper inverted={colorVariant.mode === 'light'}>
       <MaxWidthContent tw="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
         <div tw="flex-shrink min-width[150px]">
           <Link href="/" tw="">
@@ -142,6 +147,6 @@ export const Footer = ({ footer = null }) => {
           </div>
         </div>
       </MaxWidthContent>
-    </footer>
+    </FooterWrapper>
   );
 };

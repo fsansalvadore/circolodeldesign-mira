@@ -23,7 +23,7 @@ export const handleColorBySlug = (slug) => {
         mode: 'dark',
         accentColor: colorVariants.green.color,
       };
-    case 'ricerche-e-report':
+    case 'ricerche':
       return {
         variant: colorVariants.fucsia,
         mode: 'dark',

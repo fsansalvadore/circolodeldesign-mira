@@ -71,7 +71,12 @@ const App = ({ Component, pageProps, router }) => {
             >
               <TransitionLayout
                 footer={() =>
-                  pageProps.footer && <Footer footer={pageProps.footer} />
+                  pageProps.footer && (
+                    <Footer
+                      footer={pageProps.footer}
+                      colorVariant={colorVariant}
+                    />
+                  )
                 }
                 page={pageProps.page}
                 colorVariant={colorVariant}

@@ -137,7 +137,9 @@ export const MainNavigation = ({ menu, colorVariant }) => {
             <MobileMenuButton
               onClick={() => setMenuIsOpen((prev) => !prev)}
               // mode={colorVariant.color}
-              mode={menuIsOpen ? colorVariants.white : colorVariant.color}
+              mode={
+                menuIsOpen ? colorVariants.white : colorVariant.variant.color
+              }
             >
               {menuIsOpen ? (
                 <XIcon tw="w-10 h-10" />

@@ -18,14 +18,14 @@ const TransitionLayout = ({
   const router = useRouter();
 
   useEffect(() => {
-    setColorVariant(handleColorBySlug(page.slug).variant);
+    setColorVariant(handleColorBySlug(page.slug));
   }, [router, page.slug, setColorVariant]);
 
   return (
     <motion.div
       variants={colorVariants}
-      initial={colorVariant}
-      animate={colorVariant}
+      initial={colorVariant.variant}
+      animate={colorVariant.variant}
       tw="w-screen min-h-screen relative overflow-x-hidden"
     >
       {page?.slug === 'index' && <ParallaxComposition />}
