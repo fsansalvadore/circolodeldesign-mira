@@ -93,10 +93,11 @@ export const MainNavigation = ({ menu, colorVariant }) => {
     lottie.destroy('logo');
     const anim = lottie.loadAnimation({
       container: lottieRef.current,
-      animationData: menuIsOpen ? MiraBlack : MiraWhite,
+      animationData:
+        menuIsOpen || colorVariant.mode === 'light' ? MiraBlack : MiraWhite,
       name: 'logo',
     });
-  }, [menuIsOpen]);
+  }, [menuIsOpen, colorVariant]);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
