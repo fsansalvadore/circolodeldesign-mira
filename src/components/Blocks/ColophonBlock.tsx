@@ -12,7 +12,7 @@ const ElementsWrapper = styled.div<{ cols: number }>`
 `;
 
 const StyledImage = styled(Image)`
-  ${tw`relative z-0 max-height[80px]! height[auto]! min-height[50px]!`}
+  ${tw`relative z-0 max-height[50px]! height[auto]! min-height[35px]!`}
 
   object-fit: contain;
   width: 100% !important;

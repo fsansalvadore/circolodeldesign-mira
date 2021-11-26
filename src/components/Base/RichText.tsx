@@ -22,6 +22,6 @@ export const RichText = styled.div`
     ${tw`mb-4 lg:mb-8`}
   }
   p {
-    ${tw`line-height[150%] empty:mb-4 mb-1`}
+    ${tw`line-height[150%] empty:mb-4 mb-2 empty:lg:mb-8 lg:mb-4`}
   }
 `;
