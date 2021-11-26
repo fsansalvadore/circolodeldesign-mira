@@ -14,7 +14,7 @@ export const AboutBlock = ({ fields }) => {
   return (
     <div tw="flex flex-col">
       {!!content && (
-        <Paragraph tw="text-lg lg:text-2xl">{parse(content)}</Paragraph>
+        <Paragraph tw="text-lg md:text-2xl">{parse(content)}</Paragraph>
       )}
       {!!link && (
         <div tw="mt-4 lg:mt-8">

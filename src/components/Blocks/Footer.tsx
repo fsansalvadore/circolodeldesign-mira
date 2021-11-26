@@ -41,6 +41,10 @@ const FooterWrapper = styled.footer<{ inverted?: boolean }>`
   ${({ inverted }) => inverted && tw`text-white filter mix-blend-difference`}
 `;
 
+const StyledLink = styled(Link)`
+  ${tw`w-10 h-10 flex items-center justify-center bg-white rounded-full`}
+`;
+
 const partnersSchemas = [
   [
     {
@@ -70,7 +74,9 @@ export const Footer = ({ footer = null, colorVariant }) => {
   const infoBlock = findByShortname(footer.blocks, 'informazioni');
   const infoBlockContent =
     findByShortname(infoBlock.fields, 'testo')?.content?.value ?? '';
-  // const socialsBlock = findByShortname(footer.blocks, 'socials');
+  const socialsBlock = findByShortname(footer.blocks, 'socials');
+  const socials = findByShortname(socialsBlock.fields, 'lista')?.content
+    ?.items ?? [''];
 
   useEffect(() => {
     lottie.loadAnimation({
@@ -145,11 +151,26 @@ export const Footer = ({ footer = null, colorVariant }) => {
               Informativa sulla Privacy
             </Link>
           </div>
-          {/* <div tw="flex space-x-3 mt-4">
-            {[1, 2, 3, 4].map((social, index) => {
-              <div key={`social-${index}`}>fb</div>;
+          <div tw="flex space-x-3 mt-4">
+            {socials?.map((social, index) => {
+              const name =
+                findByShortname(social.fields, 'nome')?.content?.value ?? '';
+              const link =
+                findByShortname(social.fields, 'link')?.content?.value ?? '';
+              if (!link || !link?.length) return null;
+
+              return (
+                <StyledLink
+                  href={link}
+                  target="_blank"
+                  rel="noopener"
+                  key={`social-${index}`}
+                >
+                  {name}
+                </StyledLink>
+              );
             })}
-          </div> */}
+          </div>
         </div>
       </MaxWidthContent>
     </FooterWrapper>

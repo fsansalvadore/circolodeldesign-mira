@@ -15,6 +15,7 @@ export const RichText = styled.div`
   h3 {
     ${tw`text-xl`}
   }
+
   h4 {
     ${tw`text-lg`}
   }
@@ -22,6 +23,6 @@ export const RichText = styled.div`
     ${tw`mb-4 lg:mb-8`}
   }
   p {
-    ${tw`line-height[150%] empty:mb-4 mb-2 empty:lg:mb-8 lg:mb-4`}
+    ${tw`line-height[150%] empty:mb-4`}
   }
 `;
