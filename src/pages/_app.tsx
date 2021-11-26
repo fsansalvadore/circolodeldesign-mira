@@ -59,12 +59,12 @@ const App = ({ Component, pageProps, router }) => {
           </MaintenancePage>
         ) : (
           <>
-            {!!pageProps.menu && (
+            {/* {!!pageProps.menu && (
               <MainNavigation
                 menu={pageProps.menu}
                 colorVariant={colorVariant}
               />
-            )}
+            )} */}
             <AnimatePresence
               exitBeforeEnter
               onExitComplete={() => window.scrollTo(0, 0)}
@@ -78,6 +78,7 @@ const App = ({ Component, pageProps, router }) => {
                     />
                   )
                 }
+                menu={pageProps.menu}
                 page={pageProps.page}
                 colorVariant={colorVariant}
                 setColorVariant={setColorVariant}

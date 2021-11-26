@@ -103,7 +103,7 @@ export const ReportsBlock = ({ fields }) => {
   const reports =
     findByShortname(fields, 'lista-ricerche')?.content?.items ?? [];
   return (
-    <div>
+    <div tw="py-10 lg:py-20">
       <DynamicGrid>
         {reports.map((item, index) => {
           const title =

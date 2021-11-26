@@ -20,9 +20,21 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
-const NavWrapper = styled(motion.div)<{ onWhite?: boolean }>`
-  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent`}
-  transition: all 0.5s ease;
+const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
+  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
+  transition: background 1s ease;
+
+  ${({ onWhite, bgColor }) =>
+    !onWhite &&
+    css`
+      &:before {
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0) 0%,
+          ${bgColor} 100%
+        );
+      }
+    `}
 `;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
 const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
@@ -82,7 +94,7 @@ const LottieLogo = styled.div`
   ${tw`h-10! w-auto -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
 `;
 
-export const MainNavigation = ({ menu, colorVariant }) => {
+export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
   const router = useRouter();
   const menuRef = useRef(null);
   const lottieRef = useRef(null);
@@ -119,7 +131,15 @@ export const MainNavigation = ({ menu, colorVariant }) => {
 
   return (
     <>
-      <NavWrapper onWhite={menuIsOpen}>
+      <NavWrapper
+        onWhite={menuIsOpen || colorVariant.mode === 'light'}
+        bgColor={
+          menuIsOpen
+            ? 'rgba(255, 255, 255, 1)'
+            : colorVariant.variant.backgroundColor
+        }
+        {...rest}
+      >
         <NavContent>
           <div tw="min-width[150px]">
             <Link href="/" tw="">
@@ -137,7 +157,6 @@ export const MainNavigation = ({ menu, colorVariant }) => {
           <MobileNavWrapper>
             <MobileMenuButton
               onClick={() => setMenuIsOpen((prev) => !prev)}
-              // mode={colorVariant.color}
               mode={
                 menuIsOpen ? colorVariants.white : colorVariant.variant.color
               }
