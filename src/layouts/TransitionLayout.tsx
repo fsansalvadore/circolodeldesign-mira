@@ -28,7 +28,7 @@ const TransitionLayout = ({
       variants={colorVariants}
       initial={colorVariant.variant}
       animate={colorVariant.variant}
-      tw="w-screen min-h-screen relative overflow-x-hidden"
+      tw="w-screen min-h-screen relative overflow-hidden"
     >
       {!!menu && (
         <MainNavigation
@@ -43,7 +43,11 @@ const TransitionLayout = ({
           page={page}
         />
       )}
-      {page?.slug === 'index' && <ParallaxComposition />}
+      {page?.slug !== 'index' && <ParallaxComposition layout={page?.slug} />}
+      {page?.slug !== 'about' && <ParallaxComposition layout={page?.slug} />}
+      {page?.slug !== 'press-area' && (
+        <ParallaxComposition layout={page?.slug} />
+      )}
       <motion.div
         variants={contentVariant}
         initial="initial"
