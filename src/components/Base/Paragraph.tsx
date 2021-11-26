@@ -16,7 +16,7 @@ const StyledParagraph = styled(RichText)<{
     u {
       background: ${highlightBgColor};
       color: ${highlightTextColor};
-      padding: 0 10px;
+      padding: 0 4px;
       ${tw`no-underline`}
     }
   `}
