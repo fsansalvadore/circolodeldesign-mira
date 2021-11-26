@@ -23,16 +23,15 @@ officia deserunt mollitia.
 `;
 
 export const HomeIntroBlock = ({ fields }) => {
-  const heading =
-    findByShortname(fields, 'testo-introduttivo')?.content?.value ?? '';
+  const colLeft = findByShortname(fields, 'colonna-1')?.content?.value ?? '';
+  const colRight = findByShortname(fields, 'colonna-2')?.content?.value ?? '';
 
   return (
     <div tw="h-auto lg:min-height[500px] max-height[800px] padding[10vw 0] md:py-32 lg:py-72 flex items-center">
-      {heading && (
-        <Paragraph tw="lg:(columns[2] column-gap[3rem])">
-          {parse(heading)}
-        </Paragraph>
-      )}
+      <div tw="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:space-x-20">
+        {colLeft && <Paragraph>{parse(colLeft)}</Paragraph>}
+        {colRight && <Paragraph>{parse(colRight)}</Paragraph>}
+      </div>
     </div>
   );
 };
