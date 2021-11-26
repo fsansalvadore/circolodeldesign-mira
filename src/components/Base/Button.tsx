@@ -5,7 +5,7 @@ import { handleColorBySlug } from '../../utils/common';
 import { colorVariants } from '../../utils/motion';
 
 type Color = 'blue' | 'green' | 'orange' | 'fucsia' | 'white' | 'black';
-type Size = 'small' | 'default';
+type Size = 'small' | 'default' | 'big';
 
 const StyledButton = styled.button<{
   color?: Color;
@@ -20,6 +20,8 @@ const StyledButton = styled.button<{
     switch (size) {
       case 'small':
         return tw`px-2 py-3 text-sm lg:(px-4 py-3)`;
+      case 'big':
+        return tw`px-14 py-2 text-xl md:text-2xl lg:(px-8 text-3xl py-3)`;
       case 'default':
       default:
         return tw`px-10! py-2! font-bold lg:(text-lg px-6! py-2!)`;

@@ -2,7 +2,7 @@ import tw, { css, styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { motion } from 'framer-motion';
 import parse from 'html-react-parser';
-import { MaxWidthContent, Link, RichText } from '../Base';
+import { MaxWidthContent, Link, RichText, SocialIcon } from '../Base';
 import lottie from 'lottie-web';
 import MiraLogoJson from '../../assets/animations/mira-white.json';
 import { useEffect, useRef } from 'react';
@@ -41,9 +41,7 @@ const FooterWrapper = styled.footer<{ inverted?: boolean }>`
   ${({ inverted }) => inverted && tw`text-white filter mix-blend-difference`}
 `;
 
-const StyledLink = styled(Link)`
-  ${tw`w-10 h-10 flex items-center justify-center bg-white rounded-full`}
-`;
+const StyledLink = tw(Link)`w-10 h-10 flex items-center justify-center`;
 
 const partnersSchemas = [
   [
@@ -160,13 +158,8 @@ export const Footer = ({ footer = null, colorVariant }) => {
               if (!link || !link?.length) return null;
 
               return (
-                <StyledLink
-                  href={link}
-                  target="_blank"
-                  rel="noopener"
-                  key={`social-${index}`}
-                >
-                  {name}
+                <StyledLink href={link} target="_blank" key={`social-${index}`}>
+                  <SocialIcon name={name} />
                 </StyledLink>
               );
             })}

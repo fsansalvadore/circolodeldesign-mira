@@ -112,7 +112,7 @@ export const Slider: React.FC<Props> = ({
             slidesPerView={slidesPerView}
             slidesPerGroup={slidesPerGroup}
             updateOnWindowResize
-            autoplay={autoplay}
+            autoplay={autoplay && { delay: 8000 }}
             onAutoplayStart={autoplay}
             loop={loop}
             initialSlide={initialSlide}

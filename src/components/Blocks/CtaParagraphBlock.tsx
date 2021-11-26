@@ -16,7 +16,7 @@ export const CtaParagraphBlock = ({ fields }) => {
       {!!content && <Paragraph tw="font-light">{parse(content)}</Paragraph>}
       {!!ctaLink && (
         <div tw="mt-4 lg:mt-8">
-          <Button as={Link} href={ctaLink}>
+          <Button as={Link} href={ctaLink} size="big">
             {ctaText}
           </Button>
         </div>

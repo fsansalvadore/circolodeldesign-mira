@@ -3,22 +3,28 @@ import tw, { styled } from 'twin.macro';
 import Image from 'next/image';
 import { findByShortname } from '../../utils/common';
 
-const Wrapper = styled.div`
-  ${tw`relative mx-auto -mt-20 w-screen min-height[250px] h-auto`}
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  max-width: 1000%;
-  width: auto;
+const StyledImage = styled(Image)`
+  ${tw`absolute z-0 w-full h-full`}
 `;
-
 const ImageWrapper = styled.div`
-  ${tw`transition-all transform w-full height[30vh] lg:height[50vh] before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-40 z-10)`}
+  ${tw`transition-all transform w-full height[30vh] lg:height[50vh] before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-40 z-10 transition-opacity)`}
 
   transition: height 0.45s cubic-bezier(0.5, 0.01, 0, 0.8);
 `;
 
-const StyledImage = styled(Image)`
-  ${tw`absolute z-0 w-full h-full`}
+const Wrapper = styled.div`
+  ${tw`relative mx-auto -mt-20 w-screen min-height[250px] h-auto`}
+
+  &:hover {
+    ${ImageWrapper}:before {
+      ${tw`opacity-0`}
+    }
+  }
+
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: 1000%;
+  width: auto;
 `;
 
 const Slide = ({ slide }) => {
@@ -53,7 +59,7 @@ export const GalleryBlock = ({ fields }) => {
 
   return (
     <Wrapper>
-      <Slider slides={slides} hasPagination spaceBetween={0} />
+      <Slider slides={slides} hasPagination spaceBetween={0} autoplay />
     </Wrapper>
   );
 };

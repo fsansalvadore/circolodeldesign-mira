@@ -6,3 +6,4 @@ export { HighlightTitleLabel } from './HighlightTitleLabel';
 export { Paragraph } from './Paragraph';
 export { RichText } from './RichText';
 export { Slider } from './Slider';
+export { SocialIcon } from './SocialIcon';
