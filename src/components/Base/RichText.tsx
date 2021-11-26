@@ -22,6 +22,12 @@ export const RichText = styled.div`
   > div {
     ${tw`mb-4 lg:mb-8`}
   }
+  ul {
+    ${tw`mb-3`}
+  }
+  li {
+    ${tw`ml-5 relative list-disc`}
+  }
   p {
     ${tw`line-height[150%] empty:mb-4`}
   }

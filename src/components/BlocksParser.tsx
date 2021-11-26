@@ -8,6 +8,7 @@ import {
   DownloadCtaBlock,
   HomeIntroBlock,
   PartnersBlock,
+  PageBlock,
   GalleryBlock,
   ReportInfoBlock,
   ReportsBlock,
@@ -18,6 +19,7 @@ import {
 const components = {
   'sezione-colophon': ColophonBlock,
   'introduzione-about': AboutBlock,
+  'blocco-pagina-semplice': PageBlock,
   'paragrafo-cta': CtaParagraphBlock,
   'download-cta': DownloadCtaBlock,
   'home-intro': HomeIntroBlock,

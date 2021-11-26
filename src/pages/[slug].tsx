@@ -1,5 +1,10 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-import { getPageSchema, PAGES_QUERY, PAGE_QUERY } from '@uidu/api.js/react';
+import {
+  getPageSchema,
+  PAGES_QUERY,
+  PAGE_QUERY,
+  TEMPLATE_QUERY,
+} from '@uidu/api.js/react';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import BlocksParser from '../components/BlocksParser';
@@ -50,6 +55,7 @@ export default function Page({
 export async function getStaticPaths() {
   const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
   const generator = 'menu';
+  const privacyTemplate = 'Z2lkOi8vdWlkdS9UZW1wbGF0ZS80OQ';
 
   // Call an external API endpoint to get pages
   const res = await client.query({
@@ -57,9 +63,17 @@ export async function getStaticPaths() {
     variables: { projectId, slug: generator },
   });
 
+  const privacyRes = await client.query({
+    query: gql(TEMPLATE_QUERY),
+    variables: { projectId, templateId: privacyTemplate },
+  });
+
   if (!res) return;
 
   const pagesGenerator = res?.data?.currentWorkspace?.project?.page;
+  const privacyPages = !!privacyRes
+    ? privacyRes?.data?.currentWorkspace?.project?.template?.pages
+    : [];
 
   const slugs = [];
 
@@ -70,6 +84,8 @@ export async function getStaticPaths() {
 
     if (!!primarySlug?.length) slugs.push(primarySlug);
   });
+
+  privacyPages.map((page) => slugs.push(page.slug));
 
   // Get the paths we want to pre-render based on filtered pages
   const paths = slugs?.map((slug) => {

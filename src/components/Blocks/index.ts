@@ -10,6 +10,7 @@ export { AboutBlock } from './AboutBlock';
 export { CtaParagraphBlock } from './CtaParagraphBlock';
 export { DownloadCtaBlock } from './DownloadCtaBlock';
 export { HomeIntroBlock } from './HomeIntroBlock';
+export { PageBlock } from './PageBlock';
 export { PartnersBlock } from './PartnersBlock';
 export { GalleryBlock } from './GalleryBlock';
 export { ReportInfoBlock } from './ReportInfoBlock';
