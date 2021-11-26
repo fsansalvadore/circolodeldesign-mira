@@ -3,57 +3,6 @@ import Image from 'next/image';
 import { HighlightTitleLabel, Link } from '../Base';
 import { findByShortname } from '../../utils/common';
 
-const data = [
-  {
-    // label: 'Ricerca',
-    title: 'Lorem ipsum',
-    link: '/ricerche/ricerca-2',
-    image: '/images/photo-1635172552297-adcbdb0086ef.jpg',
-    colonneDesktop: 2,
-    colonneMobile: 2,
-  },
-  {
-    // label: 'Report',
-    title: 'Lorem ipsum',
-    link: '/ricerche/ricerca-2',
-    image: '/images/photo-1635752782385-bc676ec52709.jpg',
-    colonneDesktop: 1,
-    colonneMobile: 1,
-  },
-  {
-    // label: 'Report',
-    title: 'Lorem ipsum',
-    link: '/ricerche/ricerca-2',
-    image: '/images/photo-1636228447444-4ec83a373baa.jpg',
-    colonneDesktop: 1,
-    colonneMobile: 1,
-  },
-  {
-    // label: 'Ricerca',
-    title: 'Lorem ipsum',
-    link: '/ricerche/ricerca-2',
-    image: '/images/photo-1636652966789-e944cbb413a3.jpg',
-    colonneDesktop: 1,
-    colonneMobile: 1,
-  },
-  {
-    // label: 'Report',
-    title: 'Lorem ipsum',
-    link: '/ricerche/ricerca-2',
-    image: '/images/photo-1637226670958-50b46255d18c.jpg',
-    colonneDesktop: 1,
-    colonneMobile: 1,
-  },
-  {
-    // label: 'Report',
-    title: 'Lorem ipsum',
-    link: '/ricerche/ricerca-2',
-    image: '/images/photo-1637400691569-2c5f391e37a5.jpg',
-    colonneDesktop: 1,
-    colonneMobile: 2,
-  },
-];
-
 const DynamicGrid = tw.div`relative grid grid-cols-2 gap-4 mt-4 lg:(mt-8 gap-8)`;
 
 const InfoWrapper = styled.div`
@@ -130,11 +79,6 @@ export const ReportsBlock = ({ fields }) => {
               colonneMobile={parseInt(colsMobile) ?? 1}
             >
               <InfoWrapper>
-                {/* {!!item.label && (
-                <HighlightTitleLabel tw="py-1 px-3 mb-3 text-lg" inverse>
-                  {item.label}
-                </HighlightTitleLabel>
-              )} */}
                 {!!title && (
                   <HighlightTitleLabel tw="py-1 px-3">
                     {title}

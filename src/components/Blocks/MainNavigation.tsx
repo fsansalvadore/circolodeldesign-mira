@@ -47,7 +47,7 @@ const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
     `}
 `;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
-const MobileNavWrapper = tw.div`flex items-center space-x-3`;
+const MobileNavWrapper = tw.div`flex items-center space-x-1 md:space-x-3`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
 `;
@@ -99,7 +99,7 @@ const MobileMenuWrapper = tw(
 )`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
 const LottieLogo = styled.div`
-  ${tw`h-10! w-auto -ml-3 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
+  ${tw`h-10! w-auto -ml-2 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
 `;
 
 export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
@@ -149,7 +149,7 @@ export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
         {...rest}
       >
         <NavContent>
-          <div tw="min-width[150px]">
+          <div tw="max-width[150px] md:min-width[150px]">
             <Link href="/" tw="">
               <LottieLogo
                 as={motion.div}
@@ -164,7 +164,10 @@ export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
           </div>
           <MobileNavWrapper>
             <Link href="https://www.circolodeldesign.it/" target="_blank">
-              <CDD tw="relative z-20 w-auto h-14" className="cdd" />
+              <CDD
+                tw="relative z-20 w-auto max-width[70px] md:max-width[100%] h-14"
+                className="cdd"
+              />
             </Link>
             <MobileMenuButton
               onClick={() => setMenuIsOpen((prev) => !prev)}

@@ -6,7 +6,7 @@ export const PressDownloadListBlock = ({ fields }) => {
   const items = findByShortname(fields, 'lista')?.content?.items ?? [];
 
   return (
-    <div tw="py-14 lg:py-40 flex flex-col space-y-10 lg:space-y-16">
+    <div tw="py-10 lg:py-20 flex flex-col space-y-10 lg:space-y-16">
       {items.map((item, index) => {
         const text =
           findByShortname(item.fields, 'testo')?.content?.value ?? '';

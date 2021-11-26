@@ -11,7 +11,7 @@ import 'swiper/swiper-bundle.css';
 // install Swiper modules
 ISwiper.use([A11y, Autoplay]);
 
-const Wrapper = tw.div`w-full relative`;
+const Wrapper = tw.div`w-full height[40vw] relative`;
 
 const PaginationWrapper = tw.div`w-full mt-1 flex items-center justify-center`;
 
@@ -26,9 +26,9 @@ const StyledSwiper = styled(Swiper)<{
   $hasNavigation?: boolean;
   $centerVertically?: boolean;
 }>`
-  ${tw`flex items-center h-auto!`}
+  ${tw`flex items-center h-full!`}
   .swiper-wrapper {
-    ${tw`flex h-auto!`}
+    ${tw`flex h-full!`}
 
     ${({ $centerVertically }) => $centerVertically && tw`items-center`}
   }
@@ -112,7 +112,7 @@ export const Slider: React.FC<Props> = ({
             slidesPerView={slidesPerView}
             slidesPerGroup={slidesPerGroup}
             updateOnWindowResize
-            autoplay={autoplay && { delay: 8000 }}
+            autoplay={autoplay && { delay: 6000 }}
             onAutoplayStart={autoplay}
             loop={loop}
             initialSlide={initialSlide}
