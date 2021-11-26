@@ -8,6 +8,7 @@ export const AboutBlock = ({ fields }) => {
   const content =
     findByShortname(fields, 'paragrafo-introduttivo')?.content?.value ?? '';
   const link = findByShortname(fields, 'link')?.content?.value ?? '';
+  const testoCta = findByShortname(fields, 'testo-cta')?.content?.value ?? '';
   const colophonSections =
     findByShortname(fields, 'colophon-sinistra')?.content?.items ?? [];
 
@@ -19,7 +20,7 @@ export const AboutBlock = ({ fields }) => {
       {!!link && (
         <div tw="mt-4 lg:mt-8">
           <Button as={Link} href={link} target="_blank">
-            Dowload PDF
+            {testoCta}
           </Button>
         </div>
       )}

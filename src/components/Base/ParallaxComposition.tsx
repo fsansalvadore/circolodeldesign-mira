@@ -44,14 +44,6 @@ const GifWrapper = styled(motion.div)`
     will-change: transform;
   }
 `;
-// const StyledGif = styled(Image)`
-//   ${tw`w-auto overflow-visible! height[200px] height[auto]! min-height[50px]!`}
-
-//   object-fit: contain;
-//   width: 100% !important;
-//   position: relative !important;
-//   height: unset !important;
-// `;
 
 type ElementProps = {
   src: JSON | any;
@@ -64,12 +56,10 @@ const Element = ({ speed = 0, src = Piano1, ...rest }: ElementProps) => {
   const ref = useRef();
 
   useEffect(() => {
-    // lottie.destroy();
     lottie.loadAnimation({
       container: ref.current,
       animationData: src,
     });
-    // return () => lottie.destroy();
   }, [src]);
 
   return (
@@ -83,7 +73,6 @@ const Element = ({ speed = 0, src = Piano1, ...rest }: ElementProps) => {
       style={{ y: transform }}
       {...rest}
     >
-      {/* <StyledGif src={src} alt="" layout="fill" /> */}
       <div ref={ref} />
     </GifWrapper>
   );
@@ -93,10 +82,6 @@ export const ParallaxComposition = () => {
   const prefersReducedMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
   const { width } = useWindowSize();
-
-  // useEffect(() => {
-  //   return () => lottie.destroy();
-  // }, []);
 
   useEffect(() => {
     if (width <= 768) {
@@ -111,11 +96,7 @@ export const ParallaxComposition = () => {
 
   return (
     <>
-      <Element
-        speed={isMobile ? 1 : 4}
-        src={Piano1}
-        tw="left[20vw] top[10vh]"
-      />
+      <Element speed={isMobile ? 1 : 4} src={Piano1} tw="left[7vw] top[13vh]" />
       <Element
         speed={isMobile ? -2 : -5}
         src={Piano3}
@@ -129,7 +110,7 @@ export const ParallaxComposition = () => {
       <Element
         speed={isMobile ? 4 : 10}
         src={Piano2}
-        tw="left[60vw] top[-5vh] width[100px]"
+        tw="left[70vw] top[13vh] width[100px]"
       />
       <Element
         speed={isMobile ? 2.25 : 7.5}

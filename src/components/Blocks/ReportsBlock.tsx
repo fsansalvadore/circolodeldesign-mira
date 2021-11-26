@@ -57,6 +57,8 @@ export const ReportsBlock = ({ fields }) => {
         {reports.map((item, index) => {
           const title =
             findByShortname(item.fields, 'titolo')?.content?.value ?? '';
+          const subtitle =
+            findByShortname(item.fields, 'sottotitolo')?.content?.value ?? '';
           const link =
             '/ricerche/' +
               findByShortname(item.fields, 'link-slug-della-pagina')?.content
@@ -70,11 +72,15 @@ export const ReportsBlock = ({ fields }) => {
           const colsMobile =
             findByShortname(item.fields, 'n-colonne-mobile-')?.content?.value ??
             1;
+          const isDisabled =
+            findByShortname(item.fields, 'disabilita-link')?.content?.value ??
+            1;
 
           return (
             <GridItem
               key={index}
-              href={link}
+              as={isDisabled ? 'div' : Link}
+              href={!isDisabled ? link : null}
               colonneDesktop={parseInt(colsDesktop) ?? 1}
               colonneMobile={parseInt(colsMobile) ?? 1}
             >
@@ -82,6 +88,11 @@ export const ReportsBlock = ({ fields }) => {
                 {!!title && (
                   <HighlightTitleLabel tw="py-1 px-3">
                     {title}
+                  </HighlightTitleLabel>
+                )}
+                {!!subtitle && (
+                  <HighlightTitleLabel tw="py-1 px-3 mb-3 text-lg" inverse>
+                    {subtitle}
                   </HighlightTitleLabel>
                 )}
               </InfoWrapper>

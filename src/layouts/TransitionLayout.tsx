@@ -40,6 +40,7 @@ const TransitionLayout = ({
             transition: { ...transitions.background, delay: 1 },
           }}
           exit={{ opacity: 0 }}
+          page={page}
         />
       )}
       {page?.slug === 'index' && <ParallaxComposition />}

@@ -4,13 +4,21 @@ import { useEffect, useRef, useState } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
+
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { AnimatePresence, motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  motionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion';
 import { colorVariants, transitions } from '../../utils/motion';
 import lottie from 'lottie-web';
 import MiraBlack from '../../assets/animations/mira-black.json';
 import MiraWhite from '../../assets/animations/mira-white.json';
 import CDD from '../../assets/circolo-del-design.svg';
+import { useWindowSize } from 'react-use';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-0`}
@@ -88,7 +96,7 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
   }
 `;
 const MobileMenuButton = styled.button<{ mode: string }>`
-  ${tw`p-1 lg:p-4 flex items-center justify-center rounded transition-colors transform`}
+  ${tw`p-1 flex items-center justify-center rounded transition-colors transform`}
 
   ${({ mode }) => css`
     color: ${mode};
@@ -98,16 +106,40 @@ const MobileMenuWrapper = tw(
   motion.div,
 )`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
-const LottieLogo = styled.div`
+const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
   ${tw`h-10! w-auto -ml-2 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
+  transition: transform 0.25s ease-out;
+
+  ${({ menuIsOpen }) =>
+    menuIsOpen &&
+    css`
+      transition: transform 0.4s ease-in-out;
+    `}
 `;
 
-export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
+export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
   const router = useRouter();
   const menuRef = useRef(null);
   const lottieRef = useRef(null);
+  const { scrollYProgress } = useViewportScroll();
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    if (width <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [width]);
+
+  const logoScale = useTransform(
+    scrollYProgress,
+    [0, 0.08],
+    [isMobile ? 1.5 : menuIsOpen ? 1 : 2.75, 1],
+  );
 
   useEffect(() => {
     lottie.destroy('logo');
@@ -159,6 +191,11 @@ export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
                   opacity: 1,
                   transition: { delay: 0.2, duration: 0.5 },
                 }}
+                style={{
+                  scale: page.slug === 'index' && logoScale,
+                  transformOrigin: 'top left',
+                }}
+                menuIsOpen={menuIsOpen}
               />
             </Link>
           </div>
