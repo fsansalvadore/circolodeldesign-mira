@@ -1,8 +1,9 @@
 import { findByShortname } from '../../utils/common';
 import tw from 'twin.macro';
-import { HighlightTitleLabel, Paragraph, RichText } from '../Base';
+import { HighlightTitleLabel, RichText } from '../Base';
 import parse from 'html-react-parser';
 import { ColophonSection } from './ColophonBlock';
+import Image from 'next/image';
 
 const Wrapper = tw.div`py-4 lg:py-16`;
 
@@ -35,11 +36,17 @@ export const ReportInfoBlock = ({ fields }) => {
               const testo =
                 findByShortname(collaboratore.fields, 'testo')?.content
                   ?.value ?? '';
+              const immagine =
+                findByShortname(collaboratore.fields, 'immagine')?.content
+                  ?.value?.url ?? '';
+
               return (
                 <ColophonSection
                   key={`colophon-${index}`}
                   label={titolo}
                   testo={testo}
+                  immagine={immagine}
+                  tw="mb-4"
                 />
               );
             })}

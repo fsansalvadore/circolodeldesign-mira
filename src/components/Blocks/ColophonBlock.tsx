@@ -34,7 +34,7 @@ interface ColophonContent {
 
 const ColophonContent = ({ testo, image }: ColophonContent) => {
   return (
-    <div>
+    <div tw="mb-4">
       {image ? (
         <GridItem>
           <StyledImage
@@ -61,6 +61,7 @@ interface ColophonSectionInterface {
   cols?: number;
   items?: any[];
   testo?: any;
+  immagine?: string;
 }
 
 export const ColophonSection = ({
@@ -68,9 +69,11 @@ export const ColophonSection = ({
   cols = 1,
   items,
   testo,
+  immagine,
+  ...rest
 }: ColophonSectionInterface) => {
   return (
-    <div tw="mt-0 mb-4 text-base lg:(text-lg mb-8)">
+    <div tw="mt-0 mb-4 text-base lg:(text-lg mb-8)" {...rest}>
       <HighlightTitleLabel>{label}</HighlightTitleLabel>
       <ElementsWrapper cols={cols}>
         {items?.map((item, index) => {
@@ -87,7 +90,22 @@ export const ColophonSection = ({
             />
           );
         })}
-        {testo && <ColophonContent testo={testo} />}
+        {!!testo && testo !== '<p></p>' && <ColophonContent testo={testo} />}
+        {!!immagine && (
+          <div>
+            <Image
+              width="200"
+              height={80}
+              src={immagine}
+              alt=""
+              objectFit="contain"
+              objectPosition="left"
+              placeholder="blur"
+              blurDataURL={'/blur.png'}
+              priority
+            />
+          </div>
+        )}
       </ElementsWrapper>
     </div>
   );
