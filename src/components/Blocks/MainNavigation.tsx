@@ -10,6 +10,7 @@ import { colorVariants, transitions } from '../../utils/motion';
 import lottie from 'lottie-web';
 import MiraBlack from '../../assets/animations/mira-black.json';
 import MiraWhite from '../../assets/animations/mira-white.json';
+import CDD from '../../assets/circolo-del-design.svg';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-0`}
@@ -20,6 +21,7 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
+
 const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
   ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
   transition: background 1s ease;
@@ -35,11 +37,17 @@ const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
         );
       }
     `}
+
+  ${({ onWhite }) =>
+    onWhite &&
+    css`
+      .cdd * {
+        ${tw`fill[#000]!`}
+      }
+    `}
 `;
 const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
-const DesktopNavWrapper = tw.div`hidden lg:flex items-center`;
-const MobileNavWrapper = tw.div`flex items-center`;
-const NavItems = tw.nav`flex items-center text-sm lg:space-x-12 xl:space-x-20`;
+const MobileNavWrapper = tw.div`flex items-center space-x-3`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
 `;
@@ -155,6 +163,9 @@ export const MainNavigation = ({ menu, colorVariant, ...rest }) => {
             </Link>
           </div>
           <MobileNavWrapper>
+            <Link href="https://www.circolodeldesign.it/" target="_blank">
+              <CDD tw="relative z-20 w-auto h-14" className="cdd" />
+            </Link>
             <MobileMenuButton
               onClick={() => setMenuIsOpen((prev) => !prev)}
               mode={
