@@ -36,11 +36,12 @@ const ElementWrapper = styled(motion.div)`
   ${tw`absolute overflow-visible! opacity-30 md:opacity-90 width[200px] height[auto]! min-height[50px]! pointer-events-none`}
 
   will-change: transform;
+
   > div {
     ${tw`overflow-visible!`}
     position: unset !important;
   }
-  svg {
+  * {
     will-change: transform;
   }
 `;

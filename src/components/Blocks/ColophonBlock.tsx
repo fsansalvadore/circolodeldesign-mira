@@ -34,7 +34,7 @@ interface ColophonContent {
 
 const ColophonContent = ({ testo, image }: ColophonContent) => {
   return (
-    <div tw="mb-4">
+    <div tw="mb-2">
       {image ? (
         <GridItem>
           <StyledImage
@@ -73,7 +73,7 @@ export const ColophonSection = ({
   ...rest
 }: ColophonSectionInterface) => {
   return (
-    <div tw="mt-0 mb-4 text-base lg:(text-lg mb-8)" {...rest}>
+    <div tw="my-0 text-base lg:(text-lg mb-4)" {...rest}>
       <HighlightTitleLabel>{label}</HighlightTitleLabel>
       <ElementsWrapper cols={cols}>
         {items?.map((item, index) => {
