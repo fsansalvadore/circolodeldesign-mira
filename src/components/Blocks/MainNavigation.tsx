@@ -2,7 +2,7 @@ import { ChevronRightIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import tw, { css, styled } from 'twin.macro';
-import { findByShortname } from '../../utils/common';
+import { findByShortname, hslaToTransparent } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
 
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
@@ -40,7 +40,7 @@ const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
       &:before {
         background: linear-gradient(
           to top,
-          rgba(255, 255, 255, 0) 0%,
+          ${hslaToTransparent(bgColor)} 0%,
           ${bgColor} 100%
         );
       }

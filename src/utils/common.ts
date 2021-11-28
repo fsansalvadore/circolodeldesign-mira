@@ -8,6 +8,10 @@ export const shuffle = (array) => {
   return array.sort((a, b) => 0.5 - Math.random());
 };
 
+export const hslaToTransparent = (string) => {
+  return string.replace(', 1)', ', 0)');
+};
+
 export const handleColorBySlug = (slug) => {
   if (!slug) return;
   switch (slug) {

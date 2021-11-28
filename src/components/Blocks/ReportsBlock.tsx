@@ -6,7 +6,7 @@ import { findByShortname } from '../../utils/common';
 const DynamicGrid = tw.div`relative grid grid-cols-2 gap-4 mt-4 lg:(mt-8 gap-8)`;
 
 const InfoWrapper = styled.div`
-  ${tw`absolute z-20 text-xl lg:text-3xl w-full h-full left-0 top-0 right-0 bottom-0 flex flex-col items-center justify-center visible opacity-100 transform transition filter filter[blur(-5px)]`}
+  ${tw`absolute z-20 p-4 text-center text-xl lg:text-3xl w-full h-full left-0 top-0 right-0 bottom-0 flex flex-col items-center justify-center visible opacity-100 transform transition filter filter[blur(-5px)]`}
   transition: visibility 0.15s ease, opacity 0.15s ease;
 `;
 
@@ -86,12 +86,15 @@ export const ReportsBlock = ({ fields }) => {
             >
               <InfoWrapper>
                 {!!title && (
-                  <HighlightTitleLabel tw="py-1 px-3">
+                  <HighlightTitleLabel tw="py-1 px-2 mb-2 lg:px-3 line-height[130%]!">
                     {title}
                   </HighlightTitleLabel>
                 )}
                 {!!subtitle && (
-                  <HighlightTitleLabel tw="py-1 px-3 mb-3 text-lg" inverse>
+                  <HighlightTitleLabel
+                    tw="py-1 px-2 text-sm lg:px-3 lg:text-lg"
+                    inverse
+                  >
                     {subtitle}
                   </HighlightTitleLabel>
                 )}
