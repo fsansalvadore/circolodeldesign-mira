@@ -54,7 +54,9 @@ const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
       }
     `}
 `;
-const NavContent = tw(MaxWidthContent)`flex items-center justify-between`;
+const NavContent = tw(
+  MaxWidthContent,
+)`flex max-width[100vw] items-center justify-between`;
 const MobileNavWrapper = tw.div`flex items-center space-x-1 md:space-x-3`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
@@ -108,7 +110,7 @@ const MobileMenuWrapper = tw(
 
 const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
   ${tw`h-10! w-auto -ml-2 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
-  transition: transform 0.25s ease-out;
+  /* transition: transform 0.25s ease-out; */
 
   ${({ menuIsOpen }) =>
     menuIsOpen &&
