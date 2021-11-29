@@ -13,7 +13,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Wrapper = styled.div`
-  ${tw`relative mx-auto md:-mt-20 w-screen min-height[250px] h-auto`}
+  ${tw`relative mx-auto md:-mt-20 w-screen h-auto`}
 
   &:hover {
     ${ImageWrapper}:before {
@@ -52,6 +52,8 @@ const Slide = ({ slide }) => {
 
 export const GalleryBlock = ({ fields }) => {
   const items = findByShortname(fields, 'slides')?.content?.items ?? [];
+
+  if (!items || !items.length) return null;
 
   const slides = items?.map((item, i) => (
     <Slide key={`quote-${i}`} slide={item} />

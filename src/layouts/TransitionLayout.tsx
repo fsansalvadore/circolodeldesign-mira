@@ -58,7 +58,7 @@ const TransitionLayout = ({
         }}
         exit="exit"
       >
-        <MaxWidthContent tw="py-20 min-height[75vh]">
+        <MaxWidthContent tw="pt-20 min-height[75vh]">
           {router.query.slug === 'about' ? (
             <AboutPageLayout>{children}</AboutPageLayout>
           ) : (
