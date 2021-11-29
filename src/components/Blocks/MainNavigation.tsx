@@ -32,7 +32,6 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 
 const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
   ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
-  transition: background 1s ease;
 
   ${({ onWhite, bgColor }) =>
     !onWhite &&
@@ -110,13 +109,6 @@ const MobileMenuWrapper = tw(
 
 const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
   ${tw`h-10! w-auto -ml-2 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
-  /* transition: transform 0.25s ease-out; */
-
-  ${({ menuIsOpen }) =>
-    menuIsOpen &&
-    css`
-      transition: transform 0.4s ease-in-out;
-    `}
 `;
 
 export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
@@ -194,7 +186,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
                   transition: { delay: 0.2, duration: 0.5 },
                 }}
                 style={{
-                  scale: page.slug === 'index' && logoScale,
+                  scale: isMobile ? 1 : page.slug === 'index' && logoScale,
                   transformOrigin: 'top left',
                 }}
                 menuIsOpen={menuIsOpen}
