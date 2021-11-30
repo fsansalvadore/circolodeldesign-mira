@@ -36,7 +36,7 @@ export const ReportInfoBlock = ({ fields }) => {
           )}
           {!!ctaLink && (
             <div tw="my-4 lg:mt-8">
-              <Button as={Link} href={ctaLink} target="_blank" size="big">
+              <Button as={Link} href={ctaLink} target="_blank">
                 {ctaText}
               </Button>
             </div>
