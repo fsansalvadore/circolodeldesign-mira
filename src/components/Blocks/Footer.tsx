@@ -8,7 +8,7 @@ import MiraLogoJson from '../../assets/animations/mira-white.json';
 import { useEffect, useRef } from 'react';
 
 const PartnersRow = styled.div`
-  ${tw`flex-grow flex flex-col lg:flex-row border-b last:border-none`}
+  ${tw`flex-grow flex flex-col lg:flex-row border-b last:border-none w-full lg:w-auto lg:flex-shrink!`}
 
   & > div {
     ${tw`py-4 border-b last:border-b-0 lg:(px-4 border-b-0 first:pl-0 last:pr-0 border-r last:border-r-0)`}
@@ -22,7 +22,7 @@ const PartnersRow = styled.div`
 `;
 
 const PartnersWrapper = styled.div`
-  ${tw`flex-grow lg:flex-grow-0 lg:w-auto flex flex-col`}
+  ${tw`flex-grow lg:flex-grow-0 flex flex-col w-full lg:w-auto`}
 `;
 
 const LottieLogo = styled.div`
@@ -33,7 +33,7 @@ const StyledImage = styled.img`
   ${tw`relative z-0 h-auto max-h-9 max-width[150px] w-full`}
 `;
 const ImageWrapper = styled(Link)`
-  ${tw`relative flex-shrink! col-span-1 self-start items-start flex overflow-visible`}
+  ${tw`relative flex-shrink! col-span-1 self-start items-center flex overflow-visible`}
 `;
 const FooterWrapper = styled.footer<{ inverted?: boolean }>`
   ${tw`py-5 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8`}
@@ -113,7 +113,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
                       ?.items ?? [];
 
                   return (
-                    <div key={`partner-${schemaIndx}`}>
+                    <div key={`partner-${schemaIndx}`} tw="w-full lg:w-auto">
                       <p tw="mb-2">{partner.label}</p>
                       <div tw="flex space-x-5 justify-start">
                         {list.map((logo, partIndx) => {
