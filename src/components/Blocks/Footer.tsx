@@ -35,7 +35,7 @@ const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-center flex justify-start overflow-visible`}
 `;
 const FooterWrapper = styled.footer<{ inverted?: boolean }>`
-  ${tw`pt-5 pb-12 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8`}
+  ${tw`pt-5 pb-20 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8`}
 
   ${({ inverted }) => inverted && tw`text-white filter mix-blend-difference`}
 `;
@@ -176,7 +176,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
         <div tw="flex-shrink flex flex-col">
           {infoBlockContent && <RichText>{parse(infoBlockContent)}</RichText>}
 
-          <div tw="flex space-x-3 mt-4">
+          <div tw="flex space-x-3 py-2 lg:py-0 mt-4">
             <Link href="/privacy" tw="font-bold">
               Informativa sulla Privacy
             </Link>
