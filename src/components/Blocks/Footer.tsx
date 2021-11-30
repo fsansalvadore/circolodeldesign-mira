@@ -119,7 +119,10 @@ export const Footer = ({ footer = null, colorVariant }) => {
                       ?.items ?? [];
 
                   return (
-                    <div key={`partner-${schemaIndx}`} tw="w-full lg:w-auto">
+                    <div
+                      key={`partner-${schemaIndx}`}
+                      tw="w-full lg:w-auto flex flex-col items-start"
+                    >
                       <p tw="mb-2">{partner.label}</p>
                       <div tw="flex space-x-5 justify-start">
                         {list.map((logo, partIndx) => {
