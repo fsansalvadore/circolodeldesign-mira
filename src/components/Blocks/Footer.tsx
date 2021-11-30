@@ -29,7 +29,7 @@ const LottieLogo = styled.div`
   ${tw`h-10! w-auto -ml-3 lg:w-40 lg:h-20 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[20px]!`}
 `;
 
-const StyledImage = tw.img`relative z-0 h-auto! max-h-9! max-width[150px] w-full! object-fit[contain]!`;
+const StyledImage = tw.img`relative z-0 h-auto! max-h-9! lg:max-width[150px] w-full! object-fit[contain]!`;
 
 const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-center flex justify-start overflow-visible`}
