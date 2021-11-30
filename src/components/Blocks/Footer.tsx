@@ -115,7 +115,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
                   return (
                     <div key={`partner-${schemaIndx}`}>
                       <p tw="mb-2">{partner.label}</p>
-                      <div tw="flex space-x-5">
+                      <div tw="flex space-x-5 justify-start">
                         {list.map((logo, partIndx) => {
                           const image =
                             findByShortname(logo.fields, 'logo')?.content?.value
