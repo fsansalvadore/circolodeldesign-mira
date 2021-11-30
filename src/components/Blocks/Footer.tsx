@@ -14,10 +14,10 @@ const PartnersRow = styled.div`
     ${tw`py-4 border-b last:border-b-0 lg:(px-4 border-b-0 first:pl-0 last:pr-0 border-r last:border-r-0)`}
   }
   &:first-child > div {
-    ${tw`lg:pt-0 `}
+    ${tw`lg:pt-0`}
   }
   &:last-child > div {
-    ${tw`pb-0 `}
+    ${tw`lg:pb-0`}
   }
 `;
 
