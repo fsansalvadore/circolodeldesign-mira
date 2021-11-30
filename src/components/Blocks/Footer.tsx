@@ -50,15 +50,19 @@ const partnersSchemas = [
       label: 'Un progetto di',
     },
     {
+      shortname: 'partner',
+      label: 'Partner',
+    },
+    {
       shortname: 'partner-scientifici',
       label: 'Partner scientifici',
     },
+  ],
+  [
     {
       shortname: 'in-collaborazione-con',
       label: 'In collaborazione con',
     },
-  ],
-  [
     {
       shortname: 'con-il-sostegno-di',
       label: 'Con il sostegno di',
@@ -85,7 +89,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
 
   return (
     <FooterWrapper inverted={colorVariant.mode === 'light'}>
-      <MaxWidthContent tw="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
+      <MaxWidthContent tw="flex flex-col max-width[100vw] space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
         <div tw="flex-shrink min-width[150px]">
           <Link href="/" tw="">
             <LottieLogo

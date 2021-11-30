@@ -1,9 +1,14 @@
 import { findByShortname } from '../../utils/common';
 import tw from 'twin.macro';
-import { HighlightTitleLabel, RichText } from '../Base';
+import {
+  Button,
+  Link,
+  HighlightTitleLabel,
+  RichText,
+  Paragraph,
+} from '../Base';
 import parse from 'html-react-parser';
 import { ColophonSection } from './ColophonBlock';
-import Image from 'next/image';
 
 const Wrapper = tw.div`py-4 lg:py-16`;
 
@@ -14,17 +19,27 @@ export const ReportInfoBlock = ({ fields }) => {
     findByShortname(fields, 'descrizione')?.content?.value ?? '';
   const colophonSections =
     findByShortname(fields, 'colophon')?.content?.items ?? [];
+  const ctaLink = findByShortname(fields, 'link')?.content?.value ?? '';
+  const ctaText =
+    findByShortname(fields, 'testo-cta')?.content?.value ?? 'Scopri di più';
 
   return (
     <Wrapper>
-      <div tw="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-40">
+      <div tw="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-40">
         <div>
           {!!title && <h1 tw="text-3xl lg:text-5xl mb-2">{title}</h1>}
           {!!subtitle && <HighlightTitleLabel>{subtitle}</HighlightTitleLabel>}
           {!!descrizione && (
-            <RichText tw="text-base lg:text-xl font-light">
+            <Paragraph tw="text-base font-light lg:text-xl">
               {parse(descrizione)}
-            </RichText>
+            </Paragraph>
+          )}
+          {!!ctaLink && (
+            <div tw="my-4 lg:mt-8">
+              <Button as={Link} href={ctaLink} size="big">
+                {ctaText}
+              </Button>
+            </div>
           )}
         </div>
         <div>

@@ -9,7 +9,6 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import {
   AnimatePresence,
   motion,
-  motionValue,
   useTransform,
   useViewportScroll,
 } from 'framer-motion';
@@ -30,11 +29,15 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
 
-const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
+const NavWrapper = styled(motion.div)<{
+  onWhite?: boolean;
+  bgColor?: string;
+  menuIsOpen?: boolean;
+}>`
   ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
 
   ${({ onWhite, bgColor }) =>
-    !onWhite &&
+    // !onWhite &&
     css`
       &:before {
         background: linear-gradient(
@@ -56,7 +59,7 @@ const NavWrapper = styled(motion.div)<{ onWhite?: boolean; bgColor?: string }>`
 const NavContent = tw(
   MaxWidthContent,
 )`flex max-width[100vw] items-center justify-between`;
-const MobileNavWrapper = tw.div`flex items-center space-x-1 md:space-x-3`;
+const MobileNavWrapper = tw.div`flex items-center space-x-3! md:space-x-6!`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
 `;
@@ -97,7 +100,7 @@ const NavLink = styled(Link)<{ $isActive?: boolean; $isSubmenuOpen?: boolean }>`
   }
 `;
 const MobileMenuButton = styled.button<{ mode: string }>`
-  ${tw`p-1 flex items-center justify-center rounded transition-colors transform`}
+  ${tw`p-1 flex items-center justify-center rounded transition-colors transform m-0!`}
 
   ${({ mode }) => css`
     color: ${mode};
@@ -167,6 +170,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
     <>
       <NavWrapper
         onWhite={menuIsOpen || colorVariant.mode === 'light'}
+        menuIsOpen={menuIsOpen}
         bgColor={
           menuIsOpen
             ? 'rgba(255, 255, 255, 1)'

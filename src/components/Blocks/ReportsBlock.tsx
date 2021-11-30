@@ -86,7 +86,7 @@ export const ReportsBlock = ({ fields }) => {
             >
               <InfoWrapper>
                 {!!title && (
-                  <HighlightTitleLabel tw="py-1 px-2 mb-2 lg:px-3 line-height[130%]!">
+                  <HighlightTitleLabel tw="py-1 px-2 mb-2 md:text-2xl lg:text-3xl lg:px-3 line-height[130%]!">
                     {title}
                   </HighlightTitleLabel>
                 )}
