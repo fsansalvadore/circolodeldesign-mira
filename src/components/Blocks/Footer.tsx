@@ -36,7 +36,7 @@ const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-center flex justify-start overflow-visible`}
 `;
 const FooterWrapper = styled.footer<{ inverted?: boolean }>`
-  ${tw`py-5 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8`}
+  ${tw`pt-5 pb-12 lg:py-10 text-xs border-t border-t-white mt-4 lg:mt-8`}
 
   ${({ inverted }) => inverted && tw`text-white filter mix-blend-difference`}
 `;
