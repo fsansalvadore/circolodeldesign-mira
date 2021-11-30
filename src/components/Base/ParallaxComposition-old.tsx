@@ -35,15 +35,15 @@ const gifVariant = {
 const ElementWrapper = styled(motion.div)`
   ${tw`absolute overflow-visible! opacity-30 md:opacity-90 width[200px] height[auto]! min-height[50px]! pointer-events-none`}
 
-  will-change: transform;
+  /* will-change: transform; */
 
   > div {
     ${tw`overflow-visible!`}
     position: unset !important;
   }
-  * {
+  /* * {
     will-change: transform;
-  }
+  } */
 `;
 
 type ElementProps = {
@@ -53,7 +53,7 @@ type ElementProps = {
 
 const Element = ({ speed = 0, src = Piano1, ...rest }: ElementProps) => {
   const { scrollYProgress } = useViewportScroll();
-  const transform = useTransform(scrollYProgress, [0, 1], [0, 100 * speed]);
+  // const transform = useTransform(scrollYProgress, [0, 1], [0, 100 * speed]);
   const ref = useRef();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const Element = ({ speed = 0, src = Piano1, ...rest }: ElementProps) => {
       animate={{ scale: 1 }}
       exit="exit"
       transition={transition}
-      style={{ y: transform }}
+      // style={{ y: transform }}
       {...rest}
     >
       <div ref={ref} />
