@@ -20,7 +20,7 @@ const defaultSeo: DefaultSeoProps = {
   },
   openGraph: {
     type: 'website',
-    // images: [{ url: "/mira.png" }],
+    // images: [{ url: '/Mira_thumbnail.jpg' }],
   },
 };
 

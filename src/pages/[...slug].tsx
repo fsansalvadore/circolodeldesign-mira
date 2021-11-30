@@ -28,6 +28,7 @@ export default function Page({
   preview,
   menu,
   footer,
+  settings = null,
 }) {
   if (!page)
     return (
@@ -40,6 +41,19 @@ export default function Page({
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
 
+  const seoBlock = settings.blocks?.find(
+    (block) => block?.block?.shortname === 'seo',
+  );
+
+  const metaDescription =
+    findByShortname(seoBlock?.fields, 'meta-description')?.content?.value ?? '';
+  const metaKeywords =
+    findByShortname(seoBlock?.fields, 'meta-keywords')?.content?.value ?? '';
+  const metaImage =
+    findByShortname(seoBlock?.fields, 'meta-image')?.content?.value?.url ?? '';
+  const favicon =
+    findByShortname(seoBlock?.fields, 'favicon')?.content?.value?.url ?? '';
+
   if (isInMaintenanceMode && process.env.NODE_ENV !== 'development')
     return <MaintenancePage fields={maintenanceBlock?.fields} />;
 
@@ -47,7 +61,27 @@ export default function Page({
 
   return (
     <>
-      <NextSeo title={page?.name} />
+      <NextSeo
+        title={page?.name}
+        description={metaDescription}
+        keywords={metaKeywords}
+        openGraph={{
+          type: 'website',
+          images: [{ url: metaImage }],
+        }}
+        images={[metaImage]}
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: favicon,
+          },
+          {
+            rel: 'apple-touch-icon',
+            href: favicon,
+            sizes: '76x76',
+          },
+        ]}
+      />
       <BlocksParser blocks={blocks} />
       {!!preview && <PreviewModeAlert />}
     </>
@@ -132,15 +166,14 @@ export const getStaticProps: GetStaticProps = async ({
 
   if (!res) return;
 
-  const maintenanceRes = await client.query({
+  const settingsRes = await client.query({
     query: gql(PAGE_QUERY),
     variables: { slug: 'impostazioni-globali', projectId },
   });
 
-  const maintenancePage =
-    getPageSchema(maintenanceRes?.data?.currentWorkspace?.project?.page) ??
-    null;
-  const maintenanceBlock = maintenancePage.blocks?.find(
+  const settingsPageData =
+    getPageSchema(settingsRes?.data?.currentWorkspace?.project?.page) ?? null;
+  const maintenanceBlock = settingsPageData.blocks?.find(
     (block) => block?.block?.shortname === 'modalita-manutenzione',
   );
   const isInMaintenanceMode =
@@ -150,7 +183,7 @@ export const getStaticProps: GetStaticProps = async ({
     null;
 
   const page = isInMaintenanceMode
-    ? maintenancePage
+    ? settingsPageData
     : getPageSchema(res?.data?.currentWorkspace?.project?.page);
 
   const { menu, footer } = await getGlobals();
@@ -158,6 +191,14 @@ export const getStaticProps: GetStaticProps = async ({
   loading = false;
   return {
     revalidate: 1,
-    props: { page, loading, isInMaintenanceMode, preview, menu, footer },
+    props: {
+      page,
+      loading,
+      isInMaintenanceMode,
+      preview,
+      menu,
+      footer,
+      settings: settingsPageData,
+    },
   };
 };
