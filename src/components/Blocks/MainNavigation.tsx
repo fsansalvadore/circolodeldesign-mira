@@ -111,7 +111,7 @@ const MobileMenuButton = styled.button<{ mode: string }>`
 `;
 const MobileMenuWrapper = tw(
   motion.div,
-)`fixed z-50 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
+)`fixed z-90 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
 const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
   ${tw`h-10! w-auto -ml-2 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
