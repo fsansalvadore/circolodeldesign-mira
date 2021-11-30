@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { findByShortname, hslaToTransparent } from '../../utils/common';
 import { Link, MaxWidthContent } from '../Base';
-
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import {
   AnimatePresence,
@@ -29,15 +28,12 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
   ${({ $isActive }) => $isActive && tw`bg-miraBlue`}
 `;
 
-const NavWrapper = styled(motion.div)<{
-  onWhite?: boolean;
+const Gradient = styled(motion.div)<{
   bgColor?: string;
-  menuIsOpen?: boolean;
 }>`
-  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
+  ${tw`w-full h-40 fixed left-0 right-0 top-0 z-20 flex justify-center bg-transparent! before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full)`}
 
-  ${({ onWhite, bgColor }) =>
-    // !onWhite &&
+  ${({ bgColor }) =>
     css`
       &:before {
         background: linear-gradient(
@@ -47,6 +43,13 @@ const NavWrapper = styled(motion.div)<{
         );
       }
     `}
+`;
+const NavWrapper = styled(motion.div)<{
+  onWhite?: boolean;
+  bgColor?: string;
+  menuIsOpen?: boolean;
+}>`
+  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
 
   ${({ onWhite }) =>
     onWhite &&
@@ -122,7 +125,13 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState<null | string>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPageReady, setIsPageReady] = useState(false);
   const { width } = useWindowSize();
+
+  useEffect(() => {
+    setIsPageReady(true);
+    return () => setIsPageReady(false);
+  }, []);
 
   useEffect(() => {
     if (width <= 768) {
@@ -346,6 +355,19 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
                   })}
             </MaxWidthContent>
           </MobileMenuWrapper>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isPageReady && (
+          <Gradient
+            bgColor={colorVariant.variant.backgroundColor}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { ...transitions.content, duration: 2, delay: 1 },
+            }}
+            exit={{ opacity: 0 }}
+          />
         )}
       </AnimatePresence>
     </>

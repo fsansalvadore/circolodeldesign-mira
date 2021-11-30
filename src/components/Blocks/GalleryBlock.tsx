@@ -13,7 +13,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Wrapper = styled.div`
-  ${tw`relative mx-auto md:-mt-20 w-screen h-auto`}
+  ${tw`relative z-50 mx-auto md:-mt-20 w-screen h-auto`}
 
   &:hover {
     ${ImageWrapper}:before {
