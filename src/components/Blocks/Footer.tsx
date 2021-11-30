@@ -30,7 +30,12 @@ const LottieLogo = styled.div`
 `;
 
 const StyledImage = styled.img`
-  ${tw`relative z-0 h-auto max-h-9 max-width[150px] w-full`}
+  ${tw`relative z-0 h-auto! max-h-9! max-width[150px] w-full!`}
+
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 `;
 const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-center flex justify-start overflow-visible`}
