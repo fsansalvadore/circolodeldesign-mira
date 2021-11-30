@@ -29,15 +29,8 @@ const LottieLogo = styled.div`
   ${tw`h-10! w-auto -ml-3 lg:w-40 lg:h-20 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[20px]!`}
 `;
 
-const StyledImage = styled.img`
-  ${tw`relative z-0 h-auto! max-h-9! max-width[150px] w-full!`}
+const StyledImage = tw.img`relative z-0 h-auto! max-h-9! max-width[150px] w-full! object-fit[contain]!`;
 
-  object-fit: contain !important;
-  width: 100% !important;
-  height: auto !important;
-  /* position: relative !important; */
-  /* height: unset !important; */
-`;
 const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-center flex justify-start overflow-visible`}
 `;
@@ -124,29 +117,55 @@ export const Footer = ({ footer = null, colorVariant }) => {
                       tw="w-full lg:w-auto flex flex-col items-start"
                     >
                       <p tw="mb-2">{partner.label}</p>
-                      <div tw="flex space-x-5 justify-start">
-                        {list.map((logo, partIndx) => {
-                          const image =
-                            findByShortname(logo.fields, 'logo')?.content?.value
-                              ?.url ?? '';
-                          const altText =
-                            findByShortname(logo.fields, 'alt-text')?.content
-                              ?.value ?? '';
-                          const link =
-                            findByShortname(logo.fields, 'link')?.content
-                              ?.value ?? '';
+                      {list.length > 1 ? (
+                        <div tw="flex space-x-5 justify-start">
+                          {list.map((logo, partIndx) => {
+                            const image =
+                              findByShortname(logo.fields, 'logo')?.content
+                                ?.value?.url ?? '';
+                            const altText =
+                              findByShortname(logo.fields, 'alt-text')?.content
+                                ?.value ?? '';
+                            const link =
+                              findByShortname(logo.fields, 'link')?.content
+                                ?.value ?? '';
 
-                          return (
-                            <ImageWrapper
-                              href={link}
-                              target="_blank"
-                              key={`partner-${schemaIndx}-${partIndx}-${altText}`}
-                            >
-                              <StyledImage src={image} alt={altText} />
-                            </ImageWrapper>
-                          );
-                        })}
-                      </div>
+                            return (
+                              <ImageWrapper
+                                href={link}
+                                target="_blank"
+                                key={`partner-${schemaIndx}-${partIndx}-${altText}`}
+                              >
+                                <StyledImage src={image} alt={altText} />
+                              </ImageWrapper>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div tw="flex justify-start">
+                          {list.map((logo, partIndx) => {
+                            const image =
+                              findByShortname(logo.fields, 'logo')?.content
+                                ?.value?.url ?? '';
+                            const altText =
+                              findByShortname(logo.fields, 'alt-text')?.content
+                                ?.value ?? '';
+                            const link =
+                              findByShortname(logo.fields, 'link')?.content
+                                ?.value ?? '';
+
+                            return (
+                              <ImageWrapper
+                                href={link}
+                                target="_blank"
+                                key={`partner-${schemaIndx}-${partIndx}-${altText}`}
+                              >
+                                <StyledImage src={image} alt={altText} />
+                              </ImageWrapper>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
