@@ -35,15 +35,10 @@ const gifVariant = {
 const ElementWrapper = styled(motion.div)`
   ${tw`absolute overflow-visible! opacity-30 md:opacity-90 width[200px] height[auto]! min-height[50px]! pointer-events-none`}
 
-  /* will-change: transform; */
-
   > div {
     ${tw`overflow-visible!`}
     position: unset !important;
   }
-  /* * {
-    will-change: transform;
-  } */
 `;
 
 type ElementProps = {
@@ -91,12 +86,12 @@ export const ParallaxComposition = ({ layout }: CompositionProps) => {
   if (layout === 'index')
     return (
       <>
-        <Element src={Piano1} tw="left[7vw] top[13vh]" />
-        <Element src={Piano3} tw="left[2vw] top[70vh]  width[150px]!" />
-        <Element src={Piano2} tw="left[70vw] top[120vh] width[100px]!" />
+        <Element src={Piano1} tw="left[2vw] top[22vh]" />
+        <Element src={Piano2} tw="left[15vw] top[70vh]  width[150px]!" />
+        <Element src={Piano2} tw="left[70vw] top[130vh] width[300px]!" />
         <Element src={Piano2} tw="left[70vw] top[13vh] width[100px]!" />
         <Element src={Piano3} tw="left[55vw] top[50vh] width[400px]!" />
-        <Element src={Piano1} tw="left[90vw] top[80vh] width[100px]!" />
+        <Element src={Piano1} tw="left[90vw] top[90vh] width[100px]!" />
       </>
     );
 

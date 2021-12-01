@@ -25,18 +25,16 @@ export const ReportInfoBlock = ({ fields }) => {
 
   return (
     <Wrapper>
-      <div tw="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-40">
+      <div tw="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20">
         <div>
           {!!title && <h1 tw="text-3xl lg:text-5xl mb-2">{title}</h1>}
           {!!subtitle && <HighlightTitleLabel>{subtitle}</HighlightTitleLabel>}
           {!!descrizione && (
-            <Paragraph tw="text-base font-light lg:text-xl">
-              {parse(descrizione)}
-            </Paragraph>
+            <Paragraph tw="mt-4 lg:mt-8">{parse(descrizione)}</Paragraph>
           )}
           {!!ctaLink && (
             <div tw="my-4 lg:mt-8">
-              <Button as={Link} href={ctaLink} target="_blank">
+              <Button as={Link} href={ctaLink} target="_blank" size="big">
                 {ctaText}
               </Button>
             </div>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import parse from 'html-react-parser';
 import { MaxWidthContent, Link, RichText, SocialIcon } from '../Base';
 import lottie from 'lottie-web';
-import MiraLogoJson from '../../assets/animations/mira-white.json';
+import MiraLogoJson from '../../assets/animations/mira-nocopy.json';
 import { useEffect, useRef } from 'react';
 
 const PartnersRow = styled.div`
@@ -26,7 +26,7 @@ const PartnersWrapper = styled.div`
 `;
 
 const LottieLogo = styled.div`
-  ${tw`h-10! w-auto -ml-3 lg:w-40 lg:h-20 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[20px]!`}
+  ${tw`h-8! w-24 lg:w-32 lg:h-14 z-0 max-height[30px]! max-width[150px]! lg:max-width[500px]! height[auto]! min-height[20px]!`}
 `;
 
 const StyledImage = tw.img`relative z-0 h-auto! max-h-9! max-width[100px] w-full object-fit[contain]! object-position[left]`;
@@ -173,7 +173,7 @@ export const Footer = ({ footer = null, colorVariant }) => {
             ))}
           </PartnersWrapper>
         </div>
-        <div tw="flex-shrink flex flex-col">
+        <div tw="flex-shrink flex flex-col lg:justify-between">
           {infoBlockContent && <RichText>{parse(infoBlockContent)}</RichText>}
 
           <div tw="flex space-x-3 py-2 lg:py-0 mt-4">

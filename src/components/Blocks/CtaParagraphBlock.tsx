@@ -13,7 +13,7 @@ export const CtaParagraphBlock = ({ fields }) => {
   return (
     <div tw="flex flex-col space-y-3 lg:space-y-8 lg:max-width[50%] my-4 lg:my-8">
       {!!title && <h2 tw="text-4xl lg:text-6xl">{title}</h2>}
-      {!!content && <Paragraph tw="font-light">{parse(content)}</Paragraph>}
+      {!!content && <Paragraph>{parse(content)}</Paragraph>}
       {!!ctaLink && (
         <div tw="mt-4 lg:mt-8">
           <Button as={Link} href={ctaLink} size="big">

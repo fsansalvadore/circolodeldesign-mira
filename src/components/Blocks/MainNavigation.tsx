@@ -13,8 +13,8 @@ import {
 } from 'framer-motion';
 import { colorVariants, transitions } from '../../utils/motion';
 import lottie from 'lottie-web';
-import MiraBlack from '../../assets/animations/mira-black.json';
-import MiraWhite from '../../assets/animations/mira-white.json';
+import MiraBlack from '../../assets/animations/mira-black-crop.json';
+import MiraWhite from '../../assets/animations/mira-white-crop.json';
 import CDD from '../../assets/circolo-del-design.svg';
 import { useWindowSize } from 'react-use';
 
@@ -62,7 +62,7 @@ const NavWrapper = styled(motion.div)<{
 const NavContent = tw(
   MaxWidthContent,
 )`flex max-width[100vw] items-center justify-between`;
-const MobileNavWrapper = tw.div`flex items-center space-x-3! md:space-x-6!`;
+const MobileNavWrapper = tw.div`flex items-center space-x-3! -mr-2 md:space-x-6!`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
 `;
@@ -114,7 +114,7 @@ const MobileMenuWrapper = tw(
 )`fixed z-90 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
 
 const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
-  ${tw`h-10! w-auto -ml-2 lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
+  ${tw`h-10! w-auto lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
 `;
 
 export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {

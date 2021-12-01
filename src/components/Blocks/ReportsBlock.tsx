@@ -37,9 +37,6 @@ const GridItem = styled(Link)<{
   `}
 
   &:hover {
-    ${InfoWrapper} {
-      ${tw`invisible opacity-0 filter[blur(4px)]`}
-    }
     ${ImageWrapper} {
       ${tw`filter[blur(0px)] mix-blend-normal`}
     }
@@ -92,7 +89,7 @@ export const ReportsBlock = ({ fields }) => {
                 )}
                 {!!subtitle && (
                   <HighlightTitleLabel
-                    tw="py-1 px-2 text-sm lg:px-3 lg:text-lg"
+                    tw="py-1 px-2 lg:px-3 md:text-2xl lg:text-3xl"
                     inverse
                   >
                     {subtitle}
