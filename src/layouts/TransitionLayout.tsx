@@ -59,7 +59,7 @@ const TransitionLayout = ({
         exit="exit"
       >
         <MaxWidthContent tw="pt-20 min-height[75vh]">
-          {router.query.slug === 'about' ? (
+          {router.query.slug[0] === 'about' ? (
             <AboutPageLayout>{children}</AboutPageLayout>
           ) : (
             children
