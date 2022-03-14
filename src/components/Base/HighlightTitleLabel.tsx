@@ -30,12 +30,14 @@ const Highlight = styled(RichText)<{
 export const HighlightTitleLabel = ({ inverse = false, children, ...rest }) => {
   const router = useRouter();
   const [highlightBgColor] = useState(
-    handleColorBySlug(router.query.slug)?.accentColor ??
-      colorVariants.blue.color,
+    !!router.query?.slug?.length
+      ? handleColorBySlug(router.query.slug)?.accentColor
+      : colorVariants.blue.color,
   );
   const [highlightTextColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant?.backgroundColor ??
-      colorVariants.blue.backgroundColor,
+    !!router.query?.slug?.length
+      ? handleColorBySlug(router.query.slug)?.variant?.backgroundColor
+      : colorVariants.blue.backgroundColor,
   );
 
   return (

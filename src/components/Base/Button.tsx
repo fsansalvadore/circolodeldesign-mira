@@ -52,12 +52,14 @@ export const Button: React.FC<Props> = ({
 }) => {
   const router = useRouter();
   const [highlightBgColor] = useState(
-    handleColorBySlug(router.query.slug)?.accentColor ??
-      colorVariants.blue.color,
+    !!router.query?.slug?.length
+      ? handleColorBySlug(router.query.slug)?.accentColor
+      : colorVariants.blue.color,
   );
   const [highlightTextColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant?.backgroundColor ??
-      colorVariants.blue.backgroundColor,
+    !!router.query?.slug?.length
+      ? handleColorBySlug(router.query.slug)?.variant?.backgroundColor
+      : colorVariants.blue.backgroundColor,
   );
 
   return (
@@ -86,7 +88,7 @@ export const Button: React.FC<Props> = ({
 //     case 'orange':
 //       return tw`bg-miraOrange! text-white`;
 //     case 'black':
-//       return tw`bg-black text-white`;
+//       return tw`text-white bg-black`;
 //     case 'white':
 //     default:
 //       return tw`bg-white! text-black!`;

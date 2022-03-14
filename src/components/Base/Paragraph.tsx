@@ -25,12 +25,14 @@ const StyledParagraph = styled(RichText)<{
 export const Paragraph = ({ children, ...rest }) => {
   const router = useRouter();
   const [highlightBgColor] = useState(
-    handleColorBySlug(router.query.slug)?.accentColor ??
-      colorVariants.blue.color,
+    !!router.query?.slug?.length
+      ? handleColorBySlug(router.query.slug)?.accentColor
+      : colorVariants.blue.color,
   );
   const [highlightTextColor] = useState(
-    handleColorBySlug(router.query.slug)?.variant.backgroundColor ??
-      colorVariants.blue.backgroundColor,
+    !!router.query?.slug?.length
+      ? handleColorBySlug(router.query.slug)?.variant.backgroundColor
+      : colorVariants.blue.backgroundColor,
   );
 
   return (

@@ -14,37 +14,45 @@ export const hslaToTransparent = (string) => {
 
 export const handleColorBySlug = (slug) => {
   if (!slug) return;
-  switch (slug) {
-    case 'about':
-      return {
-        variant: colorVariants.orange,
-        mode: 'dark',
-        accentColor: colorVariants.orange.color,
-      };
-    case 'press-area':
-      return {
-        variant: colorVariants.green,
-        mode: 'dark',
-        accentColor: colorVariants.green.color,
-      };
-    case 'ricerche':
-      return {
-        variant: colorVariants.fucsia,
-        mode: 'dark',
-        accentColor: colorVariants.fucsia.color,
-      };
-    case 'index':
-      return {
-        variant: colorVariants.blue,
-        mode: 'dark',
-        accentColor: colorVariants.blue.color,
-      };
-    case slug.includes('ricerche/'):
-    default:
-      return {
-        variant: colorVariants.white,
-        mode: 'light',
-        accentColor: colorVariants.fucsia.backgroundColor,
-      };
+
+  if (slug === 'about' || slug?.includes('about')) {
+    return {
+      variant: colorVariants.orange,
+      mode: 'dark',
+      accentColor: colorVariants.orange.color,
+    };
+  } else if (slug === 'press-area' || slug?.includes('press-area')) {
+    return {
+      variant: colorVariants.green,
+      mode: 'dark',
+      accentColor: colorVariants.green.color,
+    };
+  } else if (
+    slug === 'ricerche' ||
+    (slug?.length === 1 && slug?.includes('ricerche'))
+  ) {
+    return {
+      variant: colorVariants.fucsia,
+      mode: 'dark',
+      accentColor: colorVariants.fucsia.color,
+    };
+  } else if (slug?.length > 1 && slug?.includes('ricerche')) {
+    return {
+      variant: colorVariants.white,
+      mode: 'light',
+      accentColor: colorVariants.fucsia.backgroundColor,
+    };
+  } else if (slug === 'index' || slug?.includes('index')) {
+    return {
+      variant: colorVariants.blue,
+      mode: 'dark',
+      accentColor: colorVariants.blue.color,
+    };
+  } else {
+    return {
+      variant: colorVariants.white,
+      mode: 'light',
+      accentColor: colorVariants.fucsia.backgroundColor,
+    };
   }
 };
