@@ -1,7 +1,7 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import {
   getPageSchema,
-  PAGES_QUERY,
+  // PAGES_QUERY,
   PAGE_QUERY,
   TEMPLATE_QUERY,
 } from '@uidu/api.js/react';
@@ -13,6 +13,40 @@ import { findByShortname } from '../utils/common';
 import { PreviewModeAlert } from '../components/Base/PreviewModeAlert';
 import { getGlobals } from '../utils/getGlobals';
 import 'twin.macro';
+
+const PAGES_QUERY = `
+  query PagesQuery($projectId: ID!, $slug: String!) {
+    currentWorkspace {
+      name
+      project(id: $projectId) {
+        page(slug: $slug) {
+          pageBlocks {
+            fieldValuesObjects {
+              content
+              field {
+                id
+                shortname
+                preferences
+                content
+              }
+            }
+            fields {
+              shortname
+              content
+            }
+          }
+        }
+        pages {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
@@ -113,38 +147,43 @@ export async function getStaticPaths() {
   const slugs = [];
 
   pagesGenerator?.pageBlocks?.map((pageBlock) => {
-    const primarySlug = pageBlock.fields
-      ?.find((field) => field.shortname === 'slug')
-      ?.content.value.replace(/\//g, '');
+    const primarySlug = pageBlock.fieldValuesObjects
+      ?.find((fvo) => fvo.field?.shortname === 'slug')
+      ?.content?.value.replace(/\//g, '');
+
+    if (!primarySlug?.length) return;
 
     if (
-      !!pageBlock.fields?.find((field) => field.shortname === 'menu-secondario')
-        ?.content?.items?.length
+      !!pageBlock.fieldValuesObjects?.find(
+        (fvo) => fvo.field.shortname === 'menu-secondario',
+      )?.content?.items?.length
     ) {
-      pageBlock.fields
-        ?.find((field) => field.shortname === 'menu-secondario')
-        ?.content.items.map((secondaryNavItem) => {
+      // Create primary page
+      if (!slugs.includes(primarySlug)) slugs.push(primarySlug);
+
+      // Create secondary pages
+      pageBlock.fieldValuesObjects
+        ?.find((fvo) => fvo.field.shortname === 'menu-secondario')
+        ?.content?.items.map((secondaryNavItem) => {
           const secondarySlug = secondaryNavItem.fields?.find(
             (field) => field.shortname === 'slug',
           )?.content?.value;
 
           slugs.push(`${primarySlug}/${secondarySlug}`);
         });
+    } else {
+      slugs.push(primarySlug);
     }
   });
 
   researchPages.map((page) => slugs.push(`ricerche/${page.slug}`));
 
   // Get the paths we want to pre-render based on filtered pages
-  const paths = slugs?.map((slug) => {
-    const split = slug.toString().split('/');
-    const parent = split[0];
-    const child = split[split.length - 1];
-
-    return {
-      params: { slug: [parent, child] },
-    };
-  });
+  const paths = slugs?.map((slug) => ({
+    params: {
+      slug: slug.toString().split('/'),
+    },
+  }));
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.

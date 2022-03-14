@@ -20,7 +20,7 @@ const StyledImage = styled(Image)`
   height: unset !important;
 `;
 const GridItem = styled.div`
-  ${tw`relative col-span-1 self-start items-start flex`}
+  ${tw`relative flex items-start self-start col-span-1`}
 
   > div {
     position: unset !important;
@@ -74,7 +74,7 @@ export const ColophonSection = ({
 }: ColophonSectionInterface) => {
   return (
     <div tw="my-0 text-base lg:(text-lg mb-4)" {...rest}>
-      <HighlightTitleLabel>{label}</HighlightTitleLabel>
+      {!!label && <HighlightTitleLabel>{label}</HighlightTitleLabel>}
       <ElementsWrapper cols={cols}>
         {items?.map((item, index) => {
           const testo =
