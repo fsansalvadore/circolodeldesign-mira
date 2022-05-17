@@ -9,6 +9,7 @@ import {
 } from '../Base';
 import parse from 'html-react-parser';
 import { ColophonSection } from './ColophonBlock';
+import ReportCard from './ReportCard';
 
 const Wrapper = tw.div`py-4 lg:py-16`;
 
@@ -19,6 +20,7 @@ export const ReportInfoBlock = ({ fields }) => {
     findByShortname(fields, 'descrizione')?.content?.value ?? '';
   const colophonSections =
     findByShortname(fields, 'colophon')?.content?.items ?? [];
+  const reports = findByShortname(fields, 'reports')?.content?.items ?? [];
   const ctaLink = findByShortname(fields, 'link')?.content?.value ?? '';
   const ctaText =
     findByShortname(fields, 'testo-cta')?.content?.value ?? 'Scopri di più';
@@ -34,11 +36,16 @@ export const ReportInfoBlock = ({ fields }) => {
           )}
           {!!ctaLink && (
             <div tw="my-4 lg:mt-8">
-              <Button as={Link} href={ctaLink} target="_blank" size="big">
+              <Button as={Link} href={ctaLink} target="_blank" size="default">
                 {ctaText}
               </Button>
             </div>
           )}
+          <div tw="mt-6 lg:mt-10">
+            {reports.map((report, index) => (
+              <ReportCard key={`report-${index}`} report={report} />
+            ))}
+          </div>
         </div>
         <div>
           <div tw="flex flex-col space-y-4">
