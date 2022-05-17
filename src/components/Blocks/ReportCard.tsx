@@ -97,4 +97,4 @@ export default function ReportCard({ report }: { report: any }) {
   );
 }
 
-const TableLabel = tw.td`font-bold w-1/4`;
+const TableLabel = tw.td`font-bold w-1/4 min-width[140px] lg:min-width[160px]`;
