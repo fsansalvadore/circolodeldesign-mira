@@ -33,6 +33,9 @@ export default function ReportCard({ report }: { report: any }) {
             layout="fill"
             objectFit="cover"
             objectPosition="center"
+            placeholder="blur"
+            blurDataURL={'/blur.png'}
+            priority
           />
         </div>
       )}
