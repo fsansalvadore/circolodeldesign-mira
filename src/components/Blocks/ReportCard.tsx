@@ -8,8 +8,7 @@ import { Button, Link } from '../Base';
 export default function ReportCard({ report }: { report: any }) {
   const immagine =
     findByShortname(report.fields, 'immagine')?.content?.value?.url ?? '';
-  const titolo =
-    findByShortname(report.fields, 'titolo-etichetta')?.content?.value ?? '';
+  const titolo = findByShortname(report.fields, 'titolo')?.content?.value ?? '';
 
   // report info
   const anno = findByShortname(report.fields, 'anno')?.content?.value ?? '';
@@ -24,10 +23,8 @@ export default function ReportCard({ report }: { report: any }) {
     findByShortname(report.fields, 'paragrafo')?.content?.value ?? '';
   const cta = findByShortname(report.fields, 'cta')?.content?.value ?? '';
 
-  console.log('immagine', immagine);
-  console.log('cta', cta);
   return (
-    <div tw="mt-4 border-2 border-black space-y-2 lg:space-y-4 rounded-lg overflow-hidden">
+    <div tw="mt-4 border-2 border-black rounded-lg overflow-hidden">
       {!!immagine && (
         <div tw="relative w-full h-0 paddingBottom[66%]">
           <Image
@@ -40,46 +37,46 @@ export default function ReportCard({ report }: { report: any }) {
         </div>
       )}
       <div tw="space-y-4 lg:space-y-6 p-4">
-        {!!titolo && <h3>{titolo}</h3>}
-        <table tw="w-full">
+        {!!titolo && <h3 tw="text-xl lg:text-3xl">{titolo}</h3>}
+        <table tw="w-full sm:text-lg lg:text-xl">
           {!!anno && (
-            <TableRow>
+            <tr>
               <TableLabel>Anno:</TableLabel>
               <td>{anno}</td>
-            </TableRow>
+            </tr>
           )}
           {!!pagine && (
-            <TableRow>
+            <tr>
               <TableLabel>Pagine:</TableLabel>
               <td>{pagine}</td>
-            </TableRow>
+            </tr>
           )}
           {!!dimensione && (
-            <TableRow>
+            <tr>
               <TableLabel>Dimensione:</TableLabel>
               <td>{dimensione}</td>
-            </TableRow>
+            </tr>
           )}
           {!!rilegatura && (
-            <TableRow>
+            <tr>
               <TableLabel>Rilegatura:</TableLabel>
               <td>{rilegatura}</td>
-            </TableRow>
+            </tr>
           )}
           {!!isbn && (
-            <TableRow>
+            <tr>
               <TableLabel>ISBN:</TableLabel>
               <td>{isbn}</td>
-            </TableRow>
+            </tr>
           )}
           {!!prezzo && (
-            <TableRow>
+            <tr>
               <TableLabel>Prezzo:</TableLabel>
               <td>{prezzo}</td>
-            </TableRow>
+            </tr>
           )}
         </table>
-        {!!paragrafo && <p tw="font-bold">{parse(paragrafo)}</p>}
+        {!!paragrafo && <p tw="font-bold lg:text-xl">{parse(paragrafo)}</p>}
         {!!cta && (
           <div tw="my-4 lg:mt-8">
             <Button
@@ -97,5 +94,4 @@ export default function ReportCard({ report }: { report: any }) {
   );
 }
 
-const TableRow = tw.tr``;
 const TableLabel = tw.td`font-bold w-1/4`;
