@@ -6,6 +6,8 @@ import parse from 'html-react-parser';
 import { Button, Link } from '../Base';
 
 export default function ReportCard({ report }: { report: any }) {
+  if (!report?.fields) return null;
+
   const immagine =
     findByShortname(report.fields, 'immagine')?.content?.value?.url ?? '';
   const titolo = findByShortname(report.fields, 'titolo')?.content?.value ?? '';
@@ -29,7 +31,7 @@ export default function ReportCard({ report }: { report: any }) {
         <div tw="relative w-full h-0 paddingBottom[66%]">
           <Image
             src={immagine ?? ''}
-            alt={titolo}
+            alt={titolo ?? ''}
             layout="fill"
             objectFit="cover"
             objectPosition="center"
@@ -79,16 +81,18 @@ export default function ReportCard({ report }: { report: any }) {
             </tr>
           )}
         </table>
-        {!!paragrafo && <p tw="font-bold lg:text-xl">{parse(paragrafo)}</p>}
+        {!!paragrafo?.length && (
+          <p tw="font-bold lg:text-xl">{parse(paragrafo)}</p>
+        )}
         {!!cta && (
           <div tw="my-4 lg:mt-8">
             <Button
               as={Link}
-              href={cta.href}
-              target={cta.target}
+              href={cta?.href ?? '#'}
+              target={cta?.target ?? '_self'}
               size="default"
             >
-              {cta.label}
+              {cta?.label ?? 'Maggiori info'}
             </Button>
           </div>
         )}
