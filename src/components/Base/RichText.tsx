@@ -31,4 +31,10 @@ export const RichText = styled.div`
   p {
     ${tw`line-height[150%] empty:mb-4`}
   }
+  strong {
+    ${tw`font-black`}
+  }
+  em {
+    ${tw`italic`}
+  }
 `;
