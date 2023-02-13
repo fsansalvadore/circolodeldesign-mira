@@ -1,0 +1,63 @@
+{
+  "name": "alboran-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.11",
+    "@heroicons/react": "^1.0.3",
+    "@uidu/api.js": "^1.8.1",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "framer-motion": "^5.3.1",
+    "graphql": "^15.5.3",
+    "html-react-parser": "^1.2.7",
+    "js-cookie": "^3.0.1",
+    "lottie-web": "^5.8.1",
+    "next": "^11.1.2",
+    "next-seo": "^4.26.0",
+    "react": "17.0.2",
+    "react-cookie-consent": "^6.4.1",
+    "react-dom": "17.0.2",
+    "react-use": "^17.2.4",
+    "rsuite": "^5.2.0",
+    "sharp": "^0.29.3",
+    "styled-components": "^5.3.3",
+    "swiper": "^6.8.0",
+    "typescript": "^4.3.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.0",
+    "@next/eslint-plugin-next": "^11.1.2",
+    "@svgr/webpack": "^5.5.0",
+    "@types/react": "^17.0.14",
+    "@types/styled-components": "^5.1.11",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-styled-components": "^1.13.2",
+    "css-loader": "^6.5.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "11.1.2",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.4.4",
+    "prettier": "^2.3.2",
+    "react-is": "^17.0.2",
+    "tailwindcss": "^2.2.4",
+    "twin.macro": "^2.6.2",
+    "webpack": "^5.64.0"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
+  }
+}
