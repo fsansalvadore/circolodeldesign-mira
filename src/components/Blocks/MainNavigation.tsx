@@ -114,7 +114,7 @@ const MobileMenuWrapper = tw(
   motion.div,
 )`fixed z-90 bottom-0 top-0 py-4 md:py-8 w-screen h-[100vh - 60px] flex flex-col bg-white text-black`;
 
-const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
+const LottieLogo = styled.div`
   ${tw`!h-10 w-auto lg:w-60 lg:h-60 z-0 !max-h-[80px] !max-w-[200px] lg:!max-w-[500px] !h-[auto] !min-h-[30px]`}
 `;
 
@@ -148,15 +148,22 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
     [isMobile ? 1.5 : menuIsOpen ? 1 : 2.75, 1],
   );
 
+  let anim;
+
   useEffect(() => {
-    lottie.destroy('logo');
-    const anim = lottie.loadAnimation({
+    if (!lottieRef?.current) return;
+
+    if (!!anim) anim.destroy('logo');
+
+    anim = lottie.loadAnimation({
       container: lottieRef.current,
       animationData:
         menuIsOpen || colorVariant.mode === 'light' ? MiraBlack : MiraWhite,
       name: 'logo',
     });
-  }, [menuIsOpen, colorVariant]);
+
+    return () => anim.destroy();
+  }, [menuIsOpen, lottieRef]);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
@@ -190,7 +197,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
       >
         <NavContent>
           <div tw="max-w-[150px] md:min-w-[150px]">
-            <Link href="/" tw="">
+            <Link href="/">
               <LottieLogo
                 as={motion.div}
                 ref={lottieRef}
@@ -203,7 +210,6 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
                   scale: isMobile ? 1 : page.slug === 'index' && logoScale,
                   transformOrigin: 'top left',
                 }}
-                menuIsOpen={menuIsOpen}
               />
             </Link>
           </div>

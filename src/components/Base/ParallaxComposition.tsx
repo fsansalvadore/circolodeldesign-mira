@@ -50,10 +50,14 @@ const Element = ({ src = Piano1, style, ...rest }: ElementProps) => {
   const ref = useRef();
 
   useEffect(() => {
+    if (!lottie) return;
+
     lottie.loadAnimation({
       container: ref.current,
       animationData: src,
     });
+
+    return () => lottie.destroy();
   }, [src]);
 
   return (

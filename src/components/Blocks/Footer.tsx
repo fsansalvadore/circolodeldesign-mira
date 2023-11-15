@@ -80,26 +80,32 @@ export const Footer = ({ footer = null, colorVariant }) => {
     ?.items ?? [''];
 
   useEffect(() => {
+    if (!lottie) return;
+
     lottie.loadAnimation({
       container: logoRef.current,
       animationData: MiraLogoJson,
     });
+
+    return () => lottie.destroy();
   }, []);
 
   return (
     <FooterWrapper inverted={colorVariant.mode === 'light'}>
       <MaxWidthContent tw="flex flex-col max-w-[100vw] space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
         <div tw="flex-shrink min-w-[150px]">
-          <Link href="/" tw="">
-            <LottieLogo
-              as={motion.div}
-              initial={{ opacity: 0 }}
-              ref={logoRef}
-              animate={{
-                opacity: 1,
-                transition: { delay: 0.8, duration: 0.5 },
-              }}
-            />
+          <Link href="/">
+            {lottie && (
+              <LottieLogo
+                as={motion.div}
+                initial={{ opacity: 0 }}
+                ref={logoRef}
+                animate={{
+                  opacity: 1,
+                  transition: { delay: 0.8, duration: 0.5 },
+                }}
+              />
+            )}
           </Link>
         </div>
         <div tw="flex-grow flex lg:justify-start! lg:items-start">

@@ -73,6 +73,7 @@ export const ColophonSection = ({
   immagine,
   ...rest
 }: ColophonSectionInterface) => {
+  console.log(label, testo);
   return (
     <div tw="my-0 text-base lg:(text-lg mb-4)" {...rest}>
       {!!label && <HighlightTitleLabel>{label}</HighlightTitleLabel>}
