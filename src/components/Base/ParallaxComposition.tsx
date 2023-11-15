@@ -33,7 +33,7 @@ const gifVariant = {
 };
 
 const ElementWrapper = styled(motion.div)`
-  ${tw`absolute overflow-visible! opacity-30 md:opacity-90 width[200px] height[auto]! min-height[50px]! pointer-events-none`}
+  ${tw`absolute overflow-visible! opacity-30 md:opacity-90 w-[200px] !h-[auto] !min-h-[50px] pointer-events-none`}
 
   > div {
     ${tw`overflow-visible!`}
@@ -58,7 +58,6 @@ const Element = ({ src = Piano1, style, ...rest }: ElementProps) => {
 
   return (
     <ElementWrapper
-      as={motion.div}
       variant={gifVariant}
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
@@ -86,33 +85,33 @@ export const ParallaxComposition = ({ layout }: CompositionProps) => {
   if (layout === 'index')
     return (
       <>
-        <Element src={Piano1} tw="left[2vw] top[22vh]" />
-        <Element src={Piano2} tw="left[15vw] top[70vh]  width[150px]!" />
-        <Element src={Piano2} tw="left[70vw] top[130vh] width[300px]!" />
-        <Element src={Piano2} tw="left[70vw] top[13vh] width[100px]!" />
-        <Element src={Piano3} tw="left[55vw] top[50vh] width[400px]!" />
-        <Element src={Piano1} tw="left[90vw] top[90vh] width[100px]!" />
+        <Element src={Piano1} tw="left-[2vw] top-[22vh]" />
+        <Element src={Piano2} tw="left-[15vw] top-[70vh] !w-[150px]" />
+        <Element src={Piano2} tw="left-[70vw] top-[130vh] !w-[300px]" />
+        <Element src={Piano2} tw="left-[70vw] top-[13vh] !w-[100px]" />
+        <Element src={Piano3} tw="left-[55vw] top-[50vh] !w-[400px]" />
+        <Element src={Piano1} tw="left-[90vw] top-[90vh] !w-[100px]" />
       </>
     );
 
   if (layout === 'about')
     return (
       <>
-        <Element src={Piano1} tw="left[80vw] top[13vh]" />
-        <Element src={Piano3} tw="left[2vw] top[70vh] width[100px]" />
-        <Element src={Piano3} tw="left[40vw] top[170vh] width[300px]!" />
-        <Element src={Piano2} tw="left[70vw] top[120vh] width[100px]" />
-        <Element src={Piano2} tw="left[10vw] top[120vh] width[100px]" />
+        <Element src={Piano1} tw="left-[80vw] top-[13vh]" />
+        <Element src={Piano3} tw="left-[2vw] top-[70vh] w-[100px]" />
+        <Element src={Piano3} tw="left-[40vw] top-[170vh] !w-[300px]" />
+        <Element src={Piano2} tw="left-[70vw] top-[120vh] w-[100px]" />
+        <Element src={Piano2} tw="left-[10vw] top-[120vh] w-[100px]" />
       </>
     );
 
   if (layout === 'press-area')
     return (
       <>
-        <Element src={Piano1} tw="left[50vw] top[33vh] width[300px]!" />
-        <Element src={Piano3} tw="left[2vw] top[50vh] width[100px]!" />
-        <Element src={Piano2} tw="left[70vw] top[13vh]" />
-        <Element src={Piano3} tw="left[85vw] top[55vh] width[100px]!" />
+        <Element src={Piano1} tw="left-[50vw] top-[33vh] !w-[300px]" />
+        <Element src={Piano3} tw="left-[2vw] top-[50vh] !w-[100px]" />
+        <Element src={Piano2} tw="left-[70vw] top-[13vh]" />
+        <Element src={Piano3} tw="left-[85vw] top-[55vh] !w-[100px]" />
       </>
     );
 

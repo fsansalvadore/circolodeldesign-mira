@@ -71,7 +71,8 @@ const App = ({ Component, pageProps, router }) => {
               />
             )} */}
             <AnimatePresence
-              exitBeforeEnter
+              // exitBeforeEnter
+              mode='wait'
               onExitComplete={() => window.scrollTo(0, 0)}
             >
               <TransitionLayout

@@ -15,8 +15,9 @@ import { colorVariants, transitions } from '../../utils/motion';
 import lottie from 'lottie-web';
 import MiraBlack from '../../assets/animations/mira-black-crop.json';
 import MiraWhite from '../../assets/animations/mira-white-crop.json';
-import CDD from '../../assets/circolo-del-design.svg';
+// import CDD from '../../assets/circolo-del-design.svg';
 import { useWindowSize } from 'react-use';
+import Image from 'next/image';
 
 const SubMenuWrapper = styled.div`
   ${tw`absolute left-0 flex flex-col invisible space-y-5 transform translate-y-10 opacity-0 top-0`}
@@ -31,7 +32,7 @@ const SubMenuItem = styled(Link)<{ $isActive?: boolean }>`
 const Gradient = styled(motion.div)<{
   bgColor?: string;
 }>`
-  ${tw`w-full h-40 fixed left-0 right-0 top-0 z-20 flex justify-center bg-transparent! before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full)`}
+  ${tw`w-full h-40 fixed left-0 right-0 top-0 z-20 flex justify-center bg-transparent! before:(content-[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full)`}
 
   ${({ bgColor }) =>
     css`
@@ -49,20 +50,20 @@ const NavWrapper = styled(motion.div)<{
   bgColor?: string;
   menuIsOpen?: boolean;
 }>`
-  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full height[150%])`}
+  ${tw`w-full h-20 fixed left-0 right-0 top-0 z-100 flex justify-center bg-transparent before:(content-[""] absolute left-0 right-0 top-0 bottom-0 w-full h-[150%])`}
 
   ${({ onWhite }) =>
     onWhite &&
     css`
       .cdd * {
-        ${tw`fill[#000]!`}
+        ${tw`fill-[#000]!`}
       }
     `}
 `;
 const NavContent = tw(
   MaxWidthContent,
-)`flex max-width[100vw] items-center justify-between`;
-const MobileNavWrapper = tw.div`flex items-center space-x-3! -mr-2 md:space-x-6!`;
+)`flex max-w-[100vw] items-center justify-between`;
+const MobileNavWrapper = tw.div`flex items-center !gap-3 -mr-2 md:!gap-6`;
 const MobileSubMenuWrapper = styled.div`
   ${tw`flex flex-col space-y-5`}
 `;
@@ -111,10 +112,10 @@ const MobileMenuButton = styled.button<{ mode: string }>`
 `;
 const MobileMenuWrapper = tw(
   motion.div,
-)`fixed z-90 bottom-0 top-0 py-4 md:py-8 w-screen height[100vh - 60px] flex flex-col bg-white text-black`;
+)`fixed z-90 bottom-0 top-0 py-4 md:py-8 w-screen h-[100vh - 60px] flex flex-col bg-white text-black`;
 
 const LottieLogo = styled.div<{ menuIsOpen?: boolean }>`
-  ${tw`h-10! w-auto lg:w-60 lg:h-60 z-0 max-height[80px]! max-width[200px]! lg:max-width[500px]! height[auto]! min-height[30px]!`}
+  ${tw`!h-10 w-auto lg:w-60 lg:h-60 z-0 !max-h-[80px] !max-w-[200px] lg:!max-w-[500px] !h-[auto] !min-h-[30px]`}
 `;
 
 export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
@@ -188,7 +189,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
         {...rest}
       >
         <NavContent>
-          <div tw="max-width[150px] md:min-width[150px]">
+          <div tw="max-w-[150px] md:min-w-[150px]">
             <Link href="/" tw="">
               <LottieLogo
                 as={motion.div}
@@ -207,10 +208,16 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
             </Link>
           </div>
           <MobileNavWrapper>
-            <Link href="https://www.circolodeldesign.it/" target="_blank">
-              <CDD
-                tw="relative z-20 w-auto max-width[70px] md:max-width[100%] h-14"
-                className="cdd"
+            <Link
+              href="https://www.circolodeldesign.it/"
+              target="_blank"
+              tw="relative w-20 h-20 max-h-[72px] max-w-[155px]"
+            >
+              <Image
+                src="/circolo-del-design.svg"
+                alt="Circolo del Design"
+                fill
+                className="object-contain"
               />
             </Link>
             <MobileMenuButton

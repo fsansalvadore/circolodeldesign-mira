@@ -26,10 +26,10 @@ const PartnersWrapper = styled.div`
 `;
 
 const LottieLogo = styled.div`
-  ${tw`h-8! w-24 lg:w-32 lg:h-14 z-0 max-height[30px]! max-width[150px]! lg:max-width[500px]! height[auto]! min-height[20px]!`}
+  ${tw`h-8! w-24 lg:w-32 lg:h-14 z-0 !max-h-[30px] !max-w-[150px] lg:!max-w-[500px] h-[auto] min-h-[20px]`}
 `;
 
-const StyledImage = tw.img`relative z-0 h-auto! max-h-9! max-width[100px] w-full object-fit[contain]! object-position[left]`;
+const StyledImage = tw.img`relative z-0 !h-auto !max-h-9 max-w-[100px] w-full !object-contain object-left`;
 
 const ImageWrapper = styled(Link)`
   ${tw`relative flex-shrink! col-span-1 self-start items-center flex justify-start overflow-visible`}
@@ -88,8 +88,8 @@ export const Footer = ({ footer = null, colorVariant }) => {
 
   return (
     <FooterWrapper inverted={colorVariant.mode === 'light'}>
-      <MaxWidthContent tw="flex flex-col max-width[100vw] space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
-        <div tw="flex-shrink min-width[150px]">
+      <MaxWidthContent tw="flex flex-col max-w-[100vw] space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
+        <div tw="flex-shrink min-w-[150px]">
           <Link href="/" tw="">
             <LottieLogo
               as={motion.div}

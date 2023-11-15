@@ -8,6 +8,7 @@ import {
   Paragraph,
 } from '../Base';
 import parse from 'html-react-parser';
+import { slateToHtml } from '@slate-serializers/html';
 import { ColophonSection } from './ColophonBlock';
 import ReportCard from './ReportCard';
 
@@ -32,7 +33,9 @@ export const ReportInfoBlock = ({ fields }) => {
           {!!title && <h1 tw="text-3xl lg:text-5xl mb-2">{title}</h1>}
           {!!subtitle && <HighlightTitleLabel>{subtitle}</HighlightTitleLabel>}
           {!!descrizione && (
-            <Paragraph tw="mt-4 lg:mt-8">{parse(descrizione)}</Paragraph>
+            <Paragraph tw="mt-4 lg:mt-8">
+              {parse(slateToHtml(descrizione))}
+            </Paragraph>
           )}
           {!!ctaLink && (
             <div tw="my-4 lg:mt-8">

@@ -2,6 +2,7 @@ import tw, { styled } from 'twin.macro';
 import { findByShortname } from '../../utils/common';
 import { HighlightTitleLabel, RichText } from '../Base';
 import parse from 'html-react-parser';
+import { slateToHtml } from '@slate-serializers/html';
 import Image from 'next/image';
 
 const ElementsWrapper = styled.div<{ cols: number }>`
@@ -12,7 +13,7 @@ const ElementsWrapper = styled.div<{ cols: number }>`
 `;
 
 const StyledImage = styled(Image)`
-  ${tw`relative z-0 max-height[50px]! height[auto]! min-height[35px]!`}
+  ${tw`relative z-0 !max-h-[50px] !h-[auto] !min-h-[35px]`}
 
   object-fit: contain;
   width: 100% !important;
@@ -28,7 +29,7 @@ const GridItem = styled.div`
 `;
 
 interface ColophonContent {
-  testo?: string;
+  testo?: any;
   image?: string;
 }
 
@@ -49,7 +50,7 @@ const ColophonContent = ({ testo, image }: ColophonContent) => {
         </GridItem>
       ) : (
         <GridItem>
-          <RichText>{parse(testo)}</RichText>
+          <RichText>{parse(slateToHtml(testo))}</RichText>
         </GridItem>
       )}
     </div>

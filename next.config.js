@@ -25,25 +25,25 @@ module.exports = {
       ],
     });
 
-    config.module.rules.push({
-      test: /\.(le|c)ss$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-        },
-        {
-          loader: 'less-loader',
-          options: {
-            sourceMap: true,
-            lessOptions: {
-              javascriptEnabled: true,
-              modifyVars: { '@enable-css-reset': false },
-            },
-          },
-        },
-      ],
-    });
+    // config.module.rules.push({
+    //   test: /\.(le|c)ss$/,
+    //   use: [
+    //     MiniCssExtractPlugin.loader,
+    //     {
+    //       loader: 'css-loader',
+    //     },
+    //     {
+    //       loader: 'less-loader',
+    //       options: {
+    //         sourceMap: true,
+    //         lessOptions: {
+    //           javascriptEnabled: true,
+    //           modifyVars: { '@enable-css-reset': false },
+    //         },
+    //       },
+    //     },
+    //   ],
+    // });
 
     config.plugins.push(
       new MiniCssExtractPlugin({
