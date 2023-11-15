@@ -1,14 +1,14 @@
 import { CmsProvider, UiduProvider } from '@uidu/api.js/react';
+import { AnimatePresence } from 'framer-motion';
 import { DefaultSeo, DefaultSeoProps } from 'next-seo';
 import NextHead from 'next/head';
+import { useState } from 'react';
+import { CookieBanner } from '../components/Base';
+import { Footer } from '../components/Blocks';
 import GlobalStyles from '../components/GlobalStyles';
 import MaintenancePage from '../layouts/MaintenanceLayout';
 import TransitionLayout from '../layouts/TransitionLayout';
-import { AnimatePresence } from 'framer-motion';
-import { Footer, MainNavigation } from '../components/Blocks';
-import { useState } from 'react';
 import { handleColorBySlug } from '../utils/common';
-import { CookieBanner } from '../components/Base';
 
 const defaultSeo: DefaultSeoProps = {
   title: undefined,
@@ -36,6 +36,11 @@ const App = ({ Component, pageProps, router }) => {
         <Component />
       </>
     );
+
+  console.log(
+    'process.env.NEXT_PUBLIC_API_ENDPOINT',
+    process.env.NEXT_PUBLIC_API_ENDPOINT,
+  );
 
   return (
     <UiduProvider endpoint={process.env.NEXT_PUBLIC_API_ENDPOINT}>

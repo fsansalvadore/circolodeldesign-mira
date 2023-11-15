@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,7 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.11",
     "@heroicons/react": "^1.0.3",
-    "@uidu/api.js": "^1.8.1",
+    "@uidu/api.js": "^5.1.0",
     "body-scroll-lock": "^4.0.0-beta.0",
     "framer-motion": "^5.3.1",
     "graphql": "^15.5.3",
@@ -20,9 +20,9 @@
     "lottie-web": "^5.8.1",
     "next": "^11.1.2",
     "next-seo": "^4.26.0",
-    "react": "17.0.2",
+    "react": "18.2.0",
     "react-cookie-consent": "^6.4.1",
-    "react-dom": "17.0.2",
+    "react-dom": "18.2.0",
     "react-use": "^17.2.4",
     "rsuite": "^5.2.0",
     "sharp": "^0.29.3",
