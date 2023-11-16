@@ -34,7 +34,9 @@ export const ReportInfoBlock = ({ fields }) => {
           {!!subtitle && <HighlightTitleLabel>{subtitle}</HighlightTitleLabel>}
           {!!descrizione && (
             <Paragraph tw="mt-4 lg:mt-8">
-              {parse(slateToHtml(descrizione))}
+              {typeof descrizione === 'string'
+                ? parse(descrizione)
+                : parse(slateToHtml(descrizione))}
             </Paragraph>
           )}
           {!!ctaLink && (

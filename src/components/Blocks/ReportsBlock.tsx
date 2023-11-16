@@ -10,6 +10,7 @@ export const ReportsBlock = ({ fields }) => {
     <div tw="py-10 lg:py-20">
       <DynamicGrid>
         {reports.map((item, index) => {
+          console.log('item', item);
           const title =
             findByShortname(item.fields, 'titolo')?.content?.value ?? '';
           const subtitle =
@@ -29,7 +30,7 @@ export const ReportsBlock = ({ fields }) => {
             1;
           const isDisabled =
             findByShortname(item.fields, 'disabilita-link')?.content?.value ??
-            1;
+            false;
 
           return (
             <GridItem

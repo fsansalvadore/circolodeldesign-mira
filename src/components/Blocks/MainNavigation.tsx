@@ -34,16 +34,15 @@ const Gradient = styled(motion.div)<{
 }>`
   ${tw`w-full h-40 fixed left-0 right-0 top-0 z-20 flex justify-center bg-transparent! before:(content-[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full)`}
 
-  ${({ bgColor }) =>
-    css`
-      &:before {
-        background: linear-gradient(
-          to top,
-          ${hslaToTransparent(bgColor)} 0%,
-          ${bgColor} 100%
-        );
-      }
-    `}
+  ${({ bgColor }) => css`
+    &:before {
+      background: linear-gradient(
+        to top,
+        ${hslaToTransparent(bgColor)} 0%,
+        ${bgColor} 100%
+      );
+    }
+  `}
 `;
 const NavWrapper = styled(motion.div)<{
   onWhite?: boolean;
@@ -148,21 +147,21 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
     [isMobile ? 1.5 : menuIsOpen ? 1 : 2.75, 1],
   );
 
-  let anim;
+  // let anim;
 
   useEffect(() => {
-    if (!lottieRef?.current) return;
+    if (lottieRef?.current) {
+      // if (!!anim) anim.destroy('logo');
 
-    if (!!anim) anim.destroy('logo');
+      const anim = lottie.loadAnimation({
+        container: lottieRef.current,
+        animationData:
+          menuIsOpen || colorVariant.mode === 'light' ? MiraBlack : MiraWhite,
+        name: 'logo',
+      });
+    }
 
-    anim = lottie.loadAnimation({
-      container: lottieRef.current,
-      animationData:
-        menuIsOpen || colorVariant.mode === 'light' ? MiraBlack : MiraWhite,
-      name: 'logo',
-    });
-
-    return () => anim.destroy();
+    return () => lottie.destroy();
   }, [menuIsOpen, lottieRef]);
 
   useEffect(() => {
@@ -199,9 +198,10 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
           <div tw="max-w-[150px] md:min-w-[150px]">
             <Link href="/">
               <LottieLogo
+                key={router.pathname}
                 as={motion.div}
                 ref={lottieRef}
-                initial={{ opacity: 0 }}
+                // initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
                   transition: { delay: 0.2, duration: 0.5 },
