@@ -7,7 +7,7 @@ const StyledImage = styled(Image)`
   ${tw`absolute z-0 w-full h-full`}
 `;
 const ImageWrapper = styled.div`
-  ${tw`transition-all transform w-full h-full before:(content[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-40 z-10 transition-opacity)`}
+  ${tw`transition-all transform w-full h-full before:(content-[""] absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-40 z-10 transition-opacity)`}
 
   transition: height 0.45s cubic-bezier(0.5, 0.01, 0, 0.8);
 `;

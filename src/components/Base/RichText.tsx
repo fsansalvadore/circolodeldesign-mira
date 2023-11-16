@@ -29,7 +29,7 @@ export const RichText = styled.div`
     ${tw`ml-5 relative list-disc`}
   }
   p {
-    ${tw`line-height[150%] empty:mb-4`}
+    ${tw`leading-[150%] empty:mb-4`}
   }
   strong {
     ${tw`font-black`}

@@ -7,12 +7,12 @@ import {
 } from '@uidu/api.js/react';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
-import BlocksParser from '../components/BlocksParser';
-import MaintenancePage from '../components/Base/MaintenancePage';
-import { findByShortname } from '../utils/common';
-import { PreviewModeAlert } from '../components/Base/PreviewModeAlert';
-import { getGlobals } from '../utils/getGlobals';
 import 'twin.macro';
+import MaintenancePage from '../components/Base/MaintenancePage';
+import { PreviewModeAlert } from '../components/Base/PreviewModeAlert';
+import BlocksParser from '../components/BlocksParser';
+import { findByShortname } from '../utils/common';
+import { getGlobals } from '../utils/getGlobals';
 
 const PAGES_QUERY = `
   query PagesQuery($projectId: ID!, $slug: String!) {
@@ -21,7 +21,7 @@ const PAGES_QUERY = `
       project(id: $projectId) {
         page(slug: $slug) {
           pageBlocks {
-            fieldValuesObjects {
+            fieldValues {
               content
               field {
                 id
@@ -147,14 +147,14 @@ export async function getStaticPaths() {
   const slugs = [];
 
   pagesGenerator?.pageBlocks?.map((pageBlock) => {
-    const primarySlug = pageBlock.fieldValuesObjects
+    const primarySlug = pageBlock.fieldValues
       ?.find((fvo) => fvo.field?.shortname === 'slug')
       ?.content?.value.replace(/\//g, '');
 
     if (!primarySlug?.length) return;
 
     if (
-      !!pageBlock.fieldValuesObjects?.find(
+      !!pageBlock.fieldValues?.find(
         (fvo) => fvo.field.shortname === 'menu-secondario',
       )?.content?.items?.length
     ) {
@@ -162,7 +162,7 @@ export async function getStaticPaths() {
       if (!slugs.includes(primarySlug)) slugs.push(primarySlug);
 
       // Create secondary pages
-      pageBlock.fieldValuesObjects
+      pageBlock.fieldValues
         ?.find((fvo) => fvo.field.shortname === 'menu-secondario')
         ?.content?.items.map((secondaryNavItem) => {
           const secondarySlug = secondaryNavItem.fields?.find(

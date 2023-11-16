@@ -9,7 +9,7 @@ export const HomeIntroBlock = ({ fields }) => {
   const colRight = findByShortname(fields, 'colonna-2')?.content?.value ?? '';
 
   return (
-    <div tw="h-auto py-10 min-height[400px] lg:height[calc(100vh - 5rem)] md:pt-40 md:pb-32 lg:py-72 flex items-center">
+    <div tw="h-auto py-10 min-h-[400px] lg:h-[calc(100vh - 5rem)] md:pt-40 md:pb-32 lg:py-72 flex items-center">
       <div tw="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:space-x-20">
         {!!colLeft && (
           <Paragraph tw="text-3xl lg:text-5xl">{parse(colLeft)}</Paragraph>

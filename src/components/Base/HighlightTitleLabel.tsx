@@ -11,7 +11,7 @@ const Highlight = styled(RichText)<{
   highlightTextColor: string;
   inverse: boolean;
 }>`
-  ${tw`font-bold text-lg lg:text-2xl line-height[140%]! no-underline inline-block w-auto mb-4`}
+  ${tw`font-bold text-lg lg:text-2xl !leading-[140%] no-underline inline-block w-auto mb-4`}
 
   ${({ inverse, highlightBgColor, highlightTextColor }) =>
     inverse

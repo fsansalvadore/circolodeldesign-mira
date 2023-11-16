@@ -11,14 +11,14 @@ import 'swiper/swiper-bundle.css';
 // install Swiper modules
 ISwiper.use([A11y, Autoplay]);
 
-const Wrapper = tw.div`w-full height[40vw] relative`;
+const Wrapper = tw.div`w-full h-[40vw] relative`;
 
 const PaginationWrapper = tw.div`w-full mt-1 flex items-center justify-center`;
 
 const NavigationWrapper = tw.div`absolute right-0 bottom-0 top-0 left-0 z-10 flex items-center justify-between pointer-events-none`;
 
 const NavButton = styled.button<{ $dimmed: boolean }>`
-  ${tw`width[40px] height[40px] outline-none appearance-none flex items-center justify-center rounded-full bg-miraFucsia transition-opacity pointer-events-auto`}
+  ${tw`w-[40px] h-[40px] outline-none appearance-none flex items-center justify-center rounded-full bg-miraFucsia transition-opacity pointer-events-auto`}
   ${({ $dimmed }) => $dimmed && tw`opacity-50`}
 `;
 
@@ -36,7 +36,7 @@ const StyledSwiper = styled(Swiper)<{
 `;
 
 const Bullet = styled.span<{ $active: boolean }>`
-  ${tw`flex-grow height[11px] m-1 border bg-gray-200`}
+  ${tw`flex-grow h-[11px] m-1 border bg-gray-200`}
   ${({ $active }) => !!$active && tw`bg-miraFucsia`}
 `;
 

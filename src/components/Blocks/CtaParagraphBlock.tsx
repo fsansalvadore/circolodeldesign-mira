@@ -11,7 +11,7 @@ export const CtaParagraphBlock = ({ fields }) => {
     findByShortname(fields, 'testo-cta')?.content?.value ?? 'Scopri di più';
 
   return (
-    <div tw="flex flex-col space-y-3 lg:space-y-8 lg:max-width[50%] my-4 lg:my-8">
+    <div tw="flex flex-col space-y-3 lg:space-y-8 lg:max-w-[50%] my-4 lg:my-8">
       {!!title && <h2 tw="text-4xl lg:text-6xl">{title}</h2>}
       {!!content && <Paragraph>{parse(content)}</Paragraph>}
       {!!ctaLink && (
