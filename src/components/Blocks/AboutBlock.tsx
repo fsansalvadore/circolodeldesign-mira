@@ -11,8 +11,7 @@ export const AboutBlock = ({ fields }) => {
   const testoCta = findByShortname(fields, 'testo-cta')?.content?.value ?? '';
   const colophonSections =
     findByShortname(fields, 'colophon-sinistra')?.content?.items ?? [];
-
-    console.log("about fields", fields)
+    
   return (
     <div tw="flex flex-col">
       {!!content && <Paragraph>{parse(content)}</Paragraph>}

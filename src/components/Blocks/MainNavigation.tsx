@@ -162,7 +162,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
     }
 
     return () => lottie.destroy();
-  }, [menuIsOpen, lottieRef]);
+  }, [menuIsOpen, lottieRef, colorVariant.mode]);
 
   useEffect(() => {
     router.events.on('routeChangeComplete', () => setMenuIsOpen(false));
@@ -354,7 +354,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
                       );
                     } else {
                       return (
-                        <MobileSubMenuItem>
+                        <MobileSubMenuItem key={`mobile-${slug}`}>
                           <NavLink
                             href={slug}
                             key={slug}

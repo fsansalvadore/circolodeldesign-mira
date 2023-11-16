@@ -10,7 +10,6 @@ export const ReportsBlock = ({ fields }) => {
     <div tw="py-10 lg:py-20">
       <DynamicGrid>
         {reports.map((item, index) => {
-          console.log('item', item);
           const title =
             findByShortname(item.fields, 'titolo')?.content?.value ?? '';
           const subtitle =
