@@ -37,11 +37,6 @@ const App = ({ Component, pageProps, router }) => {
       </>
     );
 
-  console.log(
-    'process.env.NEXT_PUBLIC_API_ENDPOINT',
-    process.env.NEXT_PUBLIC_API_ENDPOINT,
-  );
-
   return (
     <UiduProvider endpoint={process.env.NEXT_PUBLIC_API_ENDPOINT}>
       <CmsProvider projectId={process.env.NEXT_PUBLIC_PROJECT_ID}>
@@ -71,7 +66,8 @@ const App = ({ Component, pageProps, router }) => {
               />
             )} */}
             <AnimatePresence
-              exitBeforeEnter
+              // exitBeforeEnter
+              mode='wait'
               onExitComplete={() => window.scrollTo(0, 0)}
             >
               <TransitionLayout

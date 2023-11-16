@@ -28,7 +28,7 @@ export default function ReportCard({ report }: { report: any }) {
   return (
     <div tw="mt-4 border-2 border-black rounded-lg overflow-hidden">
       {!!immagine && (
-        <div tw="relative w-full h-0 paddingBottom[66%]">
+        <div tw="relative w-full h-0 pb-[66%]">
           <Image
             src={immagine ?? ''}
             alt={titolo ?? ''}
@@ -101,4 +101,4 @@ export default function ReportCard({ report }: { report: any }) {
   );
 }
 
-const TableLabel = tw.td`font-bold w-1/4 min-width[140px] lg:min-width[160px]`;
+const TableLabel = tw.td`font-bold w-1/4 min-w-[140px] lg:min-w-[160px]`;
