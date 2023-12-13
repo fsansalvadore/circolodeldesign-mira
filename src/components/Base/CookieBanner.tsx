@@ -53,7 +53,7 @@ export const CookieBanner: React.FC = () => {
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=G-LQT60P4EY9`}
           />
           <script
             dangerouslySetInnerHTML={{
@@ -61,7 +61,7 @@ export const CookieBanner: React.FC = () => {
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}', {
+                  gtag('config', 'G-LQT60P4EY9', {
                   page_path: window.location.pathname,
                   });
                   `,
