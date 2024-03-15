@@ -15,7 +15,6 @@ import { colorVariants, transitions } from '../../utils/motion';
 import lottie from 'lottie-web';
 import MiraBlack from '../../assets/animations/mira-black-crop.json';
 import MiraWhite from '../../assets/animations/mira-white-crop.json';
-// import CDD from '../../assets/circolo-del-design.svg';
 import { useWindowSize } from 'react-use';
 import Image from 'next/image';
 
@@ -220,7 +219,7 @@ export const MainNavigation = ({ menu, colorVariant, page, ...rest }) => {
               tw="relative w-20 h-20 max-h-[72px] max-w-[155px]"
             >
               <Image
-                src="/circolo-del-design.svg"
+                src="/Logo-CDD-white.svg"
                 alt="Circolo del Design"
                 fill
                 className="object-contain"
