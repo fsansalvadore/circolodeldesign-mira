@@ -12,7 +12,7 @@
     "@apollo/client": "^3.4.11",
     "@heroicons/react": "^1.0.3",
     "@slate-serializers/html": "^2.1.0",
-    "@uidu/api.js": "^5.1.0",
+    "@uidu/api.js": "^6.0.0",
     "body-scroll-lock": "^4.0.0-beta.0",
     "framer-motion": "^10.16.5",
     "graphql": "^15.5.3",
