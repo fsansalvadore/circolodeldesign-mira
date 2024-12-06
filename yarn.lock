@@ -1778,10 +1778,10 @@
     "@typescript-eslint/types" "6.11.0"
     eslint-visitor-keys "^3.4.1"
 
-"@uidu/api.js@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@uidu/api.js/-/api.js-6.0.0.tgz#ac63470fde5b0a4a776e552be28c07f9a7cb388d"
-  integrity sha512-75D+Y9MH8JIKGkZK/ZRKtKBC+v2mvt/ZC5mrKGXzuIvt1w27J/UeiJqe4s+R1lHhVJ4ANURc1Vtgzr9T1OAzWA==
+"@uidu/api.js@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@uidu/api.js/-/api.js-8.0.0.tgz#43abb6017a0afaf4ccdd2df94b7dd4073b798f07"
+  integrity sha512-SryvyJJxK6Lf7OtJI5q/TX9jMbPmvuMvvcwvMrS5CYMDIKL1iY/ynFjoyhZ/qIhYSkssZFyc3CyPO9aHQQyB7Q==
   dependencies:
     graphql "^16.8.1"
     graphql-request "^6.1.0"
