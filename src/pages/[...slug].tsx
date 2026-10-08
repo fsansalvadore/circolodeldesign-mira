@@ -1,10 +1,10 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import {
-  getPageSchema,
   // PAGES_QUERY,
   PAGE_QUERY,
   TEMPLATE_QUERY,
 } from '@uidu/api.js/react';
+import { getPageSchema } from '../utils/pageSchema';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import 'twin.macro';

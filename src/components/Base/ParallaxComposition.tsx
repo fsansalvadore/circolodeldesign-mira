@@ -7,7 +7,7 @@ import {
 } from 'framer-motion';
 import { useWindowSize } from 'react-use';
 import { useEffect, useRef, useState } from 'react';
-import lottie from 'lottie-web';
+import lottie from '../../utils/lottie';
 import Piano1 from '../../assets/animations/piano_sfocato1-old.json';
 import Piano2 from '../../assets/animations/piano_sfocato2-old.json';
 import Piano3 from '../../assets/animations/piano_sfocato3-old.json';

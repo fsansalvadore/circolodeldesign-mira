@@ -12,7 +12,7 @@ import {
   useViewportScroll,
 } from 'framer-motion';
 import { colorVariants, transitions } from '../../utils/motion';
-import lottie from 'lottie-web';
+import lottie from '../../utils/lottie';
 import MiraBlack from '../../assets/animations/mira-black-crop.json';
 import MiraWhite from '../../assets/animations/mira-white-crop.json';
 import { useWindowSize } from 'react-use';

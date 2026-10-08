@@ -3,7 +3,7 @@ import { findByShortname } from '../../utils/common';
 import { motion } from 'framer-motion';
 import parse from 'html-react-parser';
 import { MaxWidthContent, Link, RichText, SocialIcon } from '../Base';
-import lottie from 'lottie-web';
+import lottie from '../../utils/lottie';
 import MiraLogoJson from '../../assets/animations/mira-nocopy.json';
 import { useEffect, useRef } from 'react';
 
@@ -95,17 +95,15 @@ export const Footer = ({ footer = null, colorVariant }) => {
       <MaxWidthContent tw="flex flex-col max-w-[100vw] space-y-6 md:space-y-0 md:flex-row md:space-x-10 lg:space-x-16">
         <div tw="flex-shrink min-w-[150px]">
           <Link href="/">
-            {lottie && (
-              <LottieLogo
-                as={motion.div}
-                initial={{ opacity: 0 }}
-                ref={logoRef}
-                animate={{
-                  opacity: 1,
-                  transition: { delay: 0.8, duration: 0.5 },
-                }}
-              />
-            )}
+            <LottieLogo
+              as={motion.div}
+              initial={{ opacity: 0 }}
+              ref={logoRef}
+              animate={{
+                opacity: 1,
+                transition: { delay: 0.8, duration: 0.5 },
+              }}
+            />
           </Link>
         </div>
         <div tw="flex-grow flex lg:justify-start! lg:items-start">

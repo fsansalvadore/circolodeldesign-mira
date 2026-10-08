@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import tw, { styled } from 'twin.macro';
 import { Swiper as ISwiper } from 'swiper';
-import { A11y, Autoplay, SwiperOptions } from 'swiper';
+import { SwiperOptions } from 'swiper';
+import { A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 

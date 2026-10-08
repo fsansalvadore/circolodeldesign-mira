@@ -1,5 +1,6 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-import { getPageSchema, PAGE_QUERY } from '@uidu/api.js/react';
+import { PAGE_QUERY } from '@uidu/api.js/react';
+import { getPageSchema } from '../utils/pageSchema';
 import { NextSeo } from 'next-seo';
 import BlocksParser from '../components/BlocksParser';
 import MaintenancePage from '../components/Base/MaintenancePage';

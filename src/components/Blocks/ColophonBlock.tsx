@@ -50,7 +50,11 @@ const ColophonContent = ({ testo, image }: ColophonContent) => {
         </GridItem>
       ) : (
         <GridItem>
-          <RichText>{parse(slateToHtml(testo))}</RichText>
+          <RichText>
+            {typeof testo === 'string'
+              ? parse(testo)
+              : parse(slateToHtml(testo))}
+          </RichText>
         </GridItem>
       )}
     </div>

@@ -1,5 +1,6 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-import { getPageSchema, PAGE_QUERY } from '@uidu/api.js/react';
+import { PAGE_QUERY } from '@uidu/api.js/react';
+import { getPageSchema } from './pageSchema';
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
